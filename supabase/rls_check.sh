@@ -24,8 +24,9 @@ for t in admins flats flat_photos rates faq reviews site_texts bookings ical_sou
 done
 echo "== 2. Escritura de anon denegada =="
 denied() { [ "$1" = "401" ] || [ "$1" = "403" ] || grep -qi "permission denied\|row-level security\|Unauthorized\|policy" /tmp/rls_body; }
-for t in flats bookings ical_sources faq; do
-  c=$(req POST "/rest/v1/$t" '{"x":1}')
+for pair in 'flats|{"slug":"zz-test"}' 'bookings|{"notes":"x"}' 'ical_sources|{"label":"x"}' 'faq|{"q_es":"x"}'; do
+  t="${pair%%|*}"; body="${pair#*|}"
+  c=$(req POST "/rest/v1/$t" "$body")
   if denied "$c"; then ok "POST $t -> $c"; else bad "POST $t -> $c $(head -c 100 /tmp/rls_body)"; fi
 done
 c=$(req POST "/storage/v1/object/flats/rls-test.txt" 'x'); if denied "$c"; then ok "Storage subida anon -> $c"; else bad "Storage subida anon -> $c $(head -c 100 /tmp/rls_body)"; fi
