@@ -112,6 +112,7 @@ h2{font-size:clamp(32px,5vw,46px)}
 .empty{padding:40px 20px;text-align:center;color:var(--muted);background:var(--paper);border-radius:var(--radius);grid-column:1/-1}
 #mapbox{position:sticky;top:calc(var(--header-h) + 16px);height:calc(100vh - var(--header-h) - 40px);min-height:420px;max-height:780px;border-radius:var(--radius);overflow:hidden;background:#e9e2d4;box-shadow:0 1px 0 var(--line)}
 #mapbox .map-note{height:100%;display:flex;align-items:center;justify-content:center;text-align:center;padding:30px;color:var(--muted);font-size:14px}
+#mapbox .map-note p{margin-bottom:14px}
 .pill{position:absolute;transform:translate(-50%,-100%);background:var(--blue);color:#fff;font:600 13px var(--sans);padding:6px 11px;border-radius:99px;box-shadow:0 4px 12px rgba(0,0,0,.25);white-space:nowrap;cursor:pointer;border:2px solid #fff}
 .pill:after{content:"";position:absolute;left:50%;bottom:-7px;margin-left:-6px;border:6px solid transparent;border-top-color:#fff;border-bottom:0}
 .pill.on,.pill:hover{background:var(--sand)}

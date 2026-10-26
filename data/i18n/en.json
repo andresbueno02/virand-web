@@ -111,5 +111,7 @@
  "svc.jardin": "Private garden",
  "svc.ascensor": "Lift",
  "svc.vistas-mar": "Sea views",
- "svc.vistas": "Views"
+ "svc.vistas": "Views",
+ "map.load": "Load map",
+ "map.hint": "See where our stays are on the map."
 }

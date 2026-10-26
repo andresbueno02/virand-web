@@ -76,13 +76,39 @@
       state.opt = opt; state.el = opt.container;
       var key = (root.VIRAND_CONFIG || {}).mapsKey;
       if (!key) { note(opt.t('map.noKey')); return; }
-      note('…');
-      loadScript(key).then(function () {
-        state.el.innerHTML = '';
-        state.Pill = buildPill();
-        state.map = new google.maps.Map(state.el, { center: { lat: 36.66, lng: -4.5 }, zoom: 10, mapTypeControl: false, streetViewControl: false, fullscreenControl: false, clickableIcons: false });
-        state.loaded = true; draw();
-      }).catch(function () { state.failed = true; note(opt.t('map.error')); });
+      // Carga diferida anti-bots: el script de Google (que cuenta como "carga" facturable) solo se
+      // descarga cuando el mapa es visible Y hay un gesto real del usuario (isTrusted), o al pulsar el botón.
+      var started = false;
+      function start() {
+        if (started) return; started = true; detach();
+        note('…');
+        loadScript(key).then(function () {
+          state.el.innerHTML = '';
+          state.Pill = buildPill();
+          state.map = new google.maps.Map(state.el, { center: { lat: 36.66, lng: -4.5 }, zoom: 10, mapTypeControl: false, streetViewControl: false, fullscreenControl: false, clickableIcons: false });
+          state.loaded = true; draw();
+        }).catch(function () { state.failed = true; note(opt.t('map.error')); });
+      }
+      var inView = false, gesture = false, io = null;
+      var evs = ['pointerdown', 'keydown', 'wheel', 'touchstart'];
+      function check() { if (inView && gesture) start(); }
+      function onGesture(e) { if (e.isTrusted) { gesture = true; check(); } }
+      function detach() { evs.forEach(function (n) { root.removeEventListener(n, onGesture, true); }); if (io) io.disconnect(); }
+      var n = 0; try { n = +(root.sessionStorage.getItem('virand-maploads') || 0); } catch (e) {}
+      state.el.innerHTML = '<div class="map-note"><div><p>' + opt.t('map.hint') + '</p><button type="button" class="btn btn-primary" data-load-map>' + opt.t('map.load') + '</button></div></div>';
+      state.el.querySelector('[data-load-map]').addEventListener('click', function (e) {
+        if (e.isTrusted) { try { root.sessionStorage.setItem('virand-maploads', String(n + 1)); } catch (x) {} start(); }
+      });
+      if (n >= 3) return; // tras 3 cargas en la misma sesión, solo bajo petición expresa
+      evs.forEach(function (name) { root.addEventListener(name, onGesture, true); });
+      if ('IntersectionObserver' in root) {
+        io = new IntersectionObserver(function (en) {
+          inView = en.some(function (x) { return x.isIntersecting; });
+          if (inView && gesture) { try { root.sessionStorage.setItem('virand-maploads', String(n + 1)); } catch (x) {} }
+          check();
+        }, { rootMargin: '150px' });
+        io.observe(state.el);
+      } else { inView = true; }
     },
     // items: [{slug,lat,lng,label,name,priceText,thumb}]
     update: function (items) { state.items = items; if (state.loaded) draw(); },

@@ -15,7 +15,7 @@ Web estática (HTML/CSS/JS sin build) de VirAnd Luxury Rental. Spec: `docs/super
 
 ## Pendiente de configurar (assets/js/config.js)
 - `appsScriptUrl`: URL /exec del Apps Script (ver `apps-script/README.md`).
-- `mapsKey`: clave de Google Maps restringida al dominio. Sin ella la web oculta el mapa y sigue funcionando.
+- `mapsKey`: clave de Google Maps (guía y tope de gasto en `docs/google-maps-setup.md`). Sin ella la web oculta el mapa y sigue funcionando.
 
 ## Fuente de disponibilidad
 Solo `assets/js/availability.js` habla con el backend. Contrato en ese fichero; se puede sustituir Apps Script por otro servicio sin tocar la UI.
