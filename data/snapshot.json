@@ -91,6 +91,8 @@
    "name_en": "Beachfront penthouse with heated jacuzzi",
    "name_es": "Ático frente a la playa con jacuzzi climatizado",
    "nota": null,
+   "precio_alta": null,
+   "precio_baja": null,
    "precio_desde": null,
    "servicios": [
     "playa",
@@ -114,6 +116,8 @@
    "name_en": "Charming beach apartment",
    "name_es": "Encantador apartamento en la playa",
    "nota": null,
+   "precio_alta": null,
+   "precio_baja": null,
    "precio_desde": null,
    "servicios": [
     "playa",
@@ -137,6 +141,8 @@
    "name_en": "Boho Chic on the beachfront",
    "name_es": "Boho Chic frente a la playa",
    "nota": null,
+   "precio_alta": null,
+   "precio_baja": null,
    "precio_desde": null,
    "servicios": [
     "playa",
@@ -160,6 +166,8 @@
    "name_en": "Loft Ipanema, Málaga Centre",
    "name_es": "Loft Ipanema, Málaga Centro",
    "nota": 4.9,
+   "precio_alta": null,
+   "precio_baja": null,
    "precio_desde": null,
    "servicios": [
     "llegada-autonoma",
@@ -182,6 +190,8 @@
    "name_en": "Benalmarina Apartment",
    "name_es": "Benalmarina Apartment",
    "nota": null,
+   "precio_alta": null,
+   "precio_baja": 109.0,
    "precio_desde": 109.0,
    "servicios": [
     "piscina",
@@ -206,6 +216,8 @@
    "name_en": "Carvajal Beach apartment",
    "name_es": "Carvajal Beach apartment",
    "nota": null,
+   "precio_alta": null,
+   "precio_baja": 105.0,
    "precio_desde": 105.0,
    "servicios": [
     "vistas-mar",
@@ -230,6 +242,8 @@
    "name_en": "Guadalmar (Natural Area)",
    "name_es": "Guadalmar (Paraje Natural)",
    "nota": null,
+   "precio_alta": null,
+   "precio_baja": 95.0,
    "precio_desde": 95.0,
    "servicios": [
     "piscina",
@@ -254,6 +268,8 @@
    "name_en": "Mediterranean Garden House",
    "name_es": "Jardín del Mediterráneo",
    "nota": null,
+   "precio_alta": null,
+   "precio_baja": 300.0,
    "precio_desde": 300.0,
    "servicios": [
     "piscina",
@@ -280,6 +296,8 @@
    "name_en": "La Casita de la Carihuela",
    "name_es": "La casita de la Carihuela",
    "nota": null,
+   "precio_alta": null,
+   "precio_baja": 65.0,
    "precio_desde": 65.0,
    "servicios": [
     "vistas-mar",
@@ -304,6 +322,8 @@
    "name_en": "Luxy Beach Apartment",
    "name_es": "Luxy Beach Apartment",
    "nota": null,
+   "precio_alta": null,
+   "precio_baja": 150.0,
    "precio_desde": 150.0,
    "servicios": [
     "vistas-mar",
@@ -329,6 +349,8 @@
    "name_en": "Luz de Sol Apartment",
    "name_es": "Luz de Sol Apartment",
    "nota": null,
+   "precio_alta": null,
+   "precio_baja": 210.0,
    "precio_desde": 210.0,
    "servicios": [
     "aire",
@@ -352,6 +374,8 @@
    "name_en": "Sol & Centro Málaga",
    "name_es": "Sol & Centro Málaga",
    "nota": null,
+   "precio_alta": null,
+   "precio_baja": 70.0,
    "precio_desde": 70.0,
    "servicios": [
     "centro",
@@ -376,6 +400,8 @@
    "name_en": "Sol y Mar Carvajal (free parking)",
    "name_es": "Sol y Mar Carvajal (parking gratuito)",
    "nota": null,
+   "precio_alta": null,
+   "precio_baja": 165.0,
    "precio_desde": 165.0,
    "servicios": [
     "vistas-mar",
@@ -400,6 +426,8 @@
    "name_en": "Spacious apartment with pool and parking",
    "name_es": "Apartamento espacioso con piscina y parking",
    "nota": null,
+   "precio_alta": null,
+   "precio_baja": 319.0,
    "precio_desde": 319.0,
    "servicios": [
     "piscina",
@@ -424,6 +452,8 @@
    "name_en": "Spacious city apartment with free parking",
    "name_es": "Amplio apartamento urbano con parking gratuito",
    "nota": null,
+   "precio_alta": null,
+   "precio_baja": 150.0,
    "precio_desde": 150.0,
    "servicios": [
     "parking",
@@ -448,6 +478,8 @@
    "name_en": "Cosy Flat in the heart of Málaga",
    "name_es": "Cosy Flat en el corazón de Málaga",
    "nota": null,
+   "precio_alta": null,
+   "precio_baja": 220.0,
    "precio_desde": 220.0,
    "servicios": [
     "centro",
@@ -1750,6 +1782,91 @@
    "sort": 13
   }
  ],
+ "pricing": {
+  "pisos": {
+   "apartamento-playa-malaga": {
+    "days": {},
+    "high": null,
+    "low": null
+   },
+   "atico-benalmadena": {
+    "days": {},
+    "high": null,
+    "low": null
+   },
+   "benalmarina-apartment": {
+    "days": {},
+    "high": null,
+    "low": 109.0
+   },
+   "boho-chic-torremolinos": {
+    "days": {},
+    "high": null,
+    "low": null
+   },
+   "carvajal-beach-apartment": {
+    "days": {},
+    "high": null,
+    "low": 105.0
+   },
+   "city-apartment-carranque": {
+    "days": {},
+    "high": null,
+    "low": 150.0
+   },
+   "cosy-flat-malaga": {
+    "days": {},
+    "high": null,
+    "low": 220.0
+   },
+   "guadalmar-paraje-natural": {
+    "days": {},
+    "high": null,
+    "low": 95.0
+   },
+   "jardin-del-mediterraneo": {
+    "days": {},
+    "high": null,
+    "low": 300.0
+   },
+   "la-casita-de-la-carihuela": {
+    "days": {},
+    "high": null,
+    "low": 65.0
+   },
+   "loft-ipanema-malaga": {
+    "days": {},
+    "high": null,
+    "low": null
+   },
+   "luxy-beach-apartment": {
+    "days": {},
+    "high": null,
+    "low": 150.0
+   },
+   "luzdesol-apartment": {
+    "days": {},
+    "high": null,
+    "low": 210.0
+   },
+   "sol-centro-malaga": {
+    "days": {},
+    "high": null,
+    "low": 70.0
+   },
+   "sol-y-mar-carvajal": {
+    "days": {},
+    "high": null,
+    "low": 165.0
+   },
+   "spacious-pool-torremolinos": {
+    "days": {},
+    "high": null,
+    "low": 319.0
+   }
+  },
+  "seasons": []
+ },
  "reviews": [
   {
    "author_en": "VirAnd guest",
