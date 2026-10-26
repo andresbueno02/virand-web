@@ -1,0 +1,15 @@
+{
+  "name": "VirAnd · Panel de administración",
+  "short_name": "VirAnd Panel",
+  "description": "Panel privado para gestionar los pisos, precios y textos de VirAnd.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#faf6ef",
+  "theme_color": "#1f3a5f",
+  "lang": "es",
+  "icons": [
+    { "src": "../assets/img/panel-icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "../assets/img/panel-icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}
