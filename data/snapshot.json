@@ -1,0 +1,2931 @@
+{
+ "faq": [
+  {
+   "a_en": "Choose your stay and dates and tap “Enquire on WhatsApp”. We confirm availability and price directly, with no middlemen.",
+   "a_es": "Elige tu alojamiento y tus fechas y pulsa «Consultar por WhatsApp». Te confirmamos la disponibilidad y el precio directamente, sin intermediarios.",
+   "q_en": "How do I book?",
+   "q_es": "¿Cómo reservo?",
+   "sort": 0
+  },
+  {
+   "a_en": "The “from” price is indicative: the final amount depends on dates, season and number of guests. We confirm it on WhatsApp before you book.",
+   "a_es": "El precio «desde» es orientativo: el importe final depende de las fechas, la temporada y el número de personas. Te lo confirmamos por WhatsApp antes de reservar.",
+   "q_en": "Is the price I see final?",
+   "q_es": "¿El precio que veo es definitivo?",
+   "sort": 1
+  },
+  {
+   "a_en": "It refreshes periodically from our platforms' calendars, so there can be a short delay. We always confirm availability with you before finalising a booking.",
+   "a_es": "Se actualiza periódicamente a partir de los calendarios de nuestras plataformas, por lo que puede haber un pequeño retraso. Siempre confirmamos la disponibilidad contigo antes de cerrar la reserva.",
+   "q_en": "Is the calendar updated in real time?",
+   "q_es": "¿El calendario está actualizado en tiempo real?",
+   "sort": 2
+  },
+  {
+   "a_en": "50% of the total is paid when booking and the remainder 7 days before arrival. No security deposit is required.",
+   "a_es": "Se abona el 50 % del importe total al reservar y el resto 7 días antes de la llegada. No se requiere fianza.",
+   "q_en": "How is the booking paid?",
+   "q_es": "¿Cómo se paga la reserva?",
+   "sort": 3
+  },
+  {
+   "a_en": "Payments made are non-refundable. If you are unsure about your dates, ask us before booking.",
+   "a_es": "Los pagos realizados son no reembolsables. Si tienes dudas sobre tus fechas, consúltanos antes de reservar.",
+   "q_en": "Can I cancel my booking?",
+   "q_es": "¿Se puede cancelar la reserva?",
+   "sort": 4
+  },
+  {
+   "a_en": "In general, check-in is from 16:00 and check-out until 11:00. Some stays may differ; we confirm it when you book.",
+   "a_es": "Con carácter general, la llegada es a partir de las 16:00 y la salida hasta las 11:00. Algunos alojamientos pueden variar; te lo confirmamos al reservar.",
+   "q_en": "What are the check-in and check-out times?",
+   "q_es": "¿A qué hora es la llegada y la salida?",
+   "sort": 5
+  },
+  {
+   "a_en": "In Málaga, Torremolinos, Benalmádena and Fuengirola on the Costa del Sol. We share the exact address once your booking is confirmed.",
+   "a_es": "En Málaga, Torremolinos, Benalmádena y Fuengirola, en la Costa del Sol. Te facilitamos la dirección exacta una vez confirmada la reserva.",
+   "q_en": "Where are the stays?",
+   "q_es": "¿Dónde están los alojamientos?",
+   "sort": 6
+  },
+  {
+   "a_en": "Some stays, such as Loft Ipanema, offer self check-in. For the rest we explain the whole process when you confirm your booking.",
+   "a_es": "Algunos alojamientos, como Loft Ipanema, tienen llegada autónoma. Para el resto te explicamos todo el proceso al confirmar la reserva.",
+   "q_en": "What is arrival like?",
+   "q_es": "¿Cómo es la llegada?",
+   "sort": 7
+  },
+  {
+   "a_en": "Mediterranean Garden House allows pets. For the other stays, ask us on WhatsApp and we'll confirm.",
+   "a_es": "Jardín del Mediterráneo admite mascotas. En el resto de alojamientos, consúltanos por WhatsApp y te lo confirmamos.",
+   "q_en": "Are pets allowed?",
+   "q_es": "¿Se admiten mascotas?",
+   "sort": 8
+  },
+  {
+   "a_en": "No. Our stays are in residential buildings or areas and we ask guests to respect the neighbours' rest.",
+   "a_es": "No. Nuestros alojamientos están en edificios o zonas residenciales y pedimos respetar el descanso de los vecinos.",
+   "q_en": "Are parties allowed?",
+   "q_es": "¿Se pueden organizar fiestas?",
+   "sort": 9
+  },
+  {
+   "a_en": "Personal attention throughout your stay: for any question or issue, message us on WhatsApp.",
+   "a_es": "Atención personalizada durante toda tu estancia: cualquier duda o incidencia, escríbenos por WhatsApp.",
+   "q_en": "What support do I get during my stay?",
+   "q_es": "¿Qué atención recibo durante la estancia?",
+   "sort": 10
+  }
+ ],
+ "flats": [
+  {
+   "banos": 1,
+   "barrio": "Playa",
+   "camas": 2,
+   "desc_en": "Entire apartment in Benalmádena, right on the beach, with a heated jacuzzi and barbecue on the terrace. Sleeps 4 guests in 2 bedrooms.",
+   "desc_es": "Apartamento entero en Benalmádena, frente a la playa, con jacuzzi climatizado y barbacoa en su terraza. Alojamiento para 4 viajeros con 2 dormitorios.",
+   "dormitorios": 2,
+   "lat": 36.5955,
+   "lng": -4.5695,
+   "name_en": "Beachfront penthouse with heated jacuzzi",
+   "name_es": "Ático frente a la playa con jacuzzi climatizado",
+   "nota": null,
+   "precio_desde": null,
+   "servicios": [
+    "playa",
+    "jacuzzi",
+    "barbacoa"
+   ],
+   "slug": "atico-benalmadena",
+   "sort": 0,
+   "viajeros": 4,
+   "zona": "Benalmádena"
+  },
+  {
+   "banos": 2,
+   "barrio": "Playa",
+   "camas": 5,
+   "desc_en": "Entire apartment in Málaga by the beach, with a pool and parking. Sleeps 6 guests in 3 bedrooms with 2 bathrooms.",
+   "desc_es": "Apartamento entero en Málaga junto a la playa, con piscina y parking. Alojamiento para 6 viajeros con 3 dormitorios y 2 baños.",
+   "dormitorios": 3,
+   "lat": 36.719,
+   "lng": -4.386,
+   "name_en": "Charming beach apartment",
+   "name_es": "Encantador apartamento en la playa",
+   "nota": null,
+   "precio_desde": null,
+   "servicios": [
+    "playa",
+    "piscina",
+    "parking"
+   ],
+   "slug": "apartamento-playa-malaga",
+   "sort": 2,
+   "viajeros": 6,
+   "zona": "Málaga"
+  },
+  {
+   "banos": 1,
+   "barrio": "Playa",
+   "camas": 5,
+   "desc_en": "Entire apartment in Torremolinos on the beachfront, with a pool and bicycles. Sleeps 7 guests in 2 bedrooms.",
+   "desc_es": "Apartamento entero en Torremolinos frente a la playa, con piscina y bicicletas. Alojamiento para 7 viajeros con 2 dormitorios.",
+   "dormitorios": 2,
+   "lat": 36.62,
+   "lng": -4.499,
+   "name_en": "Boho Chic on the beachfront",
+   "name_es": "Boho Chic frente a la playa",
+   "nota": null,
+   "precio_desde": null,
+   "servicios": [
+    "playa",
+    "piscina",
+    "bicicletas"
+   ],
+   "slug": "boho-chic-torremolinos",
+   "sort": 3,
+   "viajeros": 7,
+   "zona": "Torremolinos"
+  },
+  {
+   "banos": 1,
+   "barrio": "Centro",
+   "camas": 1,
+   "desc_en": "Cosy, fully renovated loft in one of Málaga's most authentic neighbourhoods. Just a 15-minute walk from the historic centre, surrounded by supermarkets, restaurants, a pharmacy and everything you need for a comfortable stay.",
+   "desc_es": "Acogedor loft completamente reformado situado en una de las zonas más auténticas de Málaga. A tan solo 15 minutos caminando del centro histórico y rodeado de supermercados, restaurantes, farmacia y todos los servicios necesarios para una estancia cómoda.",
+   "dormitorios": 1,
+   "lat": 36.7255,
+   "lng": -4.434,
+   "name_en": "Loft Ipanema, Málaga Centre",
+   "name_es": "Loft Ipanema, Málaga Centro",
+   "nota": 4.9,
+   "precio_desde": null,
+   "servicios": [
+    "llegada-autonoma",
+    "wifi"
+   ],
+   "slug": "loft-ipanema-malaga",
+   "sort": 4,
+   "viajeros": 2,
+   "zona": "Málaga"
+  },
+  {
+   "banos": 1,
+   "barrio": "Benalmarina",
+   "camas": null,
+   "desc_en": "Apartment in a quiet area of Benalmádena, just a 5-minute walk from the beach. It has two spacious bedrooms, a terrace for summer evenings, a parking space and access to two swimming pools.",
+   "desc_es": "Apartamento en una zona tranquila de Benalmádena, a solo 5 minutos a pie de la playa. Dispone de dos amplios dormitorios, terraza para disfrutar de las noches de verano, plaza de parking y acceso a dos piscinas.",
+   "dormitorios": 2,
+   "lat": 36.5871,
+   "lng": -4.5368,
+   "name_en": "Benalmarina Apartment",
+   "name_es": "Benalmarina Apartment",
+   "nota": null,
+   "precio_desde": 109.0,
+   "servicios": [
+    "piscina",
+    "parking",
+    "aire",
+    "wifi"
+   ],
+   "slug": "benalmarina-apartment",
+   "sort": 5,
+   "viajeros": 4,
+   "zona": "Benalmádena"
+  },
+  {
+   "banos": 1,
+   "barrio": "Carvajal",
+   "camas": null,
+   "desc_en": "Cosy apartment with a large terrace and spectacular sea views, ideal for enjoying the Costa del Sol sun in winter. Bedroom with a 1.5 m bed and sea views, a 0.9 m extra bed for a third guest, a living room with sofa, TV with international channels and Netflix, and private parking in the same building. Restaurants, beach bars, a supermarket and a petrol station nearby.",
+   "desc_es": "Acogedor apartamento con amplia terraza y vistas espectaculares al mar, ideal para disfrutar del sol de la Costa del Sol en invierno. Dormitorio con cama de 1,50 m y vistas al mar, cama supletoria de 0,90 m para una tercera persona, salón con sofá, TV con canales internacionales y Netflix, y aparcamiento privado en el mismo edificio. Restaurantes, chiringuitos, supermercado y gasolinera en la zona.",
+   "dormitorios": 1,
+   "lat": 36.5713,
+   "lng": -4.5889,
+   "name_en": "Carvajal Beach apartment",
+   "name_es": "Carvajal Beach apartment",
+   "nota": null,
+   "precio_desde": 105.0,
+   "servicios": [
+    "vistas-mar",
+    "parking",
+    "aire",
+    "wifi"
+   ],
+   "slug": "carvajal-beach-apartment",
+   "sort": 6,
+   "viajeros": 3,
+   "zona": "Fuengirola"
+  },
+  {
+   "banos": 1,
+   "barrio": "Guadalmar",
+   "camas": null,
+   "desc_en": "Fully renovated apartment in the Guadalmar natural area, with views of the beach, the mountains and the golf course. Living-dining room with Smart TV, Netflix and high-speed wifi, a fully equipped kitchen, a bedroom with a large wardrobe and a full bathroom. Surrounded by restaurants serving local cuisine.",
+   "desc_es": "Apartamento totalmente reformado en el paraje natural de Guadalmar, con vistas a la playa, la montaña y el campo de golf. Salón comedor con Smart TV, Netflix y wifi de alta velocidad, cocina totalmente equipada, dormitorio con amplio armario y baño completo. Rodeado de restaurantes de cocina local.",
+   "dormitorios": 1,
+   "lat": 36.6643,
+   "lng": -4.4604,
+   "name_en": "Guadalmar (Natural Area)",
+   "name_es": "Guadalmar (Paraje Natural)",
+   "nota": null,
+   "precio_desde": 95.0,
+   "servicios": [
+    "piscina",
+    "vistas",
+    "aire",
+    "wifi"
+   ],
+   "slug": "guadalmar-paraje-natural",
+   "sort": 7,
+   "viajeros": 3,
+   "zona": "Málaga"
+  },
+  {
+   "banos": 4,
+   "barrio": null,
+   "camas": null,
+   "desc_en": "Welcoming house with a large garden, a private pool and a basement with a pool table. It has a fireplace, private parking, a fully equipped kitchen with washer and dryer, and bedrooms with en-suite bathrooms. Surrounded by nature and silence. Pets are welcome.",
+   "desc_es": "Casa acogedora con amplio jardín, piscina privada y un sótano con mesa de billar. Cuenta con chimenea, parking privado, cocina totalmente equipada con lavadora y secadora, y dormitorios con baño en suite. Rodeada de naturaleza y silencio. Se admiten mascotas.",
+   "dormitorios": 3,
+   "lat": 36.7215,
+   "lng": -4.3062,
+   "name_en": "Mediterranean Garden House",
+   "name_es": "Jardín del Mediterráneo",
+   "nota": null,
+   "precio_desde": 300.0,
+   "servicios": [
+    "piscina",
+    "jardin",
+    "parking",
+    "mascotas",
+    "barbacoa",
+    "aire"
+   ],
+   "slug": "jardin-del-mediterraneo",
+   "sort": 8,
+   "viajeros": 6,
+   "zona": "Málaga"
+  },
+  {
+   "banos": 1,
+   "barrio": "La Carihuela",
+   "camas": null,
+   "desc_en": "Seafront studio in La Carihuela, with sea views, plenty of natural light and a modern, carefully designed interior. Large Smart TV, wifi and air conditioning.",
+   "desc_es": "Estudio frente al mar en La Carihuela, con vistas al mar, mucha luz natural y un diseño moderno y cuidado. Smart TV de gran tamaño, wifi y aire acondicionado.",
+   "dormitorios": 1,
+   "lat": 36.6143,
+   "lng": -4.5045,
+   "name_en": "La Casita de la Carihuela",
+   "name_es": "La casita de la Carihuela",
+   "nota": null,
+   "precio_desde": 65.0,
+   "servicios": [
+    "vistas-mar",
+    "wifi",
+    "aire",
+    "ascensor"
+   ],
+   "slug": "la-casita-de-la-carihuela",
+   "sort": 9,
+   "viajeros": 2,
+   "zona": "Torremolinos"
+  },
+  {
+   "banos": 1,
+   "barrio": "Bajondillo",
+   "camas": null,
+   "desc_en": "Bright south-east facing apartment with sea views, on Bajondillo beach, one of the best areas of Torremolinos. Eclectic decor, a living room with a 65-inch Smart TV and 600 Mbps wifi, a large window opening onto the sea, a bedroom with a 160x200 bed and a designer kitchen with high-end appliances.",
+   "desc_es": "Apartamento luminoso con orientación sureste y vistas al mar, en la playa de Bajondillo, una de las mejores zonas de Torremolinos. Decoración ecléctica, salón con Smart TV de 65 pulgadas y wifi de 600 Mbps, ventanal abierto al mar, dormitorio con cama de 160x200 y cocina de diseño con electrodomésticos de alta gama.",
+   "dormitorios": 1,
+   "lat": 36.6237,
+   "lng": -4.4959,
+   "name_en": "Luxy Beach Apartment",
+   "name_es": "Luxy Beach Apartment",
+   "nota": null,
+   "precio_desde": 150.0,
+   "servicios": [
+    "vistas-mar",
+    "piscina",
+    "wifi",
+    "aire",
+    "ascensor"
+   ],
+   "slug": "luxy-beach-apartment",
+   "sort": 10,
+   "viajeros": 2,
+   "zona": "Torremolinos"
+  },
+  {
+   "banos": 1,
+   "barrio": null,
+   "camas": null,
+   "desc_en": "Family apartment with three spacious bedrooms and a bathroom with shower, 20 minutes from the historic centre of Málaga and a 13-minute walk from the train station. Kitchen with fridge and microwave, washing machine and a TV with Netflix, Prime, Disney and Max. Free parking space 400 metres away, for a 5-seater car only.",
+   "desc_es": "Apartamento familiar con tres amplios dormitorios y un baño con ducha, a 20 minutos del centro histórico de Málaga y a 13 minutos a pie de la estación de tren. Cocina con nevera y microondas, lavadora y TV con Netflix, Prime, Disney y Max. Plaza de parking gratuita a 400 metros, solo para coche de 5 plazas.",
+   "dormitorios": 3,
+   "lat": 36.7134,
+   "lng": -4.4405,
+   "name_en": "Luz de Sol Apartment",
+   "name_es": "Luz de Sol Apartment",
+   "nota": null,
+   "precio_desde": 210.0,
+   "servicios": [
+    "aire",
+    "wifi",
+    "ascensor"
+   ],
+   "slug": "luzdesol-apartment",
+   "sort": 11,
+   "viajeros": 6,
+   "zona": "Málaga"
+  },
+  {
+   "banos": 1,
+   "barrio": "Centro",
+   "camas": null,
+   "desc_en": "Modern, cosy apartment right in the centre, ideal for enjoying the city in comfort. A carefully styled bedroom, a bright living room with TV, a dining area and a fully equipped kitchen. Perfect for couples or travellers looking for location, calm and style in the heart of Málaga.",
+   "desc_es": "Apartamento moderno y acogedor en pleno centro, ideal para disfrutar de la ciudad con total comodidad. Dormitorio cuidado al detalle, salón luminoso con TV, zona de comedor y cocina totalmente equipada. Perfecto para parejas o viajeros que buscan ubicación, tranquilidad y estilo en el corazón de Málaga.",
+   "dormitorios": 1,
+   "lat": 36.7248,
+   "lng": -4.4199,
+   "name_en": "Sol & Centro Málaga",
+   "name_es": "Sol & Centro Málaga",
+   "nota": null,
+   "precio_desde": 70.0,
+   "servicios": [
+    "centro",
+    "wifi",
+    "aire",
+    "ascensor"
+   ],
+   "slug": "sol-centro-malaga",
+   "sort": 12,
+   "viajeros": 2,
+   "zona": "Málaga"
+  },
+  {
+   "banos": 1,
+   "barrio": "Carvajal",
+   "camas": null,
+   "desc_en": "Apartment in a prime spot on Carvajal beach, with a large terrace equipped with parasols and awnings and impressive coastal views. Free parking.",
+   "desc_es": "Apartamento en una ubicación privilegiada de la playa de Carvajal, con amplia terraza equipada con sombrillas y toldos y vistas impresionantes de la costa. Parking gratuito.",
+   "dormitorios": 1,
+   "lat": 36.5727,
+   "lng": -4.5897,
+   "name_en": "Sol y Mar Carvajal (free parking)",
+   "name_es": "Sol y Mar Carvajal (parking gratuito)",
+   "nota": null,
+   "precio_desde": 165.0,
+   "servicios": [
+    "vistas-mar",
+    "parking",
+    "aire",
+    "wifi"
+   ],
+   "slug": "sol-y-mar-carvajal",
+   "sort": 13,
+   "viajeros": 3,
+   "zona": "Fuengirola"
+  },
+  {
+   "banos": 2,
+   "barrio": null,
+   "camas": null,
+   "desc_en": "Spacious apartment in an authentic residential area of Torremolinos, close to the centre and the beach. Three bedrooms, a large living-dining room with Smart TV and Netflix, a separate fully equipped kitchen, a full bathroom with bathtub, an extra toilet, air conditioning, a pool and parking. Dining table for 9.",
+   "desc_es": "Apartamento espacioso en una zona residencial auténtica de Torremolinos, cerca del centro y de la playa. Tres dormitorios, amplio salón comedor con Smart TV y Netflix, cocina independiente equipada, baño completo con bañera, aseo adicional, aire acondicionado, piscina y parking. Mesa de comedor para 9 personas.",
+   "dormitorios": 3,
+   "lat": 36.6276,
+   "lng": -4.5021,
+   "name_en": "Spacious apartment with pool and parking",
+   "name_es": "Apartamento espacioso con piscina y parking",
+   "nota": null,
+   "precio_desde": 319.0,
+   "servicios": [
+    "piscina",
+    "parking",
+    "aire",
+    "wifi"
+   ],
+   "slug": "spacious-pool-torremolinos",
+   "sort": 14,
+   "viajeros": 9,
+   "zona": "Torremolinos"
+  },
+  {
+   "banos": 2,
+   "barrio": "Carranque",
+   "camas": null,
+   "desc_en": "Quiet, elegant and bright 120 m² apartment with four spacious bedrooms and two bathrooms, ideal for large groups and families (maximum 8 guests). In the Carranque area, 13 minutes by bus from the historic centre, 1 minute from a supermarket and 3 from the Regional Hospital. Residential building: no parties allowed.",
+   "desc_es": "Apartamento tranquilo, elegante y luminoso de 120 m² con cuatro amplias habitaciones y dos baños, ideal para grupos grandes y familias (máximo 8 personas). En la zona de Carranque, a 13 minutos en autobús del centro histórico, a 1 minuto de un supermercado y a 3 del Hospital Regional. Edificio de viviendas: no se permiten fiestas.",
+   "dormitorios": 4,
+   "lat": 36.7235,
+   "lng": -4.4493,
+   "name_en": "Spacious city apartment with free parking",
+   "name_es": "Amplio apartamento urbano con parking gratuito",
+   "nota": null,
+   "precio_desde": 150.0,
+   "servicios": [
+    "parking",
+    "aire",
+    "wifi",
+    "ascensor"
+   ],
+   "slug": "city-apartment-carranque",
+   "sort": 15,
+   "viajeros": 8,
+   "zona": "Málaga"
+  },
+  {
+   "banos": 2,
+   "barrio": "Centro",
+   "camas": 2,
+   "desc_en": "Cosy entire apartment in central Málaga, with parking. Sleeps 4 guests in 2 bedrooms with 2 bathrooms.",
+   "desc_es": "Apartamento entero acogedor en el centro de Málaga, con parking. Alojamiento para 4 viajeros con 2 dormitorios y 2 baños.",
+   "dormitorios": 2,
+   "lat": 36.7213,
+   "lng": -4.4214,
+   "name_en": "Cosy Flat in the heart of Málaga",
+   "name_es": "Cosy Flat en el corazón de Málaga",
+   "nota": null,
+   "precio_desde": 100.0,
+   "servicios": [
+    "centro",
+    "parking",
+    "acogedor"
+   ],
+   "slug": "cosy-flat-malaga",
+   "sort": 1,
+   "viajeros": 4,
+   "zona": "Málaga"
+  }
+ ],
+ "photos": [
+  {
+   "alt_en": "Ático frente a la playa con jacuzzi climatizado: photo 1",
+   "alt_es": "Ático frente a la playa con jacuzzi climatizado: foto 1",
+   "path": "assets/img/pisos/atico-benalmadena/1",
+   "slug": "atico-benalmadena",
+   "sort": 0
+  },
+  {
+   "alt_en": "Ático frente a la playa con jacuzzi climatizado: photo 2",
+   "alt_es": "Ático frente a la playa con jacuzzi climatizado: foto 2",
+   "path": "assets/img/pisos/atico-benalmadena/2",
+   "slug": "atico-benalmadena",
+   "sort": 1
+  },
+  {
+   "alt_en": "Ático frente a la playa con jacuzzi climatizado: photo 3",
+   "alt_es": "Ático frente a la playa con jacuzzi climatizado: foto 3",
+   "path": "assets/img/pisos/atico-benalmadena/3",
+   "slug": "atico-benalmadena",
+   "sort": 2
+  },
+  {
+   "alt_en": "Ático frente a la playa con jacuzzi climatizado: photo 4",
+   "alt_es": "Ático frente a la playa con jacuzzi climatizado: foto 4",
+   "path": "assets/img/pisos/atico-benalmadena/4",
+   "slug": "atico-benalmadena",
+   "sort": 3
+  },
+  {
+   "alt_en": "Ático frente a la playa con jacuzzi climatizado: photo 5",
+   "alt_es": "Ático frente a la playa con jacuzzi climatizado: foto 5",
+   "path": "assets/img/pisos/atico-benalmadena/5",
+   "slug": "atico-benalmadena",
+   "sort": 4
+  },
+  {
+   "alt_en": "Ático frente a la playa con jacuzzi climatizado: photo 6",
+   "alt_es": "Ático frente a la playa con jacuzzi climatizado: foto 6",
+   "path": "assets/img/pisos/atico-benalmadena/6",
+   "slug": "atico-benalmadena",
+   "sort": 5
+  },
+  {
+   "alt_en": "Ático frente a la playa con jacuzzi climatizado: photo 7",
+   "alt_es": "Ático frente a la playa con jacuzzi climatizado: foto 7",
+   "path": "assets/img/pisos/atico-benalmadena/7",
+   "slug": "atico-benalmadena",
+   "sort": 6
+  },
+  {
+   "alt_en": "Cosy Flat in the heart of Málaga: photo 1",
+   "alt_es": "Cosy Flat en el corazón de Málaga: foto 1",
+   "path": "assets/img/pisos/cosy-flat-malaga/1",
+   "slug": "cosy-flat-malaga",
+   "sort": 0
+  },
+  {
+   "alt_en": "Cosy Flat in the heart of Málaga: photo 2",
+   "alt_es": "Cosy Flat en el corazón de Málaga: foto 2",
+   "path": "assets/img/pisos/cosy-flat-malaga/2",
+   "slug": "cosy-flat-malaga",
+   "sort": 1
+  },
+  {
+   "alt_en": "Cosy Flat in the heart of Málaga: photo 3",
+   "alt_es": "Cosy Flat en el corazón de Málaga: foto 3",
+   "path": "assets/img/pisos/cosy-flat-malaga/3",
+   "slug": "cosy-flat-malaga",
+   "sort": 2
+  },
+  {
+   "alt_en": "Cosy Flat in the heart of Málaga: photo 4",
+   "alt_es": "Cosy Flat en el corazón de Málaga: foto 4",
+   "path": "assets/img/pisos/cosy-flat-malaga/4",
+   "slug": "cosy-flat-malaga",
+   "sort": 3
+  },
+  {
+   "alt_en": "Cosy Flat in the heart of Málaga: photo 5",
+   "alt_es": "Cosy Flat en el corazón de Málaga: foto 5",
+   "path": "assets/img/pisos/cosy-flat-malaga/5",
+   "slug": "cosy-flat-malaga",
+   "sort": 4
+  },
+  {
+   "alt_en": "Cosy Flat in the heart of Málaga: photo 6",
+   "alt_es": "Cosy Flat en el corazón de Málaga: foto 6",
+   "path": "assets/img/pisos/cosy-flat-malaga/6",
+   "slug": "cosy-flat-malaga",
+   "sort": 5
+  },
+  {
+   "alt_en": "Charming beach apartment: photo 1",
+   "alt_es": "Encantador apartamento en la playa: foto 1",
+   "path": "assets/img/pisos/apartamento-playa-malaga/1",
+   "slug": "apartamento-playa-malaga",
+   "sort": 0
+  },
+  {
+   "alt_en": "Charming beach apartment: photo 2",
+   "alt_es": "Encantador apartamento en la playa: foto 2",
+   "path": "assets/img/pisos/apartamento-playa-malaga/2",
+   "slug": "apartamento-playa-malaga",
+   "sort": 1
+  },
+  {
+   "alt_en": "Charming beach apartment: photo 3",
+   "alt_es": "Encantador apartamento en la playa: foto 3",
+   "path": "assets/img/pisos/apartamento-playa-malaga/3",
+   "slug": "apartamento-playa-malaga",
+   "sort": 2
+  },
+  {
+   "alt_en": "Charming beach apartment: photo 4",
+   "alt_es": "Encantador apartamento en la playa: foto 4",
+   "path": "assets/img/pisos/apartamento-playa-malaga/4",
+   "slug": "apartamento-playa-malaga",
+   "sort": 3
+  },
+  {
+   "alt_en": "Charming beach apartment: photo 5",
+   "alt_es": "Encantador apartamento en la playa: foto 5",
+   "path": "assets/img/pisos/apartamento-playa-malaga/5",
+   "slug": "apartamento-playa-malaga",
+   "sort": 4
+  },
+  {
+   "alt_en": "Boho Chic on the beachfront: photo 1",
+   "alt_es": "Boho Chic frente a la playa: foto 1",
+   "path": "assets/img/pisos/boho-chic-torremolinos/1",
+   "slug": "boho-chic-torremolinos",
+   "sort": 0
+  },
+  {
+   "alt_en": "Boho Chic on the beachfront: photo 2",
+   "alt_es": "Boho Chic frente a la playa: foto 2",
+   "path": "assets/img/pisos/boho-chic-torremolinos/2",
+   "slug": "boho-chic-torremolinos",
+   "sort": 1
+  },
+  {
+   "alt_en": "Boho Chic on the beachfront: photo 3",
+   "alt_es": "Boho Chic frente a la playa: foto 3",
+   "path": "assets/img/pisos/boho-chic-torremolinos/3",
+   "slug": "boho-chic-torremolinos",
+   "sort": 2
+  },
+  {
+   "alt_en": "Boho Chic on the beachfront: photo 4",
+   "alt_es": "Boho Chic frente a la playa: foto 4",
+   "path": "assets/img/pisos/boho-chic-torremolinos/4",
+   "slug": "boho-chic-torremolinos",
+   "sort": 3
+  },
+  {
+   "alt_en": "Boho Chic on the beachfront: photo 5",
+   "alt_es": "Boho Chic frente a la playa: foto 5",
+   "path": "assets/img/pisos/boho-chic-torremolinos/5",
+   "slug": "boho-chic-torremolinos",
+   "sort": 4
+  },
+  {
+   "alt_en": "Boho Chic on the beachfront: photo 6",
+   "alt_es": "Boho Chic frente a la playa: foto 6",
+   "path": "assets/img/pisos/boho-chic-torremolinos/6",
+   "slug": "boho-chic-torremolinos",
+   "sort": 5
+  },
+  {
+   "alt_en": "Loft Ipanema, Málaga Centro: photo 1",
+   "alt_es": "Loft Ipanema, Málaga Centro: foto 1",
+   "path": "assets/img/pisos/loft-ipanema-malaga/1",
+   "slug": "loft-ipanema-malaga",
+   "sort": 0
+  },
+  {
+   "alt_en": "Loft Ipanema, Málaga Centro: photo 2",
+   "alt_es": "Loft Ipanema, Málaga Centro: foto 2",
+   "path": "assets/img/pisos/loft-ipanema-malaga/2",
+   "slug": "loft-ipanema-malaga",
+   "sort": 1
+  },
+  {
+   "alt_en": "Loft Ipanema, Málaga Centro: photo 3",
+   "alt_es": "Loft Ipanema, Málaga Centro: foto 3",
+   "path": "assets/img/pisos/loft-ipanema-malaga/3",
+   "slug": "loft-ipanema-malaga",
+   "sort": 2
+  },
+  {
+   "alt_en": "Loft Ipanema, Málaga Centro: photo 4",
+   "alt_es": "Loft Ipanema, Málaga Centro: foto 4",
+   "path": "assets/img/pisos/loft-ipanema-malaga/4",
+   "slug": "loft-ipanema-malaga",
+   "sort": 3
+  },
+  {
+   "alt_en": "Loft Ipanema, Málaga Centro: photo 5",
+   "alt_es": "Loft Ipanema, Málaga Centro: foto 5",
+   "path": "assets/img/pisos/loft-ipanema-malaga/5",
+   "slug": "loft-ipanema-malaga",
+   "sort": 4
+  },
+  {
+   "alt_en": "Loft Ipanema, Málaga Centro: photo 6",
+   "alt_es": "Loft Ipanema, Málaga Centro: foto 6",
+   "path": "assets/img/pisos/loft-ipanema-malaga/6",
+   "slug": "loft-ipanema-malaga",
+   "sort": 5
+  },
+  {
+   "alt_en": "Benalmarina Apartment: photo 1",
+   "alt_es": "Benalmarina Apartment: foto 1",
+   "path": "assets/img/pisos/benalmarina-apartment/1",
+   "slug": "benalmarina-apartment",
+   "sort": 0
+  },
+  {
+   "alt_en": "Benalmarina Apartment: photo 2",
+   "alt_es": "Benalmarina Apartment: foto 2",
+   "path": "assets/img/pisos/benalmarina-apartment/2",
+   "slug": "benalmarina-apartment",
+   "sort": 1
+  },
+  {
+   "alt_en": "Benalmarina Apartment: photo 3",
+   "alt_es": "Benalmarina Apartment: foto 3",
+   "path": "assets/img/pisos/benalmarina-apartment/3",
+   "slug": "benalmarina-apartment",
+   "sort": 2
+  },
+  {
+   "alt_en": "Benalmarina Apartment: photo 4",
+   "alt_es": "Benalmarina Apartment: foto 4",
+   "path": "assets/img/pisos/benalmarina-apartment/4",
+   "slug": "benalmarina-apartment",
+   "sort": 3
+  },
+  {
+   "alt_en": "Benalmarina Apartment: photo 5",
+   "alt_es": "Benalmarina Apartment: foto 5",
+   "path": "assets/img/pisos/benalmarina-apartment/5",
+   "slug": "benalmarina-apartment",
+   "sort": 4
+  },
+  {
+   "alt_en": "Benalmarina Apartment: photo 6",
+   "alt_es": "Benalmarina Apartment: foto 6",
+   "path": "assets/img/pisos/benalmarina-apartment/6",
+   "slug": "benalmarina-apartment",
+   "sort": 5
+  },
+  {
+   "alt_en": "Benalmarina Apartment: photo 7",
+   "alt_es": "Benalmarina Apartment: foto 7",
+   "path": "assets/img/pisos/benalmarina-apartment/7",
+   "slug": "benalmarina-apartment",
+   "sort": 6
+  },
+  {
+   "alt_en": "Benalmarina Apartment: photo 8",
+   "alt_es": "Benalmarina Apartment: foto 8",
+   "path": "assets/img/pisos/benalmarina-apartment/8",
+   "slug": "benalmarina-apartment",
+   "sort": 7
+  },
+  {
+   "alt_en": "Benalmarina Apartment: photo 9",
+   "alt_es": "Benalmarina Apartment: foto 9",
+   "path": "assets/img/pisos/benalmarina-apartment/9",
+   "slug": "benalmarina-apartment",
+   "sort": 8
+  },
+  {
+   "alt_en": "Benalmarina Apartment: photo 10",
+   "alt_es": "Benalmarina Apartment: foto 10",
+   "path": "assets/img/pisos/benalmarina-apartment/10",
+   "slug": "benalmarina-apartment",
+   "sort": 9
+  },
+  {
+   "alt_en": "Benalmarina Apartment: photo 11",
+   "alt_es": "Benalmarina Apartment: foto 11",
+   "path": "assets/img/pisos/benalmarina-apartment/11",
+   "slug": "benalmarina-apartment",
+   "sort": 10
+  },
+  {
+   "alt_en": "Benalmarina Apartment: photo 12",
+   "alt_es": "Benalmarina Apartment: foto 12",
+   "path": "assets/img/pisos/benalmarina-apartment/12",
+   "slug": "benalmarina-apartment",
+   "sort": 11
+  },
+  {
+   "alt_en": "Benalmarina Apartment: photo 13",
+   "alt_es": "Benalmarina Apartment: foto 13",
+   "path": "assets/img/pisos/benalmarina-apartment/13",
+   "slug": "benalmarina-apartment",
+   "sort": 12
+  },
+  {
+   "alt_en": "Sol & Centro Málaga: photo 9",
+   "alt_es": "Sol & Centro Málaga: foto 9",
+   "path": "assets/img/pisos/sol-centro-malaga/9",
+   "slug": "sol-centro-malaga",
+   "sort": 8
+  },
+  {
+   "alt_en": "Benalmarina Apartment: photo 14",
+   "alt_es": "Benalmarina Apartment: foto 14",
+   "path": "assets/img/pisos/benalmarina-apartment/14",
+   "slug": "benalmarina-apartment",
+   "sort": 13
+  },
+  {
+   "alt_en": "Carvajal Beach apartment: photo 1",
+   "alt_es": "Carvajal Beach apartment: foto 1",
+   "path": "assets/img/pisos/carvajal-beach-apartment/1",
+   "slug": "carvajal-beach-apartment",
+   "sort": 0
+  },
+  {
+   "alt_en": "Carvajal Beach apartment: photo 2",
+   "alt_es": "Carvajal Beach apartment: foto 2",
+   "path": "assets/img/pisos/carvajal-beach-apartment/2",
+   "slug": "carvajal-beach-apartment",
+   "sort": 1
+  },
+  {
+   "alt_en": "Carvajal Beach apartment: photo 3",
+   "alt_es": "Carvajal Beach apartment: foto 3",
+   "path": "assets/img/pisos/carvajal-beach-apartment/3",
+   "slug": "carvajal-beach-apartment",
+   "sort": 2
+  },
+  {
+   "alt_en": "Carvajal Beach apartment: photo 4",
+   "alt_es": "Carvajal Beach apartment: foto 4",
+   "path": "assets/img/pisos/carvajal-beach-apartment/4",
+   "slug": "carvajal-beach-apartment",
+   "sort": 3
+  },
+  {
+   "alt_en": "Carvajal Beach apartment: photo 5",
+   "alt_es": "Carvajal Beach apartment: foto 5",
+   "path": "assets/img/pisos/carvajal-beach-apartment/5",
+   "slug": "carvajal-beach-apartment",
+   "sort": 4
+  },
+  {
+   "alt_en": "Carvajal Beach apartment: photo 6",
+   "alt_es": "Carvajal Beach apartment: foto 6",
+   "path": "assets/img/pisos/carvajal-beach-apartment/6",
+   "slug": "carvajal-beach-apartment",
+   "sort": 5
+  },
+  {
+   "alt_en": "Carvajal Beach apartment: photo 7",
+   "alt_es": "Carvajal Beach apartment: foto 7",
+   "path": "assets/img/pisos/carvajal-beach-apartment/7",
+   "slug": "carvajal-beach-apartment",
+   "sort": 6
+  },
+  {
+   "alt_en": "Carvajal Beach apartment: photo 8",
+   "alt_es": "Carvajal Beach apartment: foto 8",
+   "path": "assets/img/pisos/carvajal-beach-apartment/8",
+   "slug": "carvajal-beach-apartment",
+   "sort": 7
+  },
+  {
+   "alt_en": "Carvajal Beach apartment: photo 9",
+   "alt_es": "Carvajal Beach apartment: foto 9",
+   "path": "assets/img/pisos/carvajal-beach-apartment/9",
+   "slug": "carvajal-beach-apartment",
+   "sort": 8
+  },
+  {
+   "alt_en": "Carvajal Beach apartment: photo 10",
+   "alt_es": "Carvajal Beach apartment: foto 10",
+   "path": "assets/img/pisos/carvajal-beach-apartment/10",
+   "slug": "carvajal-beach-apartment",
+   "sort": 9
+  },
+  {
+   "alt_en": "Carvajal Beach apartment: photo 11",
+   "alt_es": "Carvajal Beach apartment: foto 11",
+   "path": "assets/img/pisos/carvajal-beach-apartment/11",
+   "slug": "carvajal-beach-apartment",
+   "sort": 10
+  },
+  {
+   "alt_en": "Carvajal Beach apartment: photo 12",
+   "alt_es": "Carvajal Beach apartment: foto 12",
+   "path": "assets/img/pisos/carvajal-beach-apartment/12",
+   "slug": "carvajal-beach-apartment",
+   "sort": 11
+  },
+  {
+   "alt_en": "Carvajal Beach apartment: photo 13",
+   "alt_es": "Carvajal Beach apartment: foto 13",
+   "path": "assets/img/pisos/carvajal-beach-apartment/13",
+   "slug": "carvajal-beach-apartment",
+   "sort": 12
+  },
+  {
+   "alt_en": "Carvajal Beach apartment: photo 14",
+   "alt_es": "Carvajal Beach apartment: foto 14",
+   "path": "assets/img/pisos/carvajal-beach-apartment/14",
+   "slug": "carvajal-beach-apartment",
+   "sort": 13
+  },
+  {
+   "alt_en": "Guadalmar (Natural Area): photo 1",
+   "alt_es": "Guadalmar (Paraje Natural): foto 1",
+   "path": "assets/img/pisos/guadalmar-paraje-natural/1",
+   "slug": "guadalmar-paraje-natural",
+   "sort": 0
+  },
+  {
+   "alt_en": "Guadalmar (Natural Area): photo 2",
+   "alt_es": "Guadalmar (Paraje Natural): foto 2",
+   "path": "assets/img/pisos/guadalmar-paraje-natural/2",
+   "slug": "guadalmar-paraje-natural",
+   "sort": 1
+  },
+  {
+   "alt_en": "Guadalmar (Natural Area): photo 3",
+   "alt_es": "Guadalmar (Paraje Natural): foto 3",
+   "path": "assets/img/pisos/guadalmar-paraje-natural/3",
+   "slug": "guadalmar-paraje-natural",
+   "sort": 2
+  },
+  {
+   "alt_en": "Guadalmar (Natural Area): photo 4",
+   "alt_es": "Guadalmar (Paraje Natural): foto 4",
+   "path": "assets/img/pisos/guadalmar-paraje-natural/4",
+   "slug": "guadalmar-paraje-natural",
+   "sort": 3
+  },
+  {
+   "alt_en": "Guadalmar (Natural Area): photo 5",
+   "alt_es": "Guadalmar (Paraje Natural): foto 5",
+   "path": "assets/img/pisos/guadalmar-paraje-natural/5",
+   "slug": "guadalmar-paraje-natural",
+   "sort": 4
+  },
+  {
+   "alt_en": "Guadalmar (Natural Area): photo 6",
+   "alt_es": "Guadalmar (Paraje Natural): foto 6",
+   "path": "assets/img/pisos/guadalmar-paraje-natural/6",
+   "slug": "guadalmar-paraje-natural",
+   "sort": 5
+  },
+  {
+   "alt_en": "Guadalmar (Natural Area): photo 7",
+   "alt_es": "Guadalmar (Paraje Natural): foto 7",
+   "path": "assets/img/pisos/guadalmar-paraje-natural/7",
+   "slug": "guadalmar-paraje-natural",
+   "sort": 6
+  },
+  {
+   "alt_en": "Guadalmar (Natural Area): photo 8",
+   "alt_es": "Guadalmar (Paraje Natural): foto 8",
+   "path": "assets/img/pisos/guadalmar-paraje-natural/8",
+   "slug": "guadalmar-paraje-natural",
+   "sort": 7
+  },
+  {
+   "alt_en": "Guadalmar (Natural Area): photo 9",
+   "alt_es": "Guadalmar (Paraje Natural): foto 9",
+   "path": "assets/img/pisos/guadalmar-paraje-natural/9",
+   "slug": "guadalmar-paraje-natural",
+   "sort": 8
+  },
+  {
+   "alt_en": "Guadalmar (Natural Area): photo 10",
+   "alt_es": "Guadalmar (Paraje Natural): foto 10",
+   "path": "assets/img/pisos/guadalmar-paraje-natural/10",
+   "slug": "guadalmar-paraje-natural",
+   "sort": 9
+  },
+  {
+   "alt_en": "Guadalmar (Natural Area): photo 11",
+   "alt_es": "Guadalmar (Paraje Natural): foto 11",
+   "path": "assets/img/pisos/guadalmar-paraje-natural/11",
+   "slug": "guadalmar-paraje-natural",
+   "sort": 10
+  },
+  {
+   "alt_en": "Guadalmar (Natural Area): photo 12",
+   "alt_es": "Guadalmar (Paraje Natural): foto 12",
+   "path": "assets/img/pisos/guadalmar-paraje-natural/12",
+   "slug": "guadalmar-paraje-natural",
+   "sort": 11
+  },
+  {
+   "alt_en": "Guadalmar (Natural Area): photo 13",
+   "alt_es": "Guadalmar (Paraje Natural): foto 13",
+   "path": "assets/img/pisos/guadalmar-paraje-natural/13",
+   "slug": "guadalmar-paraje-natural",
+   "sort": 12
+  },
+  {
+   "alt_en": "Guadalmar (Natural Area): photo 14",
+   "alt_es": "Guadalmar (Paraje Natural): foto 14",
+   "path": "assets/img/pisos/guadalmar-paraje-natural/14",
+   "slug": "guadalmar-paraje-natural",
+   "sort": 13
+  },
+  {
+   "alt_en": "Mediterranean Garden House: photo 1",
+   "alt_es": "Jardín del Mediterráneo: foto 1",
+   "path": "assets/img/pisos/jardin-del-mediterraneo/1",
+   "slug": "jardin-del-mediterraneo",
+   "sort": 0
+  },
+  {
+   "alt_en": "Mediterranean Garden House: photo 2",
+   "alt_es": "Jardín del Mediterráneo: foto 2",
+   "path": "assets/img/pisos/jardin-del-mediterraneo/2",
+   "slug": "jardin-del-mediterraneo",
+   "sort": 1
+  },
+  {
+   "alt_en": "Mediterranean Garden House: photo 3",
+   "alt_es": "Jardín del Mediterráneo: foto 3",
+   "path": "assets/img/pisos/jardin-del-mediterraneo/3",
+   "slug": "jardin-del-mediterraneo",
+   "sort": 2
+  },
+  {
+   "alt_en": "Mediterranean Garden House: photo 4",
+   "alt_es": "Jardín del Mediterráneo: foto 4",
+   "path": "assets/img/pisos/jardin-del-mediterraneo/4",
+   "slug": "jardin-del-mediterraneo",
+   "sort": 3
+  },
+  {
+   "alt_en": "Mediterranean Garden House: photo 5",
+   "alt_es": "Jardín del Mediterráneo: foto 5",
+   "path": "assets/img/pisos/jardin-del-mediterraneo/5",
+   "slug": "jardin-del-mediterraneo",
+   "sort": 4
+  },
+  {
+   "alt_en": "Mediterranean Garden House: photo 6",
+   "alt_es": "Jardín del Mediterráneo: foto 6",
+   "path": "assets/img/pisos/jardin-del-mediterraneo/6",
+   "slug": "jardin-del-mediterraneo",
+   "sort": 5
+  },
+  {
+   "alt_en": "Mediterranean Garden House: photo 7",
+   "alt_es": "Jardín del Mediterráneo: foto 7",
+   "path": "assets/img/pisos/jardin-del-mediterraneo/7",
+   "slug": "jardin-del-mediterraneo",
+   "sort": 6
+  },
+  {
+   "alt_en": "Mediterranean Garden House: photo 8",
+   "alt_es": "Jardín del Mediterráneo: foto 8",
+   "path": "assets/img/pisos/jardin-del-mediterraneo/8",
+   "slug": "jardin-del-mediterraneo",
+   "sort": 7
+  },
+  {
+   "alt_en": "Mediterranean Garden House: photo 9",
+   "alt_es": "Jardín del Mediterráneo: foto 9",
+   "path": "assets/img/pisos/jardin-del-mediterraneo/9",
+   "slug": "jardin-del-mediterraneo",
+   "sort": 8
+  },
+  {
+   "alt_en": "Mediterranean Garden House: photo 10",
+   "alt_es": "Jardín del Mediterráneo: foto 10",
+   "path": "assets/img/pisos/jardin-del-mediterraneo/10",
+   "slug": "jardin-del-mediterraneo",
+   "sort": 9
+  },
+  {
+   "alt_en": "Mediterranean Garden House: photo 11",
+   "alt_es": "Jardín del Mediterráneo: foto 11",
+   "path": "assets/img/pisos/jardin-del-mediterraneo/11",
+   "slug": "jardin-del-mediterraneo",
+   "sort": 10
+  },
+  {
+   "alt_en": "Mediterranean Garden House: photo 12",
+   "alt_es": "Jardín del Mediterráneo: foto 12",
+   "path": "assets/img/pisos/jardin-del-mediterraneo/12",
+   "slug": "jardin-del-mediterraneo",
+   "sort": 11
+  },
+  {
+   "alt_en": "Mediterranean Garden House: photo 13",
+   "alt_es": "Jardín del Mediterráneo: foto 13",
+   "path": "assets/img/pisos/jardin-del-mediterraneo/13",
+   "slug": "jardin-del-mediterraneo",
+   "sort": 12
+  },
+  {
+   "alt_en": "Mediterranean Garden House: photo 14",
+   "alt_es": "Jardín del Mediterráneo: foto 14",
+   "path": "assets/img/pisos/jardin-del-mediterraneo/14",
+   "slug": "jardin-del-mediterraneo",
+   "sort": 13
+  },
+  {
+   "alt_en": "La Casita de la Carihuela: photo 1",
+   "alt_es": "La casita de la Carihuela: foto 1",
+   "path": "assets/img/pisos/la-casita-de-la-carihuela/1",
+   "slug": "la-casita-de-la-carihuela",
+   "sort": 0
+  },
+  {
+   "alt_en": "La Casita de la Carihuela: photo 2",
+   "alt_es": "La casita de la Carihuela: foto 2",
+   "path": "assets/img/pisos/la-casita-de-la-carihuela/2",
+   "slug": "la-casita-de-la-carihuela",
+   "sort": 1
+  },
+  {
+   "alt_en": "La Casita de la Carihuela: photo 3",
+   "alt_es": "La casita de la Carihuela: foto 3",
+   "path": "assets/img/pisos/la-casita-de-la-carihuela/3",
+   "slug": "la-casita-de-la-carihuela",
+   "sort": 2
+  },
+  {
+   "alt_en": "La Casita de la Carihuela: photo 4",
+   "alt_es": "La casita de la Carihuela: foto 4",
+   "path": "assets/img/pisos/la-casita-de-la-carihuela/4",
+   "slug": "la-casita-de-la-carihuela",
+   "sort": 3
+  },
+  {
+   "alt_en": "La Casita de la Carihuela: photo 5",
+   "alt_es": "La casita de la Carihuela: foto 5",
+   "path": "assets/img/pisos/la-casita-de-la-carihuela/5",
+   "slug": "la-casita-de-la-carihuela",
+   "sort": 4
+  },
+  {
+   "alt_en": "La Casita de la Carihuela: photo 6",
+   "alt_es": "La casita de la Carihuela: foto 6",
+   "path": "assets/img/pisos/la-casita-de-la-carihuela/6",
+   "slug": "la-casita-de-la-carihuela",
+   "sort": 5
+  },
+  {
+   "alt_en": "La Casita de la Carihuela: photo 7",
+   "alt_es": "La casita de la Carihuela: foto 7",
+   "path": "assets/img/pisos/la-casita-de-la-carihuela/7",
+   "slug": "la-casita-de-la-carihuela",
+   "sort": 6
+  },
+  {
+   "alt_en": "La Casita de la Carihuela: photo 8",
+   "alt_es": "La casita de la Carihuela: foto 8",
+   "path": "assets/img/pisos/la-casita-de-la-carihuela/8",
+   "slug": "la-casita-de-la-carihuela",
+   "sort": 7
+  },
+  {
+   "alt_en": "La Casita de la Carihuela: photo 9",
+   "alt_es": "La casita de la Carihuela: foto 9",
+   "path": "assets/img/pisos/la-casita-de-la-carihuela/9",
+   "slug": "la-casita-de-la-carihuela",
+   "sort": 8
+  },
+  {
+   "alt_en": "La Casita de la Carihuela: photo 10",
+   "alt_es": "La casita de la Carihuela: foto 10",
+   "path": "assets/img/pisos/la-casita-de-la-carihuela/10",
+   "slug": "la-casita-de-la-carihuela",
+   "sort": 9
+  },
+  {
+   "alt_en": "La Casita de la Carihuela: photo 11",
+   "alt_es": "La casita de la Carihuela: foto 11",
+   "path": "assets/img/pisos/la-casita-de-la-carihuela/11",
+   "slug": "la-casita-de-la-carihuela",
+   "sort": 10
+  },
+  {
+   "alt_en": "La Casita de la Carihuela: photo 12",
+   "alt_es": "La casita de la Carihuela: foto 12",
+   "path": "assets/img/pisos/la-casita-de-la-carihuela/12",
+   "slug": "la-casita-de-la-carihuela",
+   "sort": 11
+  },
+  {
+   "alt_en": "La Casita de la Carihuela: photo 13",
+   "alt_es": "La casita de la Carihuela: foto 13",
+   "path": "assets/img/pisos/la-casita-de-la-carihuela/13",
+   "slug": "la-casita-de-la-carihuela",
+   "sort": 12
+  },
+  {
+   "alt_en": "La Casita de la Carihuela: photo 14",
+   "alt_es": "La casita de la Carihuela: foto 14",
+   "path": "assets/img/pisos/la-casita-de-la-carihuela/14",
+   "slug": "la-casita-de-la-carihuela",
+   "sort": 13
+  },
+  {
+   "alt_en": "Luxy Beach Apartment: photo 1",
+   "alt_es": "Luxy Beach Apartment: foto 1",
+   "path": "assets/img/pisos/luxy-beach-apartment/1",
+   "slug": "luxy-beach-apartment",
+   "sort": 0
+  },
+  {
+   "alt_en": "Luxy Beach Apartment: photo 2",
+   "alt_es": "Luxy Beach Apartment: foto 2",
+   "path": "assets/img/pisos/luxy-beach-apartment/2",
+   "slug": "luxy-beach-apartment",
+   "sort": 1
+  },
+  {
+   "alt_en": "Luxy Beach Apartment: photo 3",
+   "alt_es": "Luxy Beach Apartment: foto 3",
+   "path": "assets/img/pisos/luxy-beach-apartment/3",
+   "slug": "luxy-beach-apartment",
+   "sort": 2
+  },
+  {
+   "alt_en": "Luxy Beach Apartment: photo 4",
+   "alt_es": "Luxy Beach Apartment: foto 4",
+   "path": "assets/img/pisos/luxy-beach-apartment/4",
+   "slug": "luxy-beach-apartment",
+   "sort": 3
+  },
+  {
+   "alt_en": "Luxy Beach Apartment: photo 5",
+   "alt_es": "Luxy Beach Apartment: foto 5",
+   "path": "assets/img/pisos/luxy-beach-apartment/5",
+   "slug": "luxy-beach-apartment",
+   "sort": 4
+  },
+  {
+   "alt_en": "Luxy Beach Apartment: photo 6",
+   "alt_es": "Luxy Beach Apartment: foto 6",
+   "path": "assets/img/pisos/luxy-beach-apartment/6",
+   "slug": "luxy-beach-apartment",
+   "sort": 5
+  },
+  {
+   "alt_en": "Luxy Beach Apartment: photo 7",
+   "alt_es": "Luxy Beach Apartment: foto 7",
+   "path": "assets/img/pisos/luxy-beach-apartment/7",
+   "slug": "luxy-beach-apartment",
+   "sort": 6
+  },
+  {
+   "alt_en": "Luxy Beach Apartment: photo 8",
+   "alt_es": "Luxy Beach Apartment: foto 8",
+   "path": "assets/img/pisos/luxy-beach-apartment/8",
+   "slug": "luxy-beach-apartment",
+   "sort": 7
+  },
+  {
+   "alt_en": "Luxy Beach Apartment: photo 9",
+   "alt_es": "Luxy Beach Apartment: foto 9",
+   "path": "assets/img/pisos/luxy-beach-apartment/9",
+   "slug": "luxy-beach-apartment",
+   "sort": 8
+  },
+  {
+   "alt_en": "Luxy Beach Apartment: photo 10",
+   "alt_es": "Luxy Beach Apartment: foto 10",
+   "path": "assets/img/pisos/luxy-beach-apartment/10",
+   "slug": "luxy-beach-apartment",
+   "sort": 9
+  },
+  {
+   "alt_en": "Luxy Beach Apartment: photo 11",
+   "alt_es": "Luxy Beach Apartment: foto 11",
+   "path": "assets/img/pisos/luxy-beach-apartment/11",
+   "slug": "luxy-beach-apartment",
+   "sort": 10
+  },
+  {
+   "alt_en": "Luxy Beach Apartment: photo 12",
+   "alt_es": "Luxy Beach Apartment: foto 12",
+   "path": "assets/img/pisos/luxy-beach-apartment/12",
+   "slug": "luxy-beach-apartment",
+   "sort": 11
+  },
+  {
+   "alt_en": "Luxy Beach Apartment: photo 13",
+   "alt_es": "Luxy Beach Apartment: foto 13",
+   "path": "assets/img/pisos/luxy-beach-apartment/13",
+   "slug": "luxy-beach-apartment",
+   "sort": 12
+  },
+  {
+   "alt_en": "Luxy Beach Apartment: photo 14",
+   "alt_es": "Luxy Beach Apartment: foto 14",
+   "path": "assets/img/pisos/luxy-beach-apartment/14",
+   "slug": "luxy-beach-apartment",
+   "sort": 13
+  },
+  {
+   "alt_en": "Luz de Sol Apartment: photo 1",
+   "alt_es": "Luz de Sol Apartment: foto 1",
+   "path": "assets/img/pisos/luzdesol-apartment/1",
+   "slug": "luzdesol-apartment",
+   "sort": 0
+  },
+  {
+   "alt_en": "Luz de Sol Apartment: photo 2",
+   "alt_es": "Luz de Sol Apartment: foto 2",
+   "path": "assets/img/pisos/luzdesol-apartment/2",
+   "slug": "luzdesol-apartment",
+   "sort": 1
+  },
+  {
+   "alt_en": "Luz de Sol Apartment: photo 3",
+   "alt_es": "Luz de Sol Apartment: foto 3",
+   "path": "assets/img/pisos/luzdesol-apartment/3",
+   "slug": "luzdesol-apartment",
+   "sort": 2
+  },
+  {
+   "alt_en": "Luz de Sol Apartment: photo 4",
+   "alt_es": "Luz de Sol Apartment: foto 4",
+   "path": "assets/img/pisos/luzdesol-apartment/4",
+   "slug": "luzdesol-apartment",
+   "sort": 3
+  },
+  {
+   "alt_en": "Luz de Sol Apartment: photo 5",
+   "alt_es": "Luz de Sol Apartment: foto 5",
+   "path": "assets/img/pisos/luzdesol-apartment/5",
+   "slug": "luzdesol-apartment",
+   "sort": 4
+  },
+  {
+   "alt_en": "Luz de Sol Apartment: photo 6",
+   "alt_es": "Luz de Sol Apartment: foto 6",
+   "path": "assets/img/pisos/luzdesol-apartment/6",
+   "slug": "luzdesol-apartment",
+   "sort": 5
+  },
+  {
+   "alt_en": "Luz de Sol Apartment: photo 7",
+   "alt_es": "Luz de Sol Apartment: foto 7",
+   "path": "assets/img/pisos/luzdesol-apartment/7",
+   "slug": "luzdesol-apartment",
+   "sort": 6
+  },
+  {
+   "alt_en": "Luz de Sol Apartment: photo 8",
+   "alt_es": "Luz de Sol Apartment: foto 8",
+   "path": "assets/img/pisos/luzdesol-apartment/8",
+   "slug": "luzdesol-apartment",
+   "sort": 7
+  },
+  {
+   "alt_en": "Luz de Sol Apartment: photo 9",
+   "alt_es": "Luz de Sol Apartment: foto 9",
+   "path": "assets/img/pisos/luzdesol-apartment/9",
+   "slug": "luzdesol-apartment",
+   "sort": 8
+  },
+  {
+   "alt_en": "Luz de Sol Apartment: photo 10",
+   "alt_es": "Luz de Sol Apartment: foto 10",
+   "path": "assets/img/pisos/luzdesol-apartment/10",
+   "slug": "luzdesol-apartment",
+   "sort": 9
+  },
+  {
+   "alt_en": "Luz de Sol Apartment: photo 11",
+   "alt_es": "Luz de Sol Apartment: foto 11",
+   "path": "assets/img/pisos/luzdesol-apartment/11",
+   "slug": "luzdesol-apartment",
+   "sort": 10
+  },
+  {
+   "alt_en": "Luz de Sol Apartment: photo 12",
+   "alt_es": "Luz de Sol Apartment: foto 12",
+   "path": "assets/img/pisos/luzdesol-apartment/12",
+   "slug": "luzdesol-apartment",
+   "sort": 11
+  },
+  {
+   "alt_en": "Luz de Sol Apartment: photo 13",
+   "alt_es": "Luz de Sol Apartment: foto 13",
+   "path": "assets/img/pisos/luzdesol-apartment/13",
+   "slug": "luzdesol-apartment",
+   "sort": 12
+  },
+  {
+   "alt_en": "Luz de Sol Apartment: photo 14",
+   "alt_es": "Luz de Sol Apartment: foto 14",
+   "path": "assets/img/pisos/luzdesol-apartment/14",
+   "slug": "luzdesol-apartment",
+   "sort": 13
+  },
+  {
+   "alt_en": "Sol & Centro Málaga: photo 1",
+   "alt_es": "Sol & Centro Málaga: foto 1",
+   "path": "assets/img/pisos/sol-centro-malaga/1",
+   "slug": "sol-centro-malaga",
+   "sort": 0
+  },
+  {
+   "alt_en": "Sol & Centro Málaga: photo 2",
+   "alt_es": "Sol & Centro Málaga: foto 2",
+   "path": "assets/img/pisos/sol-centro-malaga/2",
+   "slug": "sol-centro-malaga",
+   "sort": 1
+  },
+  {
+   "alt_en": "Sol & Centro Málaga: photo 3",
+   "alt_es": "Sol & Centro Málaga: foto 3",
+   "path": "assets/img/pisos/sol-centro-malaga/3",
+   "slug": "sol-centro-malaga",
+   "sort": 2
+  },
+  {
+   "alt_en": "Sol & Centro Málaga: photo 4",
+   "alt_es": "Sol & Centro Málaga: foto 4",
+   "path": "assets/img/pisos/sol-centro-malaga/4",
+   "slug": "sol-centro-malaga",
+   "sort": 3
+  },
+  {
+   "alt_en": "Sol & Centro Málaga: photo 5",
+   "alt_es": "Sol & Centro Málaga: foto 5",
+   "path": "assets/img/pisos/sol-centro-malaga/5",
+   "slug": "sol-centro-malaga",
+   "sort": 4
+  },
+  {
+   "alt_en": "Sol & Centro Málaga: photo 6",
+   "alt_es": "Sol & Centro Málaga: foto 6",
+   "path": "assets/img/pisos/sol-centro-malaga/6",
+   "slug": "sol-centro-malaga",
+   "sort": 5
+  },
+  {
+   "alt_en": "Sol & Centro Málaga: photo 7",
+   "alt_es": "Sol & Centro Málaga: foto 7",
+   "path": "assets/img/pisos/sol-centro-malaga/7",
+   "slug": "sol-centro-malaga",
+   "sort": 6
+  },
+  {
+   "alt_en": "Sol & Centro Málaga: photo 8",
+   "alt_es": "Sol & Centro Málaga: foto 8",
+   "path": "assets/img/pisos/sol-centro-malaga/8",
+   "slug": "sol-centro-malaga",
+   "sort": 7
+  },
+  {
+   "alt_en": "Sol & Centro Málaga: photo 10",
+   "alt_es": "Sol & Centro Málaga: foto 10",
+   "path": "assets/img/pisos/sol-centro-malaga/10",
+   "slug": "sol-centro-malaga",
+   "sort": 9
+  },
+  {
+   "alt_en": "Sol & Centro Málaga: photo 11",
+   "alt_es": "Sol & Centro Málaga: foto 11",
+   "path": "assets/img/pisos/sol-centro-malaga/11",
+   "slug": "sol-centro-malaga",
+   "sort": 10
+  },
+  {
+   "alt_en": "Sol & Centro Málaga: photo 12",
+   "alt_es": "Sol & Centro Málaga: foto 12",
+   "path": "assets/img/pisos/sol-centro-malaga/12",
+   "slug": "sol-centro-malaga",
+   "sort": 11
+  },
+  {
+   "alt_en": "Sol & Centro Málaga: photo 13",
+   "alt_es": "Sol & Centro Málaga: foto 13",
+   "path": "assets/img/pisos/sol-centro-malaga/13",
+   "slug": "sol-centro-malaga",
+   "sort": 12
+  },
+  {
+   "alt_en": "Sol & Centro Málaga: photo 14",
+   "alt_es": "Sol & Centro Málaga: foto 14",
+   "path": "assets/img/pisos/sol-centro-malaga/14",
+   "slug": "sol-centro-malaga",
+   "sort": 13
+  },
+  {
+   "alt_en": "Sol y Mar Carvajal (free parking): photo 1",
+   "alt_es": "Sol y Mar Carvajal (parking gratuito): foto 1",
+   "path": "assets/img/pisos/sol-y-mar-carvajal/1",
+   "slug": "sol-y-mar-carvajal",
+   "sort": 0
+  },
+  {
+   "alt_en": "Sol y Mar Carvajal (free parking): photo 2",
+   "alt_es": "Sol y Mar Carvajal (parking gratuito): foto 2",
+   "path": "assets/img/pisos/sol-y-mar-carvajal/2",
+   "slug": "sol-y-mar-carvajal",
+   "sort": 1
+  },
+  {
+   "alt_en": "Sol y Mar Carvajal (free parking): photo 3",
+   "alt_es": "Sol y Mar Carvajal (parking gratuito): foto 3",
+   "path": "assets/img/pisos/sol-y-mar-carvajal/3",
+   "slug": "sol-y-mar-carvajal",
+   "sort": 2
+  },
+  {
+   "alt_en": "Sol y Mar Carvajal (free parking): photo 4",
+   "alt_es": "Sol y Mar Carvajal (parking gratuito): foto 4",
+   "path": "assets/img/pisos/sol-y-mar-carvajal/4",
+   "slug": "sol-y-mar-carvajal",
+   "sort": 3
+  },
+  {
+   "alt_en": "Sol y Mar Carvajal (free parking): photo 5",
+   "alt_es": "Sol y Mar Carvajal (parking gratuito): foto 5",
+   "path": "assets/img/pisos/sol-y-mar-carvajal/5",
+   "slug": "sol-y-mar-carvajal",
+   "sort": 4
+  },
+  {
+   "alt_en": "Sol y Mar Carvajal (free parking): photo 6",
+   "alt_es": "Sol y Mar Carvajal (parking gratuito): foto 6",
+   "path": "assets/img/pisos/sol-y-mar-carvajal/6",
+   "slug": "sol-y-mar-carvajal",
+   "sort": 5
+  },
+  {
+   "alt_en": "Sol y Mar Carvajal (free parking): photo 7",
+   "alt_es": "Sol y Mar Carvajal (parking gratuito): foto 7",
+   "path": "assets/img/pisos/sol-y-mar-carvajal/7",
+   "slug": "sol-y-mar-carvajal",
+   "sort": 6
+  },
+  {
+   "alt_en": "Sol y Mar Carvajal (free parking): photo 8",
+   "alt_es": "Sol y Mar Carvajal (parking gratuito): foto 8",
+   "path": "assets/img/pisos/sol-y-mar-carvajal/8",
+   "slug": "sol-y-mar-carvajal",
+   "sort": 7
+  },
+  {
+   "alt_en": "Sol y Mar Carvajal (free parking): photo 9",
+   "alt_es": "Sol y Mar Carvajal (parking gratuito): foto 9",
+   "path": "assets/img/pisos/sol-y-mar-carvajal/9",
+   "slug": "sol-y-mar-carvajal",
+   "sort": 8
+  },
+  {
+   "alt_en": "Sol y Mar Carvajal (free parking): photo 10",
+   "alt_es": "Sol y Mar Carvajal (parking gratuito): foto 10",
+   "path": "assets/img/pisos/sol-y-mar-carvajal/10",
+   "slug": "sol-y-mar-carvajal",
+   "sort": 9
+  },
+  {
+   "alt_en": "Sol y Mar Carvajal (free parking): photo 11",
+   "alt_es": "Sol y Mar Carvajal (parking gratuito): foto 11",
+   "path": "assets/img/pisos/sol-y-mar-carvajal/11",
+   "slug": "sol-y-mar-carvajal",
+   "sort": 10
+  },
+  {
+   "alt_en": "Sol y Mar Carvajal (free parking): photo 12",
+   "alt_es": "Sol y Mar Carvajal (parking gratuito): foto 12",
+   "path": "assets/img/pisos/sol-y-mar-carvajal/12",
+   "slug": "sol-y-mar-carvajal",
+   "sort": 11
+  },
+  {
+   "alt_en": "Sol y Mar Carvajal (free parking): photo 13",
+   "alt_es": "Sol y Mar Carvajal (parking gratuito): foto 13",
+   "path": "assets/img/pisos/sol-y-mar-carvajal/13",
+   "slug": "sol-y-mar-carvajal",
+   "sort": 12
+  },
+  {
+   "alt_en": "Sol y Mar Carvajal (free parking): photo 14",
+   "alt_es": "Sol y Mar Carvajal (parking gratuito): foto 14",
+   "path": "assets/img/pisos/sol-y-mar-carvajal/14",
+   "slug": "sol-y-mar-carvajal",
+   "sort": 13
+  },
+  {
+   "alt_en": "Spacious apartment with pool and parking: photo 1",
+   "alt_es": "Apartamento espacioso con piscina y parking: foto 1",
+   "path": "assets/img/pisos/spacious-pool-torremolinos/1",
+   "slug": "spacious-pool-torremolinos",
+   "sort": 0
+  },
+  {
+   "alt_en": "Spacious apartment with pool and parking: photo 2",
+   "alt_es": "Apartamento espacioso con piscina y parking: foto 2",
+   "path": "assets/img/pisos/spacious-pool-torremolinos/2",
+   "slug": "spacious-pool-torremolinos",
+   "sort": 1
+  },
+  {
+   "alt_en": "Spacious apartment with pool and parking: photo 3",
+   "alt_es": "Apartamento espacioso con piscina y parking: foto 3",
+   "path": "assets/img/pisos/spacious-pool-torremolinos/3",
+   "slug": "spacious-pool-torremolinos",
+   "sort": 2
+  },
+  {
+   "alt_en": "Spacious apartment with pool and parking: photo 4",
+   "alt_es": "Apartamento espacioso con piscina y parking: foto 4",
+   "path": "assets/img/pisos/spacious-pool-torremolinos/4",
+   "slug": "spacious-pool-torremolinos",
+   "sort": 3
+  },
+  {
+   "alt_en": "Spacious apartment with pool and parking: photo 5",
+   "alt_es": "Apartamento espacioso con piscina y parking: foto 5",
+   "path": "assets/img/pisos/spacious-pool-torremolinos/5",
+   "slug": "spacious-pool-torremolinos",
+   "sort": 4
+  },
+  {
+   "alt_en": "Spacious apartment with pool and parking: photo 6",
+   "alt_es": "Apartamento espacioso con piscina y parking: foto 6",
+   "path": "assets/img/pisos/spacious-pool-torremolinos/6",
+   "slug": "spacious-pool-torremolinos",
+   "sort": 5
+  },
+  {
+   "alt_en": "Spacious apartment with pool and parking: photo 7",
+   "alt_es": "Apartamento espacioso con piscina y parking: foto 7",
+   "path": "assets/img/pisos/spacious-pool-torremolinos/7",
+   "slug": "spacious-pool-torremolinos",
+   "sort": 6
+  },
+  {
+   "alt_en": "Spacious apartment with pool and parking: photo 8",
+   "alt_es": "Apartamento espacioso con piscina y parking: foto 8",
+   "path": "assets/img/pisos/spacious-pool-torremolinos/8",
+   "slug": "spacious-pool-torremolinos",
+   "sort": 7
+  },
+  {
+   "alt_en": "Spacious apartment with pool and parking: photo 9",
+   "alt_es": "Apartamento espacioso con piscina y parking: foto 9",
+   "path": "assets/img/pisos/spacious-pool-torremolinos/9",
+   "slug": "spacious-pool-torremolinos",
+   "sort": 8
+  },
+  {
+   "alt_en": "Spacious apartment with pool and parking: photo 10",
+   "alt_es": "Apartamento espacioso con piscina y parking: foto 10",
+   "path": "assets/img/pisos/spacious-pool-torremolinos/10",
+   "slug": "spacious-pool-torremolinos",
+   "sort": 9
+  },
+  {
+   "alt_en": "Spacious apartment with pool and parking: photo 11",
+   "alt_es": "Apartamento espacioso con piscina y parking: foto 11",
+   "path": "assets/img/pisos/spacious-pool-torremolinos/11",
+   "slug": "spacious-pool-torremolinos",
+   "sort": 10
+  },
+  {
+   "alt_en": "Spacious apartment with pool and parking: photo 12",
+   "alt_es": "Apartamento espacioso con piscina y parking: foto 12",
+   "path": "assets/img/pisos/spacious-pool-torremolinos/12",
+   "slug": "spacious-pool-torremolinos",
+   "sort": 11
+  },
+  {
+   "alt_en": "Spacious apartment with pool and parking: photo 13",
+   "alt_es": "Apartamento espacioso con piscina y parking: foto 13",
+   "path": "assets/img/pisos/spacious-pool-torremolinos/13",
+   "slug": "spacious-pool-torremolinos",
+   "sort": 12
+  },
+  {
+   "alt_en": "Spacious apartment with pool and parking: photo 14",
+   "alt_es": "Apartamento espacioso con piscina y parking: foto 14",
+   "path": "assets/img/pisos/spacious-pool-torremolinos/14",
+   "slug": "spacious-pool-torremolinos",
+   "sort": 13
+  },
+  {
+   "alt_en": "Spacious city apartment with free parking: photo 1",
+   "alt_es": "Amplio apartamento urbano con parking gratuito: foto 1",
+   "path": "assets/img/pisos/city-apartment-carranque/1",
+   "slug": "city-apartment-carranque",
+   "sort": 0
+  },
+  {
+   "alt_en": "Spacious city apartment with free parking: photo 2",
+   "alt_es": "Amplio apartamento urbano con parking gratuito: foto 2",
+   "path": "assets/img/pisos/city-apartment-carranque/2",
+   "slug": "city-apartment-carranque",
+   "sort": 1
+  },
+  {
+   "alt_en": "Spacious city apartment with free parking: photo 3",
+   "alt_es": "Amplio apartamento urbano con parking gratuito: foto 3",
+   "path": "assets/img/pisos/city-apartment-carranque/3",
+   "slug": "city-apartment-carranque",
+   "sort": 2
+  },
+  {
+   "alt_en": "Spacious city apartment with free parking: photo 4",
+   "alt_es": "Amplio apartamento urbano con parking gratuito: foto 4",
+   "path": "assets/img/pisos/city-apartment-carranque/4",
+   "slug": "city-apartment-carranque",
+   "sort": 3
+  },
+  {
+   "alt_en": "Spacious city apartment with free parking: photo 5",
+   "alt_es": "Amplio apartamento urbano con parking gratuito: foto 5",
+   "path": "assets/img/pisos/city-apartment-carranque/5",
+   "slug": "city-apartment-carranque",
+   "sort": 4
+  },
+  {
+   "alt_en": "Spacious city apartment with free parking: photo 6",
+   "alt_es": "Amplio apartamento urbano con parking gratuito: foto 6",
+   "path": "assets/img/pisos/city-apartment-carranque/6",
+   "slug": "city-apartment-carranque",
+   "sort": 5
+  },
+  {
+   "alt_en": "Spacious city apartment with free parking: photo 7",
+   "alt_es": "Amplio apartamento urbano con parking gratuito: foto 7",
+   "path": "assets/img/pisos/city-apartment-carranque/7",
+   "slug": "city-apartment-carranque",
+   "sort": 6
+  },
+  {
+   "alt_en": "Spacious city apartment with free parking: photo 8",
+   "alt_es": "Amplio apartamento urbano con parking gratuito: foto 8",
+   "path": "assets/img/pisos/city-apartment-carranque/8",
+   "slug": "city-apartment-carranque",
+   "sort": 7
+  },
+  {
+   "alt_en": "Spacious city apartment with free parking: photo 9",
+   "alt_es": "Amplio apartamento urbano con parking gratuito: foto 9",
+   "path": "assets/img/pisos/city-apartment-carranque/9",
+   "slug": "city-apartment-carranque",
+   "sort": 8
+  },
+  {
+   "alt_en": "Spacious city apartment with free parking: photo 10",
+   "alt_es": "Amplio apartamento urbano con parking gratuito: foto 10",
+   "path": "assets/img/pisos/city-apartment-carranque/10",
+   "slug": "city-apartment-carranque",
+   "sort": 9
+  },
+  {
+   "alt_en": "Spacious city apartment with free parking: photo 11",
+   "alt_es": "Amplio apartamento urbano con parking gratuito: foto 11",
+   "path": "assets/img/pisos/city-apartment-carranque/11",
+   "slug": "city-apartment-carranque",
+   "sort": 10
+  },
+  {
+   "alt_en": "Spacious city apartment with free parking: photo 12",
+   "alt_es": "Amplio apartamento urbano con parking gratuito: foto 12",
+   "path": "assets/img/pisos/city-apartment-carranque/12",
+   "slug": "city-apartment-carranque",
+   "sort": 11
+  },
+  {
+   "alt_en": "Spacious city apartment with free parking: photo 13",
+   "alt_es": "Amplio apartamento urbano con parking gratuito: foto 13",
+   "path": "assets/img/pisos/city-apartment-carranque/13",
+   "slug": "city-apartment-carranque",
+   "sort": 12
+  },
+  {
+   "alt_en": "Spacious city apartment with free parking: photo 14",
+   "alt_es": "Amplio apartamento urbano con parking gratuito: foto 14",
+   "path": "assets/img/pisos/city-apartment-carranque/14",
+   "slug": "city-apartment-carranque",
+   "sort": 13
+  }
+ ],
+ "reviews": [
+  {
+   "author_en": "VirAnd guest",
+   "author_es": "Huésped de VirAnd",
+   "rating": 5,
+   "sort": 0,
+   "text_en": "An incredible stay with spectacular sea views and a perfect location close to everything. The accommodation fully met our expectations and Virginia's attention was exceptional. Highly recommended, and we'd happily come back.",
+   "text_es": "Una estancia increíble con vistas espectaculares al mar y una ubicación perfecta cerca de todo. El alojamiento cumplió totalmente las expectativas y la atención de Virginia fue excepcional. Sin duda, una experiencia muy recomendable y para repetir."
+  },
+  {
+   "author_en": "VirAnd guest",
+   "author_es": "Huésped de VirAnd",
+   "rating": 5,
+   "sort": 1,
+   "text_en": "We really enjoyed our stay. Virginia's attention was excellent and the apartment had everything needed for a comfortable, relaxing experience. The location, next to the beach and restaurants, made everything even better.",
+   "text_es": "Disfrutamos muchísimo de nuestra estancia. La atención de Virginia fue excelente y el apartamento contaba con todo lo necesario para una experiencia cómoda y relajante. La ubicación, junto a la playa y restaurantes, hizo que todo fuera aún más perfecto."
+  },
+  {
+   "author_en": "VirAnd guest",
+   "author_es": "Huésped de VirAnd",
+   "rating": 5,
+   "sort": 2,
+   "text_en": "A flawless experience, in a perfect location with exceptional attention from Virginia.",
+   "text_es": "Una experiencia impecable, en una ubicación perfecta y con una atención excepcional por parte de Virginia."
+  }
+ ],
+ "texts": [
+  {
+   "key": "meta.title",
+   "lang": "es",
+   "value": "VirAnd Luxury Rental · Alquiler vacacional en Málaga y la Costa del Sol"
+  },
+  {
+   "key": "meta.desc",
+   "lang": "es",
+   "value": "Alquiler vacacional exclusivo en Málaga, Torremolinos y Benalmádena. Alojamientos verificados, atención personalizada y consulta directa por WhatsApp."
+  },
+  {
+   "key": "nav.stays",
+   "lang": "es",
+   "value": "Alojamientos"
+  },
+  {
+   "key": "nav.why",
+   "lang": "es",
+   "value": "Por qué VirAnd"
+  },
+  {
+   "key": "nav.reviews",
+   "lang": "es",
+   "value": "Opiniones"
+  },
+  {
+   "key": "nav.faq",
+   "lang": "es",
+   "value": "Preguntas"
+  },
+  {
+   "key": "nav.contact",
+   "lang": "es",
+   "value": "Contacto"
+  },
+  {
+   "key": "nav.menu",
+   "lang": "es",
+   "value": "Abrir menú"
+  },
+  {
+   "key": "nav.whatsapp",
+   "lang": "es",
+   "value": "WhatsApp"
+  },
+  {
+   "key": "hero.eyebrow",
+   "lang": "es",
+   "value": "Estancias exclusivas"
+  },
+  {
+   "key": "hero.title",
+   "lang": "es",
+   "value": "Tu hogar frente al Mediterráneo"
+  },
+  {
+   "key": "hero.lead",
+   "lang": "es",
+   "value": "Alquiler vacacional exclusivo en Málaga y la Costa del Sol, con atención personalizada durante toda tu estancia."
+  },
+  {
+   "key": "search.zone",
+   "lang": "es",
+   "value": "Destino"
+  },
+  {
+   "key": "search.zone.all",
+   "lang": "es",
+   "value": "Toda la Costa del Sol"
+  },
+  {
+   "key": "search.in",
+   "lang": "es",
+   "value": "Llegada"
+  },
+  {
+   "key": "search.out",
+   "lang": "es",
+   "value": "Salida"
+  },
+  {
+   "key": "search.pax",
+   "lang": "es",
+   "value": "Personas"
+  },
+  {
+   "key": "search.go",
+   "lang": "es",
+   "value": "Buscar"
+  },
+  {
+   "key": "search.pax.n",
+   "lang": "es",
+   "value": "{n} viajeros"
+  },
+  {
+   "key": "search.pax.1",
+   "lang": "es",
+   "value": "1 viajero"
+  },
+  {
+   "key": "stays.eyebrow",
+   "lang": "es",
+   "value": "Alojamientos"
+  },
+  {
+   "key": "stays.title",
+   "lang": "es",
+   "value": "Elige tu próximo destino"
+  },
+  {
+   "key": "stays.lead",
+   "lang": "es",
+   "value": "Pisos verificados y equipados en las mejores zonas de la costa."
+  },
+  {
+   "key": "filters.sort",
+   "lang": "es",
+   "value": "Ordenar por"
+  },
+  {
+   "key": "sort.rec",
+   "lang": "es",
+   "value": "Recomendados"
+  },
+  {
+   "key": "sort.asc",
+   "lang": "es",
+   "value": "Precio: de menor a mayor"
+  },
+  {
+   "key": "sort.desc",
+   "lang": "es",
+   "value": "Precio: de mayor a menor"
+  },
+  {
+   "key": "filters.clear",
+   "lang": "es",
+   "value": "Quitar fechas"
+  },
+  {
+   "key": "view.list",
+   "lang": "es",
+   "value": "Lista"
+  },
+  {
+   "key": "view.map",
+   "lang": "es",
+   "value": "Mapa"
+  },
+  {
+   "key": "count.n",
+   "lang": "es",
+   "value": "{n} alojamientos"
+  },
+  {
+   "key": "count.1",
+   "lang": "es",
+   "value": "1 alojamiento"
+  },
+  {
+   "key": "card.from",
+   "lang": "es",
+   "value": "desde"
+  },
+  {
+   "key": "card.night",
+   "lang": "es",
+   "value": "/ noche"
+  },
+  {
+   "key": "card.consult",
+   "lang": "es",
+   "value": "Consultar precio"
+  },
+  {
+   "key": "card.free",
+   "lang": "es",
+   "value": "Disponible en tus fechas"
+  },
+  {
+   "key": "card.pax",
+   "lang": "es",
+   "value": "{n} viajeros"
+  },
+  {
+   "key": "card.bed",
+   "lang": "es",
+   "value": "{n} dorm."
+  },
+  {
+   "key": "card.bath",
+   "lang": "es",
+   "value": "{n} baño(s)"
+  },
+  {
+   "key": "empty",
+   "lang": "es",
+   "value": "No hay alojamientos libres con estos filtros. Prueba otras fechas o escríbenos por WhatsApp."
+  },
+  {
+   "key": "modal.close",
+   "lang": "es",
+   "value": "Cerrar"
+  },
+  {
+   "key": "modal.prev",
+   "lang": "es",
+   "value": "Foto anterior"
+  },
+  {
+   "key": "modal.next",
+   "lang": "es",
+   "value": "Foto siguiente"
+  },
+  {
+   "key": "modal.photos",
+   "lang": "es",
+   "value": "Fotos de {name}"
+  },
+  {
+   "key": "detail.facts",
+   "lang": "es",
+   "value": "{v} viajeros · {d} dormitorios · {c} camas · {b} baños"
+  },
+  {
+   "key": "detail.amen",
+   "lang": "es",
+   "value": "Servicios"
+  },
+  {
+   "key": "detail.avail",
+   "lang": "es",
+   "value": "Disponibilidad"
+  },
+  {
+   "key": "detail.in",
+   "lang": "es",
+   "value": "Llegada"
+  },
+  {
+   "key": "detail.out",
+   "lang": "es",
+   "value": "Salida"
+  },
+  {
+   "key": "detail.addDate",
+   "lang": "es",
+   "value": "Añadir fecha"
+  },
+  {
+   "key": "detail.pax",
+   "lang": "es",
+   "value": "Personas"
+  },
+  {
+   "key": "detail.wa",
+   "lang": "es",
+   "value": "Consultar por WhatsApp"
+  },
+  {
+   "key": "detail.hint",
+   "lang": "es",
+   "value": "La disponibilidad del calendario es orientativa. Confirmamos fechas y precio por WhatsApp, sin compromiso."
+  },
+  {
+   "key": "detail.nights",
+   "lang": "es",
+   "value": "{n} noches"
+  },
+  {
+   "key": "detail.night1",
+   "lang": "es",
+   "value": "1 noche"
+  },
+  {
+   "key": "detail.nodata",
+   "lang": "es",
+   "value": "No hemos podido cargar el calendario ahora mismo. Consúltanos por WhatsApp y te confirmamos la disponibilidad."
+  },
+  {
+   "key": "detail.free",
+   "lang": "es",
+   "value": "Libre"
+  },
+  {
+   "key": "detail.busy",
+   "lang": "es",
+   "value": "Ocupado"
+  },
+  {
+   "key": "detail.old",
+   "lang": "es",
+   "value": "El calendario puede no estar al día. Confirma por WhatsApp."
+  },
+  {
+   "key": "detail.dir",
+   "lang": "es",
+   "value": "Dirección exacta tras confirmar la reserva."
+  },
+  {
+   "key": "cal.prev",
+   "lang": "es",
+   "value": "Mes anterior"
+  },
+  {
+   "key": "cal.next",
+   "lang": "es",
+   "value": "Mes siguiente"
+  },
+  {
+   "key": "map.noKey",
+   "lang": "es",
+   "value": "El mapa estará disponible en cuanto se active. Mientras tanto, usa la lista de alojamientos."
+  },
+  {
+   "key": "map.error",
+   "lang": "es",
+   "value": "No se ha podido cargar el mapa. Puedes seguir usando la lista de alojamientos."
+  },
+  {
+   "key": "map.view",
+   "lang": "es",
+   "value": "Ver alojamiento"
+  },
+  {
+   "key": "why.eyebrow",
+   "lang": "es",
+   "value": "Por qué VirAnd"
+  },
+  {
+   "key": "why.title",
+   "lang": "es",
+   "value": "Experiencias que se convierten en recuerdos"
+  },
+  {
+   "key": "why.lead",
+   "lang": "es",
+   "value": "Nos encargamos de cada detalle para que solo tengas que preocuparte de disfrutar."
+  },
+  {
+   "key": "why.1.t",
+   "lang": "es",
+   "value": "Atención personalizada"
+  },
+  {
+   "key": "why.1.d",
+   "lang": "es",
+   "value": "Te ayudamos durante toda tu estancia."
+  },
+  {
+   "key": "why.2.t",
+   "lang": "es",
+   "value": "Calidad garantizada"
+  },
+  {
+   "key": "why.2.d",
+   "lang": "es",
+   "value": "Alojamientos verificados y equipados para tu máximo confort."
+  },
+  {
+   "key": "why.3.t",
+   "lang": "es",
+   "value": "Ubicaciones premium"
+  },
+  {
+   "key": "why.3.d",
+   "lang": "es",
+   "value": "En las mejores zonas para que disfrutes cada momento."
+  },
+  {
+   "key": "why.4.t",
+   "lang": "es",
+   "value": "Trato directo"
+  },
+  {
+   "key": "why.4.d",
+   "lang": "es",
+   "value": "Hablas con nosotros, sin intermediarios y con total transparencia."
+  },
+  {
+   "key": "reviews.eyebrow",
+   "lang": "es",
+   "value": "Opiniones"
+  },
+  {
+   "key": "reviews.title",
+   "lang": "es",
+   "value": "Lo que dicen nuestros huéspedes"
+  },
+  {
+   "key": "reviews.lead",
+   "lang": "es",
+   "value": "Experiencias reales de huéspedes que han disfrutado de la estancia."
+  },
+  {
+   "key": "faq.eyebrow",
+   "lang": "es",
+   "value": "Preguntas frecuentes"
+  },
+  {
+   "key": "faq.title",
+   "lang": "es",
+   "value": "Todo lo que conviene saber"
+  },
+  {
+   "key": "contact.title",
+   "lang": "es",
+   "value": "¿Hablamos de tu próxima escapada?"
+  },
+  {
+   "key": "contact.lead",
+   "lang": "es",
+   "value": "Escríbenos por WhatsApp con tus fechas y te respondemos con disponibilidad y precio."
+  },
+  {
+   "key": "contact.ig",
+   "lang": "es",
+   "value": "Instagram"
+  },
+  {
+   "key": "contact.fb",
+   "lang": "es",
+   "value": "Facebook"
+  },
+  {
+   "key": "footer",
+   "lang": "es",
+   "value": "© 2026 VirAnd. Todos los derechos reservados."
+  },
+  {
+   "key": "avail.loading",
+   "lang": "es",
+   "value": "Cargando disponibilidad…"
+  },
+  {
+   "key": "avail.unknown",
+   "lang": "es",
+   "value": "No se pudo comprobar la disponibilidad. Consúltanos por WhatsApp."
+  },
+  {
+   "key": "wa.copy",
+   "lang": "es",
+   "value": "Enlace copiado"
+  },
+  {
+   "key": "svc.playa",
+   "lang": "es",
+   "value": "Playa"
+  },
+  {
+   "key": "svc.jacuzzi",
+   "lang": "es",
+   "value": "Jacuzzi"
+  },
+  {
+   "key": "svc.barbacoa",
+   "lang": "es",
+   "value": "Barbacoa"
+  },
+  {
+   "key": "svc.centro",
+   "lang": "es",
+   "value": "Centro"
+  },
+  {
+   "key": "svc.parking",
+   "lang": "es",
+   "value": "Parking"
+  },
+  {
+   "key": "svc.acogedor",
+   "lang": "es",
+   "value": "Acogedor"
+  },
+  {
+   "key": "svc.piscina",
+   "lang": "es",
+   "value": "Piscina"
+  },
+  {
+   "key": "svc.bicicletas",
+   "lang": "es",
+   "value": "Bicicletas"
+  },
+  {
+   "key": "svc.llegada-autonoma",
+   "lang": "es",
+   "value": "Llegada autónoma"
+  },
+  {
+   "key": "svc.wifi",
+   "lang": "es",
+   "value": "Wifi"
+  },
+  {
+   "key": "u.guest1",
+   "lang": "es",
+   "value": "1 viajero"
+  },
+  {
+   "key": "u.guestN",
+   "lang": "es",
+   "value": "{n} viajeros"
+  },
+  {
+   "key": "u.bedroom1",
+   "lang": "es",
+   "value": "1 dormitorio"
+  },
+  {
+   "key": "u.bedroomN",
+   "lang": "es",
+   "value": "{n} dormitorios"
+  },
+  {
+   "key": "u.bed1",
+   "lang": "es",
+   "value": "1 cama"
+  },
+  {
+   "key": "u.bedN",
+   "lang": "es",
+   "value": "{n} camas"
+  },
+  {
+   "key": "u.bath1",
+   "lang": "es",
+   "value": "1 baño"
+  },
+  {
+   "key": "u.bathN",
+   "lang": "es",
+   "value": "{n} baños"
+  },
+  {
+   "key": "svc.aire",
+   "lang": "es",
+   "value": "Aire acondicionado"
+  },
+  {
+   "key": "svc.mascotas",
+   "lang": "es",
+   "value": "Se admiten mascotas"
+  },
+  {
+   "key": "svc.jardin",
+   "lang": "es",
+   "value": "Jardín privado"
+  },
+  {
+   "key": "svc.ascensor",
+   "lang": "es",
+   "value": "Ascensor"
+  },
+  {
+   "key": "svc.vistas-mar",
+   "lang": "es",
+   "value": "Vistas al mar"
+  },
+  {
+   "key": "svc.vistas",
+   "lang": "es",
+   "value": "Vistas"
+  },
+  {
+   "key": "map.load",
+   "lang": "es",
+   "value": "Cargar mapa"
+  },
+  {
+   "key": "map.hint",
+   "lang": "es",
+   "value": "Mira dónde están nuestros alojamientos en el mapa."
+  },
+  {
+   "key": "meta.title",
+   "lang": "en",
+   "value": "VirAnd Luxury Rental · Holiday rentals in Málaga and the Costa del Sol"
+  },
+  {
+   "key": "meta.desc",
+   "lang": "en",
+   "value": "Exclusive holiday rentals in Málaga, Torremolinos and Benalmádena. Verified apartments, personal service and direct enquiries via WhatsApp."
+  },
+  {
+   "key": "nav.stays",
+   "lang": "en",
+   "value": "Stays"
+  },
+  {
+   "key": "nav.why",
+   "lang": "en",
+   "value": "Why VirAnd"
+  },
+  {
+   "key": "nav.reviews",
+   "lang": "en",
+   "value": "Reviews"
+  },
+  {
+   "key": "nav.faq",
+   "lang": "en",
+   "value": "FAQ"
+  },
+  {
+   "key": "nav.contact",
+   "lang": "en",
+   "value": "Contact"
+  },
+  {
+   "key": "nav.menu",
+   "lang": "en",
+   "value": "Open menu"
+  },
+  {
+   "key": "nav.whatsapp",
+   "lang": "en",
+   "value": "WhatsApp"
+  },
+  {
+   "key": "hero.eyebrow",
+   "lang": "en",
+   "value": "Exclusive stays"
+  },
+  {
+   "key": "hero.title",
+   "lang": "en",
+   "value": "Your home on the Mediterranean"
+  },
+  {
+   "key": "hero.lead",
+   "lang": "en",
+   "value": "Exclusive holiday rentals in Málaga and the Costa del Sol, with personal attention throughout your stay."
+  },
+  {
+   "key": "search.zone",
+   "lang": "en",
+   "value": "Destination"
+  },
+  {
+   "key": "search.zone.all",
+   "lang": "en",
+   "value": "All Costa del Sol"
+  },
+  {
+   "key": "search.in",
+   "lang": "en",
+   "value": "Check-in"
+  },
+  {
+   "key": "search.out",
+   "lang": "en",
+   "value": "Check-out"
+  },
+  {
+   "key": "search.pax",
+   "lang": "en",
+   "value": "Guests"
+  },
+  {
+   "key": "search.go",
+   "lang": "en",
+   "value": "Search"
+  },
+  {
+   "key": "search.pax.n",
+   "lang": "en",
+   "value": "{n} guests"
+  },
+  {
+   "key": "search.pax.1",
+   "lang": "en",
+   "value": "1 guest"
+  },
+  {
+   "key": "stays.eyebrow",
+   "lang": "en",
+   "value": "Stays"
+  },
+  {
+   "key": "stays.title",
+   "lang": "en",
+   "value": "Choose your next destination"
+  },
+  {
+   "key": "stays.lead",
+   "lang": "en",
+   "value": "Verified, fully equipped apartments in the best areas of the coast."
+  },
+  {
+   "key": "filters.sort",
+   "lang": "en",
+   "value": "Sort by"
+  },
+  {
+   "key": "sort.rec",
+   "lang": "en",
+   "value": "Recommended"
+  },
+  {
+   "key": "sort.asc",
+   "lang": "en",
+   "value": "Price: low to high"
+  },
+  {
+   "key": "sort.desc",
+   "lang": "en",
+   "value": "Price: high to low"
+  },
+  {
+   "key": "filters.clear",
+   "lang": "en",
+   "value": "Clear dates"
+  },
+  {
+   "key": "view.list",
+   "lang": "en",
+   "value": "List"
+  },
+  {
+   "key": "view.map",
+   "lang": "en",
+   "value": "Map"
+  },
+  {
+   "key": "count.n",
+   "lang": "en",
+   "value": "{n} stays"
+  },
+  {
+   "key": "count.1",
+   "lang": "en",
+   "value": "1 stay"
+  },
+  {
+   "key": "card.from",
+   "lang": "en",
+   "value": "from"
+  },
+  {
+   "key": "card.night",
+   "lang": "en",
+   "value": "/ night"
+  },
+  {
+   "key": "card.consult",
+   "lang": "en",
+   "value": "Ask for price"
+  },
+  {
+   "key": "card.free",
+   "lang": "en",
+   "value": "Available on your dates"
+  },
+  {
+   "key": "card.pax",
+   "lang": "en",
+   "value": "{n} guests"
+  },
+  {
+   "key": "card.bed",
+   "lang": "en",
+   "value": "{n} bed."
+  },
+  {
+   "key": "card.bath",
+   "lang": "en",
+   "value": "{n} bath"
+  },
+  {
+   "key": "empty",
+   "lang": "en",
+   "value": "No stays are free with these filters. Try other dates or message us on WhatsApp."
+  },
+  {
+   "key": "modal.close",
+   "lang": "en",
+   "value": "Close"
+  },
+  {
+   "key": "modal.prev",
+   "lang": "en",
+   "value": "Previous photo"
+  },
+  {
+   "key": "modal.next",
+   "lang": "en",
+   "value": "Next photo"
+  },
+  {
+   "key": "modal.photos",
+   "lang": "en",
+   "value": "Photos of {name}"
+  },
+  {
+   "key": "detail.facts",
+   "lang": "en",
+   "value": "{v} guests · {d} bedrooms · {c} beds · {b} bathrooms"
+  },
+  {
+   "key": "detail.amen",
+   "lang": "en",
+   "value": "Amenities"
+  },
+  {
+   "key": "detail.avail",
+   "lang": "en",
+   "value": "Availability"
+  },
+  {
+   "key": "detail.in",
+   "lang": "en",
+   "value": "Check-in"
+  },
+  {
+   "key": "detail.out",
+   "lang": "en",
+   "value": "Check-out"
+  },
+  {
+   "key": "detail.addDate",
+   "lang": "en",
+   "value": "Add date"
+  },
+  {
+   "key": "detail.pax",
+   "lang": "en",
+   "value": "Guests"
+  },
+  {
+   "key": "detail.wa",
+   "lang": "en",
+   "value": "Enquire on WhatsApp"
+  },
+  {
+   "key": "detail.hint",
+   "lang": "en",
+   "value": "Calendar availability is indicative. We confirm dates and price on WhatsApp, no commitment."
+  },
+  {
+   "key": "detail.nights",
+   "lang": "en",
+   "value": "{n} nights"
+  },
+  {
+   "key": "detail.night1",
+   "lang": "en",
+   "value": "1 night"
+  },
+  {
+   "key": "detail.nodata",
+   "lang": "en",
+   "value": "We couldn't load the calendar right now. Message us on WhatsApp and we'll confirm availability."
+  },
+  {
+   "key": "detail.free",
+   "lang": "en",
+   "value": "Free"
+  },
+  {
+   "key": "detail.busy",
+   "lang": "en",
+   "value": "Booked"
+  },
+  {
+   "key": "detail.old",
+   "lang": "en",
+   "value": "The calendar may be out of date. Please confirm on WhatsApp."
+  },
+  {
+   "key": "detail.dir",
+   "lang": "en",
+   "value": "Exact address shared once the booking is confirmed."
+  },
+  {
+   "key": "cal.prev",
+   "lang": "en",
+   "value": "Previous month"
+  },
+  {
+   "key": "cal.next",
+   "lang": "en",
+   "value": "Next month"
+  },
+  {
+   "key": "map.noKey",
+   "lang": "en",
+   "value": "The map will be available once it is activated. Meanwhile, use the list of stays."
+  },
+  {
+   "key": "map.error",
+   "lang": "en",
+   "value": "The map could not be loaded. You can keep using the list of stays."
+  },
+  {
+   "key": "map.view",
+   "lang": "en",
+   "value": "View stay"
+  },
+  {
+   "key": "why.eyebrow",
+   "lang": "en",
+   "value": "Why VirAnd"
+  },
+  {
+   "key": "why.title",
+   "lang": "en",
+   "value": "Experiences that become memories"
+  },
+  {
+   "key": "why.lead",
+   "lang": "en",
+   "value": "We take care of every detail so you only have to enjoy."
+  },
+  {
+   "key": "why.1.t",
+   "lang": "en",
+   "value": "Personal attention"
+  },
+  {
+   "key": "why.1.d",
+   "lang": "en",
+   "value": "We help you throughout your stay."
+  },
+  {
+   "key": "why.2.t",
+   "lang": "en",
+   "value": "Guaranteed quality"
+  },
+  {
+   "key": "why.2.d",
+   "lang": "en",
+   "value": "Verified, fully equipped apartments for your maximum comfort."
+  },
+  {
+   "key": "why.3.t",
+   "lang": "en",
+   "value": "Premium locations"
+  },
+  {
+   "key": "why.3.d",
+   "lang": "en",
+   "value": "In the best areas so you can enjoy every moment."
+  },
+  {
+   "key": "why.4.t",
+   "lang": "en",
+   "value": "Direct contact"
+  },
+  {
+   "key": "why.4.d",
+   "lang": "en",
+   "value": "You talk to us, no middlemen and total transparency."
+  },
+  {
+   "key": "reviews.eyebrow",
+   "lang": "en",
+   "value": "Reviews"
+  },
+  {
+   "key": "reviews.title",
+   "lang": "en",
+   "value": "What our guests say"
+  },
+  {
+   "key": "reviews.lead",
+   "lang": "en",
+   "value": "Real experiences from guests who enjoyed their stay."
+  },
+  {
+   "key": "faq.eyebrow",
+   "lang": "en",
+   "value": "FAQ"
+  },
+  {
+   "key": "faq.title",
+   "lang": "en",
+   "value": "Everything worth knowing"
+  },
+  {
+   "key": "contact.title",
+   "lang": "en",
+   "value": "Shall we plan your next getaway?"
+  },
+  {
+   "key": "contact.lead",
+   "lang": "en",
+   "value": "Message us on WhatsApp with your dates and we'll reply with availability and price."
+  },
+  {
+   "key": "contact.ig",
+   "lang": "en",
+   "value": "Instagram"
+  },
+  {
+   "key": "contact.fb",
+   "lang": "en",
+   "value": "Facebook"
+  },
+  {
+   "key": "footer",
+   "lang": "en",
+   "value": "© 2026 VirAnd. All rights reserved."
+  },
+  {
+   "key": "avail.loading",
+   "lang": "en",
+   "value": "Loading availability…"
+  },
+  {
+   "key": "avail.unknown",
+   "lang": "en",
+   "value": "We couldn't check availability. Message us on WhatsApp."
+  },
+  {
+   "key": "wa.copy",
+   "lang": "en",
+   "value": "Link copied"
+  },
+  {
+   "key": "svc.playa",
+   "lang": "en",
+   "value": "Beach"
+  },
+  {
+   "key": "svc.jacuzzi",
+   "lang": "en",
+   "value": "Jacuzzi"
+  },
+  {
+   "key": "svc.barbacoa",
+   "lang": "en",
+   "value": "Barbecue"
+  },
+  {
+   "key": "svc.centro",
+   "lang": "en",
+   "value": "City centre"
+  },
+  {
+   "key": "svc.parking",
+   "lang": "en",
+   "value": "Parking"
+  },
+  {
+   "key": "svc.acogedor",
+   "lang": "en",
+   "value": "Cosy"
+  },
+  {
+   "key": "svc.piscina",
+   "lang": "en",
+   "value": "Pool"
+  },
+  {
+   "key": "svc.bicicletas",
+   "lang": "en",
+   "value": "Bicycles"
+  },
+  {
+   "key": "svc.llegada-autonoma",
+   "lang": "en",
+   "value": "Self check-in"
+  },
+  {
+   "key": "svc.wifi",
+   "lang": "en",
+   "value": "Wifi"
+  },
+  {
+   "key": "u.guest1",
+   "lang": "en",
+   "value": "1 guest"
+  },
+  {
+   "key": "u.guestN",
+   "lang": "en",
+   "value": "{n} guests"
+  },
+  {
+   "key": "u.bedroom1",
+   "lang": "en",
+   "value": "1 bedroom"
+  },
+  {
+   "key": "u.bedroomN",
+   "lang": "en",
+   "value": "{n} bedrooms"
+  },
+  {
+   "key": "u.bed1",
+   "lang": "en",
+   "value": "1 bed"
+  },
+  {
+   "key": "u.bedN",
+   "lang": "en",
+   "value": "{n} beds"
+  },
+  {
+   "key": "u.bath1",
+   "lang": "en",
+   "value": "1 bathroom"
+  },
+  {
+   "key": "u.bathN",
+   "lang": "en",
+   "value": "{n} bathrooms"
+  },
+  {
+   "key": "svc.aire",
+   "lang": "en",
+   "value": "Air conditioning"
+  },
+  {
+   "key": "svc.mascotas",
+   "lang": "en",
+   "value": "Pets welcome"
+  },
+  {
+   "key": "svc.jardin",
+   "lang": "en",
+   "value": "Private garden"
+  },
+  {
+   "key": "svc.ascensor",
+   "lang": "en",
+   "value": "Lift"
+  },
+  {
+   "key": "svc.vistas-mar",
+   "lang": "en",
+   "value": "Sea views"
+  },
+  {
+   "key": "svc.vistas",
+   "lang": "en",
+   "value": "Views"
+  },
+  {
+   "key": "map.load",
+   "lang": "en",
+   "value": "Load map"
+  },
+  {
+   "key": "map.hint",
+   "lang": "en",
+   "value": "See where our stays are on the map."
+  }
+ ]
+}

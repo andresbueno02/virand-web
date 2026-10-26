@@ -246,15 +246,15 @@
   }
 
   /* ---------- arranque ---------- */
-  function getJson(u) { return fetch(u).then(function (r) { if (!r.ok) throw new Error(u); return r.json(); }); }
   var saved = ls('virand-lang'), nav = (navigator.language || 'es').slice(0, 2);
   st.lang = saved === 'en' || saved === 'es' ? saved : (nav === 'en' ? 'en' : 'es');
 
-  Promise.all([getJson('data/i18n/es.json'), getJson('data/i18n/en.json'), getJson('data/pisos.json'), getJson('data/opiniones.json'), getJson('data/faq.json')])
-    .then(function (r) {
-      st.dict.es = r[0]; st.dict.en = r[1];
-      st.pisos = r[2].pisos.filter(function (p) { return p.activo !== false; });
-      st.opiniones = r[3].opiniones; st.faq = r[4].faq;
+  window.VirandDataSource.load()
+    .then(function (d) {
+      document.documentElement.setAttribute('data-source', d.source || 'local');
+      st.dict.es = d.i18n.es; st.dict.en = d.i18n.en;
+      st.pisos = d.pisos.filter(function (p) { return p.activo !== false; });
+      st.opiniones = d.opiniones; st.faq = d.faq;
       applyStatic(); fillSearchControls(); renderWhy(); renderReviews(); renderFaq();
       window.VirandMap.init({ container: $('#mapbox'), t: t, viewLabel: function () { return t('map.view'); }, onSelect: function (slug) { openModal(slug); }, onHover: function () {}, onUnavailable: function () { $('#layout').classList.add('no-map'); document.body.classList.add('no-map'); } });
       renderList();

@@ -263,6 +263,47 @@
     });
   }
 
+  /* ---- origen de datos (adaptador) ---- */
+  var D = G.VirandDataSource;
+  if (D) {
+    var raw = {
+      flats: [{ slug: 'b', sort: 1, name_es: 'B', name_en: null, zona: 'Málaga', barrio: null, lat: '36.7', lng: -4.4, viajeros: 2, dormitorios: 1, camas: null, banos: 1, servicios: ['wifi'], desc_es: 'd', desc_en: null, nota: null, precio_desde: '65.00' },
+              { slug: 'a', sort: 0, name_es: 'A', name_en: 'AA', zona: 'Torremolinos', barrio: 'Playa', lat: 36.6, lng: -4.5, viajeros: 4, dormitorios: 2, camas: 3, banos: 2, servicios: [], desc_es: 'x', desc_en: 'y', nota: 4.9, precio_desde: null }],
+      photos: [{ slug: 'a', path: 'assets/img/pisos/a/2', alt_es: 'dos', alt_en: 'two', sort: 1 }, { slug: 'a', path: 'a/1', alt_es: 'uno', alt_en: null, sort: 0 }],
+      faq: [{ q_es: 'q2', q_en: 'Q2', a_es: 'a2', a_en: 'A2', sort: 1 }, { q_es: 'q1', q_en: null, a_es: 'a1', a_en: null, sort: 0 }],
+      reviews: [{ text_es: 't', text_en: 'T', author_es: 'au', author_en: 'AU', rating: 5, sort: 0 }],
+      texts: [{ key: 'hero.title', lang: 'es', value: 'Hola' }, { key: 'hero.title', lang: 'en', value: 'Hello' }, { key: 'x', lang: 'fr', value: 'ignorar' }]
+    };
+    var out = D.fromRows(raw, 'https://p.supabase.co');
+    test('fromRows ordena por sort y da la forma que consume la web', function () {
+      eq(out.pisos.map(function (p) { return p.slug; }), ['a', 'b']);
+      eq(out.pisos[0].nombre, { es: 'A', en: 'AA' }); eq(out.pisos[0].barrio, 'Playa'); eq(out.pisos[0].camas, 3); eq(out.pisos[0].nota, 4.9);
+      ok(out.pisos[0].activo === true);
+    });
+    test('fromRows: nulos opcionales no aparecen y los numéricos se convierten', function () {
+      var b = out.pisos[1];
+      ok(!('barrio' in b) && !('camas' in b) && !('nota' in b), 'campos opcionales presentes');
+      eq(b.precio_desde, 65); eq(b.lat, 36.7); eq(b.nombre, { es: 'B', en: 'B' }); eq(b.descripcion, { es: 'd', en: 'd' });
+      ok(!('precio_desde' in out.pisos[0]));
+    });
+    test('fotos: orden, ruta local intacta y URL de Storage para las subidas', function () {
+      eq(out.pisos[0].fotos.map(function (f) { return f.src; }), ['https://p.supabase.co/storage/v1/object/public/flats/a/1', 'assets/img/pisos/a/2']);
+      eq(out.pisos[0].fotos[0].alt, { es: 'uno', en: 'uno' }); eq(out.pisos[1].fotos, []);
+    });
+    test('faq, opiniones e i18n', function () {
+      eq(out.faq.map(function (q) { return q.pregunta.es; }), ['q1', 'q2']); eq(out.faq[0].pregunta.en, 'q1');
+      eq(out.opiniones[0].nota, 5); eq(out.opiniones[0].autor, { es: 'au', en: 'AU' });
+      eq(out.i18n, { es: { 'hero.title': 'Hola' }, en: { 'hero.title': 'Hello' } });
+    });
+    test('overlayI18n: la base manda y los locales rellenan huecos', function () {
+      eq(D.overlayI18n({ es: { a: '1', b: '2' }, en: { a: 'one' } }, { es: { a: 'X' }, en: {} }), { es: { a: 'X', b: '2' }, en: { a: 'one' } });
+      eq(D.overlayI18n(null, null), { es: {}, en: {} });
+    });
+    test('fromRows con listas vacías no falla', function () {
+      eq(D.fromRows({}, 'u'), { pisos: [], faq: [], opiniones: [], i18n: { es: {}, en: {} } });
+    });
+  }
+
   /* ---- resumen ---- */
   var failed = results.filter(function (r) { return !r.ok; });
   G.__testSummary = { total: results.length, failed: failed.length };

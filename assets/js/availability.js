@@ -4,6 +4,13 @@
 (function (root) {
   var TIMEOUT_MS = 8000;
 
+  // Con useSupabase la disponibilidad sale de la función pública public_availability (mismo contrato).
+  function supabaseCall() {
+    var cfg = root.VIRAND_CONFIG || {};
+    if (!cfg.useSupabase || /[?&]mock=1\b/.test(root.location.search)) return null;
+    return { url: cfg.supabaseUrl + '/rest/v1/rpc/public_availability', init: { method: 'POST', headers: { apikey: cfg.supabaseAnonKey, Authorization: 'Bearer ' + cfg.supabaseAnonKey, 'Content-Type': 'application/json' }, body: '{}' } };
+  }
+
   function sourceUrl() {
     var cfg = root.VIRAND_CONFIG || {};
     // ?mock=1 sirve datos de ejemplo SOLO para pruebas locales.
@@ -17,13 +24,14 @@
 
   // Resuelve siempre: con datos o con null (nunca rechaza ni bloquea la web).
   function load() {
-    var url = sourceUrl();
+    var sb = supabaseCall(), url = sb ? sb.url : sourceUrl();
     if (!url) return Promise.resolve(null);
     var ctrl = typeof AbortController !== 'undefined' ? new AbortController() : null;
     var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, TIMEOUT_MS);
     var sep = url.indexOf('?') === -1 ? '?' : '&';
-    var full = /mock/.test(url) ? url : url + sep + 'action=disponibilidad';
-    return fetch(full, ctrl ? { signal: ctrl.signal } : {})
+    var full = sb || /mock/.test(url) ? url : url + sep + 'action=disponibilidad';
+    var init = sb ? Object.assign({}, sb.init) : {}; if (ctrl) init.signal = ctrl.signal;
+    return fetch(full, init)
       .then(function (r) { if (!r.ok) throw new Error('http ' + r.status); return r.json(); })
       .then(function (d) { return valid(d) ? d : null; })
       .catch(function () { return null; })
