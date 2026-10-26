@@ -19,7 +19,7 @@
 
   function shell() {
     app.innerHTML = '<header class="top"><a class="brand" href="#/pisos">VirAnd<small>Panel</small></a>' +
-      '<nav id="nav"><a href="#/pisos" data-r="pisos">Pisos</a><a href="#/preguntas" data-r="preguntas">Preguntas</a><a href="#/opiniones" data-r="opiniones">Opiniones</a><a href="#/textos" data-r="textos">Textos</a></nav>' +
+      '<nav id="nav"><a href="#/pisos" data-r="pisos">Pisos</a><a href="#/precios" data-r="precios">Precios</a><a href="#/preguntas" data-r="preguntas">Preguntas</a><a href="#/opiniones" data-r="opiniones">Opiniones</a><a href="#/textos" data-r="textos">Textos</a></nav>' +
       '<div class="who"><span class="muted">' + esc(user) + '</span><button type="button" class="btn btn-ghost" id="out">Salir</button></div></header>' +
       '<main id="view" class="view"></main>';
     document.getElementById('out').addEventListener('click', function () { root.Api.signOut().then(function () { user = null; loginView(); }); });
@@ -31,6 +31,7 @@
     view.onclick = null; view.onchange = null;
     document.querySelectorAll('#nav a').forEach(function (a) { a.classList.toggle('on', a.getAttribute('data-r') === r); });
     if (r === 'pisos') p = h[1] ? root.ViewPisos.edit(view, h[1]) : root.ViewPisos.list(view);
+    else if (r === 'precios') p = root.ViewPrecios.render(view);
     else if (r === 'preguntas') p = root.ViewLista.render(view, 'faq');
     else if (r === 'opiniones') p = root.ViewLista.render(view, 'reviews');
     else if (r === 'textos') p = root.ViewTextos.render(view);

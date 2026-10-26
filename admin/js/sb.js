@@ -30,6 +30,19 @@
     remove: function (table, id) { return client.from(table).delete().eq('id', id).then(must); },
     setSort: function (table, id, sort) { return client.from(table).update({ sort: sort }).eq('id', id).then(must); },
 
+    updateFlatPrices: function (id, low, high) { return client.from('flats').update({ base_price: low, price_high: high }).eq('id', id).then(must); },
+    listSeasons: function () { return client.from('seasons').select('*').order('from_date').then(must); },
+    saveSeason: function (row) {
+      var id = row.id; if (id) { delete row.id; }
+      return (id ? client.from('seasons').update(row).eq('id', id) : client.from('seasons').insert(row)).select().single().then(must);
+    },
+    removeSeason: function (id) { return client.from('seasons').delete().eq('id', id).then(must); },
+    dayPrices: function (flatId, fromDay) { return client.from('day_prices').select('*').eq('flat_id', flatId).order('day').then(must).then(function (rows) { return rows.filter(function (r) { return r.day >= fromDay; }); }); },
+    setDayPrices: function (flatId, days, price) {
+      return client.from('day_prices').upsert(days.map(function (d) { return { flat_id: flatId, day: d, price: price }; }), { onConflict: 'flat_id,day' }).then(must);
+    },
+    clearDayPrices: function (flatId, days) { return client.from('day_prices').delete().eq('flat_id', flatId).in('day', days).then(must); },
+
     listTexts: function () { return client.from('site_texts').select('*').then(must); },
     saveTexts: function (rows) { return client.from('site_texts').upsert(rows, { onConflict: 'key,lang' }).then(must); }
   };

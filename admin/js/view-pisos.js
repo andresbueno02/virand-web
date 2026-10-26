@@ -13,7 +13,7 @@
         '<div class="rows">' + flats.map(function (f) {
           return '<div class="row' + (f.active ? '' : ' off') + '" data-id="' + esc(f.id) + '">' +
             '<div class="grow"><strong>' + esc(f.name_es) + '</strong><span class="muted">' + esc(f.zona) + (f.barrio ? ' · ' + esc(f.barrio) : '') +
-            ' · ' + esc(f.viajeros) + ' viajeros · desde ' + money(f.base_price) + '</span></div>' +
+            ' · ' + esc(f.viajeros) + ' viajeros · baja ' + money(f.base_price) + ' · alta ' + money(f.price_high) + '</span></div>' +
             '<label class="switch" title="Visible en la web"><input type="checkbox" data-act="toggle"' + (f.active ? ' checked' : '') + '><span></span><em>' + (f.active ? 'Visible' : 'Oculto') + '</em></label>' +
             '<a class="btn btn-ghost" href="#/pisos/' + esc(f.id) + '">Editar</a></div>';
         }).join('') + '</div>';
@@ -40,7 +40,7 @@
 
   function collect(form, original) {
     var f = Object.assign({}, original);
-    ['slug', 'name_es', 'name_en', 'zona', 'barrio', 'viajeros', 'dormitorios', 'camas', 'banos', 'desc_es', 'desc_en', 'nota', 'base_price', 'lat', 'lng'].forEach(function (k) { f[k] = form.elements[k].value; });
+    ['slug', 'name_es', 'name_en', 'zona', 'barrio', 'viajeros', 'dormitorios', 'camas', 'banos', 'desc_es', 'desc_en', 'nota', 'base_price', 'price_high', 'lat', 'lng'].forEach(function (k) { f[k] = form.elements[k].value; });
     f.active = form.elements.active.checked;
     f.servicios = Array.prototype.filter.call(form.querySelectorAll('input[name="servicios"]'), function (c) { return c.checked; }).map(function (c) { return c.value; });
     return f;
@@ -71,8 +71,9 @@
         '</div></fieldset>' +
         '<fieldset><legend>Descripción</legend>' + field('desc_es', 'Español', form0.desc_es, { area: 6 }) + field('desc_en', 'Inglés', form0.desc_en, { area: 6, hint: 'Más adelante el panel propondrá la traducción automáticamente.' }) + '</fieldset>' +
         '<fieldset><legend>Precio y valoración</legend><div class="grid2">' +
-        field('base_price', 'Precio «desde» (€ por noche)', form0.base_price, { dec: true, ph: '95', hint: 'Es el que sale como «desde X €» en la web. Las temporadas se configuran en el siguiente paso.' }) +
-        field('nota', 'Nota media (0-5, opcional)', form0.nota, { dec: true, ph: '4,8' }) + '</div></fieldset>' +
+        field('base_price', 'Precio temporada baja (€ por noche)', form0.base_price, { dec: true, ph: '95', hint: 'Los periodos de temporada alta y los precios por día se configuran en «Precios».' }) +
+        field('price_high', 'Precio temporada alta (€ por noche)', form0.price_high, { dec: true, ph: '140' }) +
+        field('nota', 'Nota media (0-5, opcional)', form0.nota, { dec: true, ph: '4,8' }) + '</div><p class="muted">En la web aparece «desde X €», con el más bajo de los dos precios.</p></fieldset>' +
         '<fieldset><legend>Ubicación en el mapa</legend><div class="grid2">' +
         field('lat', 'Latitud', form0.lat, { ph: '36.7213', hint: 'Pon una posición aproximada de la zona, no el portal exacto.' }) + field('lng', 'Longitud', form0.lng, { ph: '-4.4214' }) + '</div></fieldset>' +
         '<fieldset><legend>Fotos</legend>' + (isNew ? '<p class="muted">Guarda el piso primero. La gestión de fotos llega en el siguiente paso.</p>' :

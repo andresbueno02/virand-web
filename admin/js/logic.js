@@ -45,7 +45,7 @@
       name_es: s(r.name_es), name_en: s(r.name_en), zona: s(r.zona), barrio: s(r.barrio),
       viajeros: s(r.viajeros), dormitorios: s(r.dormitorios), camas: s(r.camas), banos: s(r.banos),
       servicios: (r.servicios || []).slice(), desc_es: s(r.desc_es), desc_en: s(r.desc_en),
-      nota: s(r.nota), base_price: s(r.base_price), lat: s(r.lat), lng: s(r.lng)
+      nota: s(r.nota), base_price: s(r.base_price), price_high: s(r.price_high), lat: s(r.lat), lng: s(r.lng)
     };
   }
 
@@ -57,7 +57,7 @@
       dormitorios: intOrNull(f.dormitorios), camas: intOrNull(f.camas), banos: intOrNull(f.banos),
       servicios: (f.servicios || []).filter(function (k) { return SERVICIO_KEYS.indexOf(k) !== -1; }),
       desc_es: txt(f.desc_es), desc_en: txt(f.desc_en), nota: numOrNull(f.nota),
-      base_price: numOrNull(f.base_price), lat: numOrNull(f.lat), lng: numOrNull(f.lng)
+      base_price: numOrNull(f.base_price), price_high: numOrNull(f.price_high), lat: numOrNull(f.lat), lng: numOrNull(f.lng)
     };
     if (!f.id) delete row.id;
     return row;
@@ -76,6 +76,7 @@
     });
     if (r.nota !== null && (isNaN(r.nota) || r.nota < 0 || r.nota > 5)) e.push('La nota debe estar entre 0 y 5.');
     if (r.base_price !== null && (isNaN(r.base_price) || r.base_price <= 0)) e.push('El precio «desde» debe ser mayor que 0.');
+    if (r.price_high !== null && (isNaN(r.price_high) || r.price_high <= 0)) e.push('El precio de temporada alta debe ser mayor que 0.');
     var hasLat = r.lat !== null, hasLng = r.lng !== null;
     if (hasLat !== hasLng) e.push('Indica latitud y longitud, o deja las dos vacías.');
     if (hasLat && (isNaN(r.lat) || r.lat < -90 || r.lat > 90)) e.push('La latitud no es válida.');
@@ -101,6 +102,30 @@
     return after.filter(function (x) { return old[x.id] !== x.sort; });
   }
 
+  function pad2(n) { return (n < 10 ? '0' : '') + n; }
+  function ymd(y, m0, d) { return y + '-' + pad2(m0 + 1) + '-' + pad2(d); }
+  function daysInMonth(y, m0) { return new Date(Date.UTC(y, m0 + 1, 0)).getUTCDate(); }
+  function addDay(s, n) { var d = new Date(s + 'T00:00:00Z'); d.setUTCDate(d.getUTCDate() + n); return ymd(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()); }
+  // días de a a b, ambos inclusive, en cualquier orden; tope de 400 para no colgar la pantalla
+  function dayRange(a, b) {
+    if (a > b) { var t = a; a = b; b = t; }
+    var out = [], d = a;
+    while (d <= b && out.length < 400) { out.push(d); d = addDay(d, 1); }
+    return out;
+  }
+  function monthDays(y, m0) { var out = [], n = daysInMonth(y, m0); for (var d = 1; d <= n; d++) out.push(ymd(y, m0, d)); return out; }
+  // viernes y sábados del mes (las noches de fin de semana)
+  function weekendDays(y, m0) {
+    return monthDays(y, m0).filter(function (d) { var w = new Date(d + 'T00:00:00Z').getUTCDay(); return w === 5 || w === 6; });
+  }
+  // valida un tramo de temporada; devuelve mensajes (vacío = válido)
+  function validateSeason(s) {
+    var e = [];
+    if (!s.from_date || !s.to_date) e.push('Indica la fecha de inicio y la de fin.');
+    else if (s.to_date < s.from_date) e.push('La fecha de fin no puede ser anterior a la de inicio.');
+    return e;
+  }
+
   var GROUPS = [
     ['Portada', /^hero\./], ['Buscador', /^search\./], ['Alojamientos', /^stays\./], ['Por qué VirAnd', /^why\./],
     ['Opiniones', /^reviews\./], ['Preguntas frecuentes', /^faq\./], ['Contacto y pie', /^(contact\.|footer$)/]
@@ -124,6 +149,6 @@
   return {
     SERVICIOS: SERVICIOS, SERVICIO_KEYS: SERVICIO_KEYS, slugify: slugify, uniqueSlug: uniqueSlug,
     flatToForm: flatToForm, formToRow: formToRow, validateFlat: validateFlat,
-    moveItem: moveItem, reindex: reindex, nextSort: nextSort, changedSorts: changedSorts, groupTexts: groupTexts
+    dayRange: dayRange, monthDays: monthDays, weekendDays: weekendDays, addDay: addDay, validateSeason: validateSeason, moveItem: moveItem, reindex: reindex, nextSort: nextSort, changedSorts: changedSorts, groupTexts: groupTexts
   };
 });

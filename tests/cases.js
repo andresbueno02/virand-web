@@ -226,7 +226,7 @@
     });
     test('flatToForm y formToRow son inversas para un piso real', function () {
       var row = { id: 'i', slug: 'loft', active: false, name_es: 'Loft', name_en: 'Loft', zona: 'Málaga', barrio: 'Centro', viajeros: 2,
-        dormitorios: 1, camas: null, banos: 1, servicios: ['wifi'], desc_es: 'd', desc_en: 'e', nota: 4.9, base_price: 65, lat: 36.7255, lng: -4.434 };
+        dormitorios: 1, camas: null, banos: 1, servicios: ['wifi'], desc_es: 'd', desc_en: 'e', nota: 4.9, base_price: 65, price_high: 90, lat: 36.7255, lng: -4.434 };
       eq(A.formToRow(A.flatToForm(row)), row);
     });
     test('validateFlat acepta un piso correcto', function () {
@@ -238,6 +238,26 @@
       ok(e.length >= 8, 'esperaba al menos 8 errores y hay ' + e.length + ': ' + e.join(' | '));
       eq(A.validateFlat(A.formToRow({ slug: 'a', name_es: 'A', zona: 'Z', viajeros: 'abc' })).length, 1);
       eq(A.validateFlat(A.formToRow({ slug: 'a', name_es: 'A', zona: 'Z', viajeros: '2', lat: '91', lng: '0' })).length, 1);
+    });
+    test('price_high se valida y convierte', function () {
+      eq(A.formToRow({ slug: 'a', name_es: 'A', zona: 'Z', viajeros: '2', price_high: '140,5' }).price_high, 140.5);
+      eq(A.validateFlat(A.formToRow({ slug: 'a', name_es: 'A', zona: 'Z', viajeros: '2', price_high: '-3' })).length, 1);
+      eq(A.validateFlat(A.formToRow({ slug: 'a', name_es: 'A', zona: 'Z', viajeros: '2', price_high: '' })), []);
+    });
+    test('dayRange: inclusivo, en cualquier orden y con tope', function () {
+      eq(A.dayRange('2026-12-30', '2027-01-02'), ['2026-12-30', '2026-12-31', '2027-01-01', '2027-01-02']);
+      eq(A.dayRange('2027-01-02', '2026-12-30').length, 4); eq(A.dayRange('2026-11-05', '2026-11-05'), ['2026-11-05']);
+      eq(A.dayRange('2026-01-01', '2030-01-01').length, 400);
+    });
+    test('monthDays y weekendDays (viernes y sábados)', function () {
+      eq(A.monthDays(2028, 1).length, 29); eq(A.monthDays(2026, 10).length, 30);
+      eq(A.weekendDays(2026, 10), ['2026-11-06', '2026-11-07', '2026-11-13', '2026-11-14', '2026-11-20', '2026-11-21', '2026-11-27', '2026-11-28']);
+    });
+    test('validateSeason', function () {
+      eq(A.validateSeason({ from_date: '2026-06-15', to_date: '2026-09-15' }), []);
+      eq(A.validateSeason({ from_date: '2026-06-15', to_date: '2026-06-15' }), []);
+      eq(A.validateSeason({ from_date: '2026-09-15', to_date: '2026-06-15' }).length, 1);
+      eq(A.validateSeason({ from_date: '', to_date: '2026-06-15' }).length, 1);
     });
     test('moveItem intercambia y reindexa sin mutar', function () {
       var l = [{ id: 'a', sort: 0 }, { id: 'b', sort: 1 }, { id: 'c', sort: 2 }];
