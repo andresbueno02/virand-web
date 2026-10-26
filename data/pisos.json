@@ -103,35 +103,42 @@
      "src": "assets/img/pisos/cosy-flat-malaga/1",
      "alt": {
       "es": "Cosy Flat en el corazón de Málaga: foto 1",
-      "en": "Cosy Flat en el corazón de Málaga: photo 1"
+      "en": "Cosy Flat in the heart of Málaga: photo 1"
      }
     },
     {
      "src": "assets/img/pisos/cosy-flat-malaga/2",
      "alt": {
       "es": "Cosy Flat en el corazón de Málaga: foto 2",
-      "en": "Cosy Flat en el corazón de Málaga: photo 2"
+      "en": "Cosy Flat in the heart of Málaga: photo 2"
      }
     },
     {
      "src": "assets/img/pisos/cosy-flat-malaga/3",
      "alt": {
       "es": "Cosy Flat en el corazón de Málaga: foto 3",
-      "en": "Cosy Flat en el corazón de Málaga: photo 3"
+      "en": "Cosy Flat in the heart of Málaga: photo 3"
      }
     },
     {
      "src": "assets/img/pisos/cosy-flat-malaga/4",
      "alt": {
       "es": "Cosy Flat en el corazón de Málaga: foto 4",
-      "en": "Cosy Flat en el corazón de Málaga: photo 4"
+      "en": "Cosy Flat in the heart of Málaga: photo 4"
      }
     },
     {
      "src": "assets/img/pisos/cosy-flat-malaga/5",
      "alt": {
       "es": "Cosy Flat en el corazón de Málaga: foto 5",
-      "en": "Cosy Flat en el corazón de Málaga: photo 5"
+      "en": "Cosy Flat in the heart of Málaga: photo 5"
+     }
+    },
+    {
+     "src": "assets/img/pisos/cosy-flat-malaga/6",
+     "alt": {
+      "es": "Cosy Flat en el corazón de Málaga: foto 6",
+      "en": "Cosy Flat in the heart of Málaga: photo 6"
      }
     }
    ]
@@ -164,28 +171,35 @@
      "src": "assets/img/pisos/apartamento-playa-malaga/1",
      "alt": {
       "es": "Encantador apartamento en la playa: foto 1",
-      "en": "Encantador apartamento en la playa: photo 1"
+      "en": "Charming beach apartment: photo 1"
      }
     },
     {
      "src": "assets/img/pisos/apartamento-playa-malaga/2",
      "alt": {
       "es": "Encantador apartamento en la playa: foto 2",
-      "en": "Encantador apartamento en la playa: photo 2"
+      "en": "Charming beach apartment: photo 2"
      }
     },
     {
      "src": "assets/img/pisos/apartamento-playa-malaga/3",
      "alt": {
       "es": "Encantador apartamento en la playa: foto 3",
-      "en": "Encantador apartamento en la playa: photo 3"
+      "en": "Charming beach apartment: photo 3"
      }
     },
     {
      "src": "assets/img/pisos/apartamento-playa-malaga/4",
      "alt": {
       "es": "Encantador apartamento en la playa: foto 4",
-      "en": "Encantador apartamento en la playa: photo 4"
+      "en": "Charming beach apartment: photo 4"
+     }
+    },
+    {
+     "src": "assets/img/pisos/apartamento-playa-malaga/5",
+     "alt": {
+      "es": "Encantador apartamento en la playa: foto 5",
+      "en": "Charming beach apartment: photo 5"
      }
     }
    ]
@@ -218,35 +232,42 @@
      "src": "assets/img/pisos/boho-chic-torremolinos/1",
      "alt": {
       "es": "Boho Chic frente a la playa: foto 1",
-      "en": "Boho Chic frente a la playa: photo 1"
+      "en": "Boho Chic on the beachfront: photo 1"
      }
     },
     {
      "src": "assets/img/pisos/boho-chic-torremolinos/2",
      "alt": {
       "es": "Boho Chic frente a la playa: foto 2",
-      "en": "Boho Chic frente a la playa: photo 2"
+      "en": "Boho Chic on the beachfront: photo 2"
      }
     },
     {
      "src": "assets/img/pisos/boho-chic-torremolinos/3",
      "alt": {
       "es": "Boho Chic frente a la playa: foto 3",
-      "en": "Boho Chic frente a la playa: photo 3"
+      "en": "Boho Chic on the beachfront: photo 3"
      }
     },
     {
      "src": "assets/img/pisos/boho-chic-torremolinos/4",
      "alt": {
       "es": "Boho Chic frente a la playa: foto 4",
-      "en": "Boho Chic frente a la playa: photo 4"
+      "en": "Boho Chic on the beachfront: photo 4"
      }
     },
     {
      "src": "assets/img/pisos/boho-chic-torremolinos/5",
      "alt": {
       "es": "Boho Chic frente a la playa: foto 5",
-      "en": "Boho Chic frente a la playa: photo 5"
+      "en": "Boho Chic on the beachfront: photo 5"
+     }
+    },
+    {
+     "src": "assets/img/pisos/boho-chic-torremolinos/6",
+     "alt": {
+      "es": "Boho Chic frente a la playa: foto 6",
+      "en": "Boho Chic on the beachfront: photo 6"
      }
     }
    ]
