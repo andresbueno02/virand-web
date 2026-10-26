@@ -461,6 +461,18 @@
     });
   }
 
+  /* ---- seguridad: rutas y slugs hostiles ---- */
+  if (G.VirandDataSource) {
+    test('fromRows descarta fotos con rutas sospechosas y pisos con slug raro', function () {
+      var o = G.VirandDataSource.fromRows({
+        flats: [{ slug: 'ok', sort: 0, name_es: 'A', zona: 'Z', viajeros: 1 }, { slug: 'x" onerror="1', sort: 1, name_es: 'B', zona: 'Z', viajeros: 1 }, { slug: '../etc', sort: 2, name_es: 'C', zona: 'Z', viajeros: 1 }],
+        photos: [{ slug: 'ok', path: 'ok/a1', sort: 0 }, { slug: 'ok', path: 'ok/a" onerror="x', sort: 1 }, { slug: 'ok', path: 'ok/../../x', sort: 2 }, { slug: 'ok', path: '<img src=x>', sort: 3 }, { slug: 'ok', path: 'javascript:alert(1)', sort: 4 }, { slug: 'ok', path: 'ok/b.jpg', sort: 5 }]
+      }, 'https://p.supabase.co');
+      eq(o.pisos.map(function (p) { return p.slug; }), ['ok']);
+      eq(o.pisos[0].fotos.map(function (f) { return f.src.slice(-5); }), ['ok/a1', 'b.jpg']);
+    });
+  }
+
   /* ---- resumen ---- */
   var failed = results.filter(function (r) { return !r.ok; });
   G.__testSummary = { total: results.length, failed: failed.length };

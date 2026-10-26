@@ -3,6 +3,7 @@
 (function (root) {
   var R = root.VirandRanges;
 
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   function pad(n) { return (n < 10 ? '0' : '') + n; }
   function ymd(y, m, d) { return y + '-' + pad(m + 1) + '-' + pad(d); }
   function today() { var d = new Date(); return ymd(d.getFullYear(), d.getMonth(), d.getDate()); }
@@ -52,17 +53,17 @@
           else if (s.llegada && s.salida && day > s.llegada && day < s.salida) cls.push('in-range');
           h += '<button type="button" data-day="' + day + '" class="' + cls.join(' ') + '"' +
             (ok ? '' : ' disabled') + (edge ? ' aria-pressed="true"' : '') +
-            ' aria-label="' + day + (occ ? ' (' + (opt.labels.busy || '') + ')' : '') + '">' + d + '</button>';
+            ' aria-label="' + day + (occ ? ' (' + esc(opt.labels.busy || '') + ')' : '') + '">' + d + '</button>';
         }
         return h + '</div></div>';
       }).join('');
       var cur = vy * 12 + vm, now = +t0.slice(0, 4) * 12 + (+t0.slice(5, 7) - 1);
       el.innerHTML = '<div class="cal"><div class="cal-head">' +
-        '<button type="button" class="cal-nav" data-nav="-1" aria-label="' + s.labels.prev + '"' + (cur <= now ? ' disabled' : '') + '>‹</button>' +
-        '<button type="button" class="cal-nav" data-nav="1" aria-label="' + s.labels.next + '">›</button></div>' +
+        '<button type="button" class="cal-nav" data-nav="-1" aria-label="' + esc(s.labels.prev) + '"' + (cur <= now ? ' disabled' : '') + '>‹</button>' +
+        '<button type="button" class="cal-nav" data-nav="1" aria-label="' + esc(s.labels.next) + '">›</button></div>' +
         '<div class="cal-months">' + months + '</div>' +
-        '<div class="cal-legend"><span><i style="background:var(--blue)"></i>' + (opt.labels.sel || '') + '</span>' +
-        (s.known ? '<span><i style="background:var(--busy)"></i>' + (opt.labels.busy || '') + '</span>' : '') + '</div></div>';
+        '<div class="cal-legend"><span><i style="background:var(--blue)"></i>' + esc(opt.labels.sel || '') + '</span>' +
+        (s.known ? '<span><i style="background:var(--busy)"></i>' + esc(opt.labels.busy || '') + '</span>' : '') + '</div></div>';
     }
 
     el.addEventListener('click', function (e) {

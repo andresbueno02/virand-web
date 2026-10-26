@@ -76,7 +76,7 @@
     var dates = st.f.llegada && st.f.salida;
     var free = dates && S.estadoDisponibilidad(st.avail, p.slug, st.f.llegada, st.f.salida) === 'libre';
     return '<a class="card" href="#piso=' + esc(p.slug) + '" data-slug="' + esc(p.slug) + '">' +
-      '<div class="im"><img src="' + im.s + '" srcset="' + im.s + ' 640w, ' + im.l + ' 1280w" sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 30vw" width="640" height="480" loading="lazy" alt="' + esc(loc(p.fotos[0].alt)) + '">' +
+      '<div class="im"><img src="' + esc(im.s) + '" srcset="' + esc(im.s) + ' 640w, ' + esc(im.l) + ' 1280w" sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 30vw" width="640" height="480" loading="lazy" alt="' + esc(loc(p.fotos[0].alt)) + '">' +
       (free ? '<span class="badge">' + esc(t('card.free')) + '</span>' : '') + '</div>' +
       '<div class="body"><span class="zone">' + esc(p.zona) + '</span><h3>' + esc(name) + '</h3>' +
       '<p class="meta">' + esc(plural('guest', p.viajeros)) + ' · ' + esc(plural('bedroom', p.dormitorios)) + ' · ' + esc(plural('bath', p.banos)) + '</p>' +
@@ -133,7 +133,7 @@
     $('#sheet').innerHTML =
       '<button class="close" type="button" aria-label="' + esc(t('modal.close')) + '">×</button>' +
       '<div class="gallery" id="gal" role="group" aria-label="' + esc(t('modal.photos', { name: name })) + '"><img alt=""><button type="button" class="gal-btn prev" aria-label="' + esc(t('modal.prev')) + '">‹</button><button type="button" class="gal-btn next" aria-label="' + esc(t('modal.next')) + '">›</button><span class="gal-count"></span></div>' +
-      '<div class="thumbs" id="thumbs">' + p.fotos.map(function (f, i) { return '<button type="button" data-i="' + i + '" aria-label="' + (i + 1) + '"><img src="' + window.VirandPhoto.url(f.src, 640) + '" alt="" loading="lazy"></button>'; }).join('') + '</div>' +
+      '<div class="thumbs" id="thumbs">' + p.fotos.map(function (f, i) { return '<button type="button" data-i="' + i + '" aria-label="' + (i + 1) + '"><img src="' + esc(window.VirandPhoto.url(f.src, 640)) + '" alt="" loading="lazy"></button>'; }).join('') + '</div>' +
       '<div class="detail"><div><span class="eyebrow">' + esc(p.zona) + '</span><h2 id="mTitle">' + esc(name) + '</h2>' +
       '<div class="facts"><span>' + esc([plural('guest', p.viajeros), plural('bedroom', p.dormitorios), p.camas ? plural('bed', p.camas) : '', plural('bath', p.banos)].filter(Boolean).join(' · ')) + '</span>' + (p.nota ? '<span class="rating">★ ' + String(p.nota).replace('.', st.lang === 'es' ? ',' : '.') + '</span>' : '') + '</div>' +
       '<p class="desc">' + esc(loc(p.descripcion)) + '</p><h3>' + esc(t('detail.amen')) + '</h3><div class="amen">' + amenHtml(p.servicios) + '</div>' +

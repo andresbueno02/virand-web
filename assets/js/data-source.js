@@ -16,15 +16,17 @@
   function pair(es, en) { return { es: es == null ? '' : es, en: en == null ? (es == null ? '' : es) : en }; }
 
   // filas de las vistas public_* -> formas que ya consume main.js
+  var SAFE_PATH = /^[A-Za-z0-9][A-Za-z0-9_\-\/.]*$/, SAFE_SLUG = /^[a-z0-9-]+$/;
   function fromRows(raw, supabaseUrl) {
     var photosBy = {};
     (raw.photos || []).slice().sort(byKey('sort')).forEach(function (p) {
+      if (!SAFE_PATH.test(p.path || '') || /\.\./.test(p.path) || !SAFE_SLUG.test(p.slug || '')) return;   // ruta sospechosa: se ignora
       (photosBy[p.slug] = photosBy[p.slug] || []).push({
         src: /^assets\//.test(p.path) ? p.path : (supabaseUrl || '') + '/storage/v1/object/public/flats/' + p.path,
         alt: pair(p.alt_es, p.alt_en)
       });
     });
-    var pisos = (raw.flats || []).slice().sort(byKey('sort')).map(function (f) {
+    var pisos = (raw.flats || []).filter(function (f) { return SAFE_SLUG.test(f.slug || ''); }).sort(byKey('sort')).map(function (f) {
       var o = {
         slug: f.slug, activo: true, nombre: pair(f.name_es, f.name_en), zona: f.zona,
         lat: num(f.lat), lng: num(f.lng), viajeros: num(f.viajeros), dormitorios: num(f.dormitorios), banos: num(f.banos),

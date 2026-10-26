@@ -3,3 +3,5 @@ _scratch/
 .DS_Store
 site-test.html
 supabase/dist/
+site-xss.html
+site-xss-nocsp.html

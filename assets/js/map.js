@@ -1,10 +1,11 @@
 /* Mapa de Google con marcadores de precio y círculo de zona aproximada.
    Si no hay clave o falla la carga, muestra un aviso y la lista sigue funcionando. */
 (function (root) {
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   var state = { map: null, items: [], overlays: [], circles: [], iw: null, loaded: false, failed: false, el: null, opt: null, pending: null, Pill: null };
 
   function note(msg) {
-    if (state.el) state.el.innerHTML = '<div class="map-note"><p>' + msg + '</p></div>';
+    if (state.el) state.el.innerHTML = '<div class="map-note"><p>' + esc(msg) + '</p></div>';
     if (state.opt && state.opt.onUnavailable && msg !== '…') state.opt.onUnavailable();
   }
 
@@ -62,7 +63,7 @@
   function openIw(it, pos) {
     if (!state.iw) state.iw = new google.maps.InfoWindow();
     var box = document.createElement('div'); box.className = 'iw';
-    box.innerHTML = '<img src="' + it.thumb + '" alt="" loading="lazy"><b></b><span></span><button type="button"></button>';
+    box.innerHTML = '<img src="' + esc(it.thumb) + '" alt="" loading="lazy"><b></b><span></span><button type="button"></button>';
     box.querySelector('b').textContent = it.name;
     box.querySelector('span').textContent = it.priceText;
     var btn = box.querySelector('button'); btn.textContent = state.opt.viewLabel();
@@ -95,7 +96,7 @@
       function onGesture(e) { if (e.isTrusted) { gesture = true; check(); } }
       function detach() { evs.forEach(function (n) { root.removeEventListener(n, onGesture, true); }); if (io) io.disconnect(); }
       var n = 0; try { n = +(root.sessionStorage.getItem('virand-maploads') || 0); } catch (e) {}
-      state.el.innerHTML = '<div class="map-note"><div><p>' + opt.t('map.hint') + '</p><button type="button" class="btn btn-primary" data-load-map>' + opt.t('map.load') + '</button></div></div>';
+      state.el.innerHTML = '<div class="map-note"><div><p>' + esc(opt.t('map.hint')) + '</p><button type="button" class="btn btn-primary" data-load-map>' + esc(opt.t('map.load')) + '</button></div></div>';
       state.el.querySelector('[data-load-map]').addEventListener('click', function (e) {
         if (e.isTrusted) { try { root.sessionStorage.setItem('virand-maploads', String(n + 1)); } catch (x) {} start(); }
       });
