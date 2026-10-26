@@ -394,6 +394,38 @@
     });
   }
 
+  /* ---- fotos ---- */
+  var PH = G.VirandPhoto;
+  if (PH) {
+    test('url: WebP por defecto y JPEG cuando la ruta acaba en .jpg', function () {
+      eq(PH.url('assets/img/pisos/a/1', 640), 'assets/img/pisos/a/1-640.webp');
+      eq(PH.url('https://p.supabase.co/storage/v1/object/public/flats/a/x1', 1280), 'https://p.supabase.co/storage/v1/object/public/flats/a/x1-1280.webp');
+      eq(PH.url('a/x1.jpg', 640), 'a/x1-640.jpg'); eq(PH.url('a/x1.JPEG', 1280), 'a/x1-1280.jpg');
+    });
+    test('storagePaths: vacío para fotos locales, dos rutas para las subidas', function () {
+      eq(PH.storagePaths('assets/img/pisos/a/1'), []); eq(PH.storagePaths('a/x1'), ['a/x1-640.webp', 'a/x1-1280.webp']);
+      eq(PH.storagePaths('a/x1.jpg'), ['a/x1-640.jpg', 'a/x1-1280.jpg']);
+    });
+    test('scaleSize no amplía y conserva proporción', function () {
+      eq(PH.scaleSize(4000, 3000, 1280), { w: 1280, h: 960 }); eq(PH.scaleSize(800, 600, 1280), { w: 800, h: 600 });
+      eq(PH.scaleSize(3000, 1, 640), { w: 640, h: 1 }); eq(PH.scaleSize(0, 10, 640), { w: 0, h: 0 });
+    });
+    test('newPath', function () { eq(PH.newPath('loft', 'k9x', 'webp'), 'loft/k9x'); eq(PH.newPath('loft', 'k9x', 'jpg'), 'loft/k9x.jpg'); });
+    test('validateFile', function () {
+      eq(PH.validateFile({ name: 'a.jpg', type: 'image/jpeg', size: 1000 }), null);
+      eq(PH.validateFile({ name: 'a.PNG', type: 'image/png', size: 1000 }), null);
+      ok(/HEIC/.test(PH.validateFile({ name: 'IMG.HEIC', type: '', size: 10 })));
+      ok(/HEIC/.test(PH.validateFile({ name: 'x', type: 'image/heic', size: 10 })));
+      ok(/no es una foto/.test(PH.validateFile({ name: 'doc.pdf', type: 'application/pdf', size: 10 })));
+      ok(/25 MB/.test(PH.validateFile({ name: 'big.jpg', type: 'image/jpeg', size: 26 * 1024 * 1024 })));
+      ok(/vacía/.test(PH.validateFile({ name: 'e.jpg', type: 'image/jpeg', size: 0 })));
+    });
+    test('fromRows usa la ruta de Storage con la extensión elegida', function () {
+      var o = G.VirandDataSource.fromRows({ flats: [{ slug: 'a', sort: 0, name_es: 'A', zona: 'Z', viajeros: 1 }], photos: [{ slug: 'a', path: 'a/k9x.jpg', alt_es: 'x', sort: 0 }, { slug: 'a', path: 'a/k9y', alt_es: 'y', sort: 1 }] }, 'https://p.supabase.co');
+      eq(o.pisos[0].fotos.map(function (f) { return PH.url(f.src, 640); }), ['https://p.supabase.co/storage/v1/object/public/flats/a/k9x-640.jpg', 'https://p.supabase.co/storage/v1/object/public/flats/a/k9y-640.webp']);
+    });
+  }
+
   /* ---- resumen ---- */
   var failed = results.filter(function (r) { return !r.ok; });
   G.__testSummary = { total: results.length, failed: failed.length };

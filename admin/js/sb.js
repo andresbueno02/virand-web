@@ -30,6 +30,13 @@
     remove: function (table, id) { return client.from(table).delete().eq('id', id).then(must); },
     setSort: function (table, id, sort) { return client.from(table).update({ sort: sort }).eq('id', id).then(must); },
 
+    uploadPhoto: function (path, blob) {
+      return client.storage.from('flats').upload(path, blob, { contentType: blob.type, cacheControl: '31536000', upsert: false }).then(must);
+    },
+    removeStorage: function (paths) { return paths.length ? client.storage.from('flats').remove(paths).then(must) : Promise.resolve([]); },
+    addPhoto: function (row) { return client.from('flat_photos').insert(row).select().single().then(must); },
+    updatePhoto: function (id, patch) { return client.from('flat_photos').update(patch).eq('id', id).then(must); },
+    removePhoto: function (id) { return client.from('flat_photos').delete().eq('id', id).then(must); },
     updateFlatPrices: function (id, low, high) { return client.from('flats').update({ base_price: low, price_high: high }).eq('id', id).then(must); },
     listSeasons: function () { return client.from('seasons').select('*').order('from_date').then(must); },
     saveSeason: function (row) {

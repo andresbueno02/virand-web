@@ -76,12 +76,14 @@
         field('nota', 'Nota media (0-5, opcional)', form0.nota, { dec: true, ph: '4,8' }) + '</div><p class="muted">En la web aparece «desde X €», con el más bajo de los dos precios.</p></fieldset>' +
         '<fieldset><legend>Ubicación en el mapa</legend><div class="grid2">' +
         field('lat', 'Latitud', form0.lat, { ph: '36.7213', hint: 'Pon una posición aproximada de la zona, no el portal exacto.' }) + field('lng', 'Longitud', form0.lng, { ph: '-4.4214' }) + '</div></fieldset>' +
-        '<fieldset><legend>Fotos</legend>' + (isNew ? '<p class="muted">Guarda el piso primero. La gestión de fotos llega en el siguiente paso.</p>' :
-          '<div class="thumbs">' + photos.slice(0, 14).map(function (p) { return '<img loading="lazy" alt="" src="' + esc(photoUrl(p.path)) + '">'; }).join('') + '</div><p class="muted">' + photos.length + ' fotos. Subir, ordenar y borrar fotos llega en el siguiente paso.</p>') + '</fieldset>' +
+        '<fieldset id="photosBox"><legend>Fotos</legend>' + (isNew ? '<p class="muted">Guarda el piso primero; después podrás subir sus fotos.</p>' :
+          '<p class="muted">La <strong>primera foto</strong> es la portada que se ve en la lista de pisos. Usa las flechas para ordenarlas o «Portada» para llevar una al principio. Los cambios de fotos se guardan al momento.</p>' +
+          '<div id="photoGrid" class="pgrid"></div><div class="upl"><label class="btn btn-primary">＋ Subir fotos<input type="file" id="photoFile" accept="image/jpeg,image/png,image/webp" multiple hidden></label><span id="upstat" class="muted"></span></div>') + '</fieldset>' +
         '<fieldset><legend>Estado</legend><label class="chk"><input type="checkbox" name="active"' + (form0.active ? ' checked' : '') + '><span>Visible en la web</span></label></fieldset>' +
         '<div id="errs" class="errs" hidden></div>' +
         '<div class="actions"><button type="submit" class="btn btn-primary">Guardar</button><a class="btn btn-ghost" href="#/pisos">Cancelar</a></div></form>';
 
+      if (!isNew) photoManager(row, photos);
       var form = document.getElementById('flatForm'), slugTouched = !isNew;
       if (isNew) {
         form.elements.slug.addEventListener('input', function () { slugTouched = true; });
@@ -101,9 +103,77 @@
     });
   }
 
-  function photoUrl(path) {
-    if (/^assets\//.test(path)) return '../' + path + '-640.webp';
-    return root.VIRAND_CONFIG.supabaseUrl + '/storage/v1/object/public/flats/' + path + '-640.webp';
+  function photoUrl(path, w) {
+    var rel = root.VirandPhoto.url(path, w || 640);
+    return /^assets\//.test(path) ? '../' + rel : root.VIRAND_CONFIG.supabaseUrl + '/storage/v1/object/public/flats/' + rel;
+  }
+
+  /* ---------- gestor de fotos (cambios inmediatos, sin pasar por «Guardar») ---------- */
+  var MAX_PHOTOS = 40;
+  function photoManager(flat, initial) {
+    var photos = initial.slice(), grid = document.getElementById('photoGrid'), stat = document.getElementById('upstat'), inp = document.getElementById('photoFile'), working = false;
+
+    function card(p, i, n) {
+      return '<figure class="ph" data-id="' + esc(p.id) + '"><div class="pim"><img src="' + esc(photoUrl(p.path)) + '" alt="" loading="lazy">' + (i === 0 ? '<span class="cover">Portada</span>' : '') + '</div>' +
+        '<div class="pbar"><button type="button" class="ico" data-act="left" aria-label="Mover antes"' + (i === 0 ? ' disabled' : '') + '>←</button>' +
+        '<span class="pn">' + (i + 1) + '/' + n + '</span><button type="button" class="ico" data-act="right" aria-label="Mover después"' + (i === n - 1 ? ' disabled' : '') + '>→</button></div>' +
+        '<div class="pact">' + (i > 0 ? '<button type="button" class="btn btn-ghost sm" data-act="cover">Portada</button>' : '<span></span>') + '<button type="button" class="btn btn-danger sm" data-act="del" aria-label="Borrar foto">Borrar</button></div>' +
+        '<input type="text" class="alt" data-act="alt" value="' + esc(p.alt_es || '') + '" placeholder="Qué se ve en la foto (opcional)" aria-label="Descripción de la foto"></figure>';
+    }
+    function paint() {
+      grid.innerHTML = photos.length ? photos.map(function (p, i) { return card(p, i, photos.length); }).join('') : '<p class="empty">Este piso aún no tiene fotos.</p>';
+    }
+    function persistOrder(next) {
+      var ch = L.changedSorts(photos, next); photos = next; paint();
+      return Promise.all(ch.map(function (x) { return root.Api.setSort('flat_photos', x.id, x.sort); }));
+    }
+    function say(m) { stat.textContent = m || ''; }
+
+    grid.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-act]'); if (!b || b.tagName === 'INPUT' || working) return;
+      var fig = b.closest('.ph'), id = fig.getAttribute('data-id'), i = photos.findIndex(function (x) { return x.id === id; }), act = b.getAttribute('data-act');
+      if (act === 'left' || act === 'right') {
+        persistOrder(L.moveItem(photos, i, act === 'left' ? -1 : 1)).then(function () { U.toast('Orden guardado'); }).catch(function (x) { U.toast(U.errMsg(x), 'err'); });
+      } else if (act === 'cover') {
+        var next = photos.slice(); var it = next.splice(i, 1)[0]; next.unshift(it);
+        persistOrder(L.reindex(next.map(function (x) { return Object.assign({}, x); }))).then(function () { U.toast('Nueva portada guardada'); }).catch(function (x) { U.toast(U.errMsg(x), 'err'); });
+      } else if (act === 'del') {
+        if (!window.confirm('¿Borrar esta foto? No se puede deshacer.')) return;
+        var p = photos[i]; working = true;
+        root.Api.removePhoto(p.id).then(function () { return root.Api.removeStorage(root.VirandPhoto.storagePaths(p.path)).catch(function () {}); })
+          .then(function () { return persistOrder(L.reindex(photos.filter(function (x) { return x.id !== id; }).map(function (x) { return Object.assign({}, x); }))); })
+          .then(function () { U.toast('Foto borrada'); }).catch(function (x) { U.toast(U.errMsg(x), 'err'); }).then(function () { working = false; });
+      }
+    });
+    grid.addEventListener('change', function (e) {
+      var t = e.target.closest('[data-act="alt"]'); if (!t) return;
+      var id = t.closest('.ph').getAttribute('data-id'), v = t.value.trim() || null;
+      root.Api.updatePhoto(id, { alt_es: v, alt_en: v }).then(function () { photos.forEach(function (p) { if (p.id === id) { p.alt_es = v; p.alt_en = v; } }); U.toast('Descripción guardada'); })
+        .catch(function (x) { U.toast(U.errMsg(x), 'err'); });
+    });
+
+    inp.addEventListener('change', function () {
+      var files = Array.prototype.slice.call(inp.files || []); inp.value = ''; if (!files.length || working) return;
+      if (photos.length + files.length > MAX_PHOTOS) { U.toast('Máximo ' + MAX_PHOTOS + ' fotos por piso.', 'err'); return; }
+      var bad = files.map(function (f) { return root.VirandPhoto.validateFile(f); }).filter(Boolean);
+      if (bad.length) { U.toast(bad[0], 'err'); return; }
+      working = true; var done = 0, fails = [];
+      function one(k) {
+        if (k >= files.length) return Promise.resolve();
+        say('Subiendo foto ' + (k + 1) + ' de ' + files.length + '…');
+        return root.PhotoPrep.process(files[k]).then(function (r) {
+          var path = root.VirandPhoto.newPath(flat.slug, Math.random().toString(36).slice(2, 8) + Date.now().toString(36).slice(-4), r.ext);
+          return root.Api.uploadPhoto(root.VirandPhoto.url(path, 1280), r.b1280).then(function () { return root.Api.uploadPhoto(root.VirandPhoto.url(path, 640), r.b640); })
+            .then(function () { return root.Api.addPhoto({ flat_id: flat.id, path: path, alt_es: null, alt_en: null, sort: L.nextSort(photos) }); })
+            .then(function (row) { photos.push(row); done++; paint(); });
+        }).catch(function (x) { fails.push(files[k].name + ': ' + U.errMsg(x)); }).then(function () { return one(k + 1); });
+      }
+      one(0).then(function () {
+        say(''); if (done) U.toast(done + ' foto(s) subida(s)' + (fails.length ? ', ' + fails.length + ' con error' : ''), fails.length ? 'err' : 'ok');
+        if (fails.length) U.toast(fails[0], 'err');
+      }).then(function () { working = false; });
+    });
+    paint();
   }
 
   root.ViewPisos = { list: list, edit: edit };

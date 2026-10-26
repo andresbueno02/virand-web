@@ -29,7 +29,7 @@
   }
   function sizes(p, i) {
     var base = p.fotos[i].src;
-    return { s: base + '-640.webp', l: base + '-1280.webp' };
+    return { s: window.VirandPhoto.url(base, 640), l: window.VirandPhoto.url(base, 1280) };
   }
 
   /* ---------- i18n estático ---------- */
@@ -133,7 +133,7 @@
     $('#sheet').innerHTML =
       '<button class="close" type="button" aria-label="' + esc(t('modal.close')) + '">×</button>' +
       '<div class="gallery" id="gal" role="group" aria-label="' + esc(t('modal.photos', { name: name })) + '"><img alt=""><button type="button" class="gal-btn prev" aria-label="' + esc(t('modal.prev')) + '">‹</button><button type="button" class="gal-btn next" aria-label="' + esc(t('modal.next')) + '">›</button><span class="gal-count"></span></div>' +
-      '<div class="thumbs" id="thumbs">' + p.fotos.map(function (f, i) { return '<button type="button" data-i="' + i + '" aria-label="' + (i + 1) + '"><img src="' + f.src + '-640.webp" alt="" loading="lazy"></button>'; }).join('') + '</div>' +
+      '<div class="thumbs" id="thumbs">' + p.fotos.map(function (f, i) { return '<button type="button" data-i="' + i + '" aria-label="' + (i + 1) + '"><img src="' + window.VirandPhoto.url(f.src, 640) + '" alt="" loading="lazy"></button>'; }).join('') + '</div>' +
       '<div class="detail"><div><span class="eyebrow">' + esc(p.zona) + '</span><h2 id="mTitle">' + esc(name) + '</h2>' +
       '<div class="facts"><span>' + esc([plural('guest', p.viajeros), plural('bedroom', p.dormitorios), p.camas ? plural('bed', p.camas) : '', plural('bath', p.banos)].filter(Boolean).join(' · ')) + '</span>' + (p.nota ? '<span class="rating">★ ' + String(p.nota).replace('.', st.lang === 'es' ? ',' : '.') + '</span>' : '') + '</div>' +
       '<p class="desc">' + esc(loc(p.descripcion)) + '</p><h3>' + esc(t('detail.amen')) + '</h3><div class="amen">' + amenHtml(p.servicios) + '</div>' +
@@ -192,7 +192,7 @@
     var m = st.modal, p = m.p, n = p.fotos.length;
     m.g = (i + n) % n;
     var img = $('#gal img'), f = p.fotos[m.g];
-    img.src = f.src + '-1280.webp'; img.srcset = f.src + '-640.webp 640w, ' + f.src + '-1280.webp 1280w'; img.sizes = '(min-width:900px) 1000px, 100vw';
+    img.src = window.VirandPhoto.url(f.src, 1280); img.srcset = window.VirandPhoto.url(f.src, 640) + ' 640w, ' + window.VirandPhoto.url(f.src, 1280) + ' 1280w'; img.sizes = '(min-width:900px) 1000px, 100vw';
     img.alt = loc(f.alt);
     $('#gal .gal-count').textContent = (m.g + 1) + ' / ' + n;
     document.querySelectorAll('#thumbs [data-i]').forEach(function (b) { b.setAttribute('aria-current', String(+b.getAttribute('data-i') === m.g)); });
