@@ -35,12 +35,45 @@
   },
   {
    "pregunta": {
+    "es": "¿Cómo se paga la reserva?",
+    "en": "How is the booking paid?"
+   },
+   "respuesta": {
+    "es": "Se abona el 50 % del importe total al reservar y el resto 7 días antes de la llegada. No se requiere fianza.",
+    "en": "50% of the total is paid when booking and the remainder 7 days before arrival. No security deposit is required."
+   },
+   "revisar": true
+  },
+  {
+   "pregunta": {
+    "es": "¿Se puede cancelar la reserva?",
+    "en": "Can I cancel my booking?"
+   },
+   "respuesta": {
+    "es": "Los pagos realizados son no reembolsables. Si tienes dudas sobre tus fechas, consúltanos antes de reservar.",
+    "en": "Payments made are non-refundable. If you are unsure about your dates, ask us before booking."
+   },
+   "revisar": true
+  },
+  {
+   "pregunta": {
+    "es": "¿A qué hora es la llegada y la salida?",
+    "en": "What are the check-in and check-out times?"
+   },
+   "respuesta": {
+    "es": "Con carácter general, la llegada es a partir de las 16:00 y la salida hasta las 11:00. Algunos alojamientos pueden variar; te lo confirmamos al reservar.",
+    "en": "In general, check-in is from 16:00 and check-out until 11:00. Some stays may differ; we confirm it when you book."
+   },
+   "revisar": true
+  },
+  {
+   "pregunta": {
     "es": "¿Dónde están los alojamientos?",
     "en": "Where are the stays?"
    },
    "respuesta": {
-    "es": "En Málaga, Torremolinos y Benalmádena, en la Costa del Sol. Te facilitamos la dirección exacta una vez confirmada la reserva.",
-    "en": "In Málaga, Torremolinos and Benalmádena on the Costa del Sol. We share the exact address once your booking is confirmed."
+    "es": "En Málaga, Torremolinos, Benalmádena y Fuengirola, en la Costa del Sol. Te facilitamos la dirección exacta una vez confirmada la reserva.",
+    "en": "In Málaga, Torremolinos, Benalmádena and Fuengirola on the Costa del Sol. We share the exact address once your booking is confirmed."
    },
    "revisar": false
   },
@@ -57,6 +90,28 @@
   },
   {
    "pregunta": {
+    "es": "¿Se admiten mascotas?",
+    "en": "Are pets allowed?"
+   },
+   "respuesta": {
+    "es": "Jardín del Mediterráneo admite mascotas. En el resto de alojamientos, consúltanos por WhatsApp y te lo confirmamos.",
+    "en": "Mediterranean Garden House allows pets. For the other stays, ask us on WhatsApp and we'll confirm."
+   },
+   "revisar": true
+  },
+  {
+   "pregunta": {
+    "es": "¿Se pueden organizar fiestas?",
+    "en": "Are parties allowed?"
+   },
+   "respuesta": {
+    "es": "No. Nuestros alojamientos están en edificios o zonas residenciales y pedimos respetar el descanso de los vecinos.",
+    "en": "No. Our stays are in residential buildings or areas and we ask guests to respect the neighbours' rest."
+   },
+   "revisar": true
+  },
+  {
+   "pregunta": {
     "es": "¿Qué atención recibo durante la estancia?",
     "en": "What support do I get during my stay?"
    },
@@ -65,28 +120,6 @@
     "en": "Personal attention throughout your stay: for any question or issue, message us on WhatsApp."
    },
    "revisar": false
-  },
-  {
-   "pregunta": {
-    "es": "¿Cuáles son las condiciones de cancelación y la fianza?",
-    "en": "What are the cancellation terms and deposit?"
-   },
-   "respuesta": {
-    "es": "Las condiciones de cancelación y fianza dependen del alojamiento y de las fechas. Te las indicamos por escrito al consultar disponibilidad.",
-    "en": "Cancellation terms and deposit depend on the stay and dates. We send them in writing when you enquire."
-   },
-   "revisar": true
-  },
-  {
-   "pregunta": {
-    "es": "¿Se admiten mascotas?",
-    "en": "Are pets allowed?"
-   },
-   "respuesta": {
-    "es": "Depende del alojamiento. Pregúntanos por WhatsApp y te confirmamos si el que te interesa las admite.",
-    "en": "It depends on the stay. Ask us on WhatsApp and we'll confirm whether the one you like allows them."
-   },
-   "revisar": true
   }
  ]
 }

@@ -105,5 +105,11 @@
  "u.bed1": "1 bed",
  "u.bedN": "{n} beds",
  "u.bath1": "1 bathroom",
- "u.bathN": "{n} bathrooms"
+ "u.bathN": "{n} bathrooms",
+ "svc.aire": "Air conditioning",
+ "svc.mascotas": "Pets welcome",
+ "svc.jardin": "Private garden",
+ "svc.ascensor": "Lift",
+ "svc.vistas-mar": "Sea views",
+ "svc.vistas": "Views"
 }

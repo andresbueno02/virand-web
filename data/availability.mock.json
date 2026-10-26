@@ -49,6 +49,31 @@
    ],
    "precio_desde": 65,
    "obsoleto": false
+  },
+  "benalmarina-apartment": {
+   "ocupado": [
+    [
+     "2026-11-04",
+     "2026-11-11"
+    ]
+   ],
+   "precio_desde": 109,
+   "obsoleto": false
+  },
+  "luxy-beach-apartment": {
+   "ocupado": [],
+   "precio_desde": 150,
+   "obsoleto": false
+  },
+  "jardin-del-mediterraneo": {
+   "ocupado": [
+    [
+     "2026-11-01",
+     "2026-11-20"
+    ]
+   ],
+   "precio_desde": 300,
+   "obsoleto": false
   }
  }
 }
