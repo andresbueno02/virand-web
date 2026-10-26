@@ -5,7 +5,7 @@
   var $ = function (s, r) { return (r || document).querySelector(s); };
 
   var st = {
-    lang: 'es', dict: { es: {}, en: {} }, pisos: [], opiniones: [], faq: [], avail: null, availLoaded: false,
+    pricing: null, lang: 'es', dict: { es: {}, en: {} }, pisos: [], opiniones: [], faq: [], avail: null, availLoaded: false,
     f: { zona: '', personas: 1, llegada: '', salida: '', orden: 'recomendado' },
     modal: null
   };
@@ -141,6 +141,7 @@
       '<aside class="booking"><div class="price">' + (pr ? '<small>' + esc(t('card.from')) + '</small> <b>' + pr + ' €</b> <small>' + esc(t('card.night')) + '</small>' : '<small>' + esc(t('card.consult')) + '</small>') + '</div>' +
       (!known ? '<p class="warn">' + esc(t('detail.nodata')) + '</p>' : (obsoleto ? '<p class="warn">' + esc(t('detail.old')) + '</p>' : '')) +
       '<div id="calBox"></div>' +
+      '<div id="estimate" class="estimate" hidden></div>' +
       '<div class="sel"><div><small>' + esc(t('detail.in')) + '</small><span id="selIn"></span></div><div><small>' + esc(t('detail.out')) + '</small><span id="selOut"></span></div></div>' +
       '<div class="pax"><label for="mPax">' + esc(t('detail.pax')) + '</label><select id="mPax"></select></div>' +
       '<a class="btn btn-wa" id="mWa" target="_blank" rel="noopener">' + esc(t('detail.wa')) + '</a><p class="hint">' + esc(t('detail.hint')) + '</p></aside></div>';
@@ -177,6 +178,14 @@
     $('#selIn').textContent = m.llegada ? fmtDate(m.llegada) : t('detail.addDate');
     var nn = m.llegada && m.salida ? R.nights(m.llegada, m.salida) : 0;
     $('#selOut').textContent = m.salida ? fmtDate(m.salida) + ' · ' + (nn === 1 ? t('detail.night1') : t('detail.nights', { n: nn })) : t('detail.addDate');
+    var est = $('#estimate'), pz = st.pricing && st.pricing.pisos && st.pricing.pisos[m.p.slug], tot = pz && m.llegada && m.salida ? window.VirandPricing.stayTotal(m.llegada, m.salida, pz, st.pricing.seasons) : null;
+    if (est) {
+      est.hidden = !(tot && tot.complete);
+      if (!est.hidden) {
+        var amount = new Intl.NumberFormat(st.lang === 'es' ? 'es-ES' : 'en-GB', { minimumFractionDigits: tot.total % 1 ? 2 : 0, maximumFractionDigits: 2 }).format(tot.total);
+        est.innerHTML = '<strong>' + esc(t('detail.estimate', { total: amount, n: tot.nights })) + '</strong><small>' + esc(t('detail.estimateNote')) + '</small>';
+      }
+    }
     $('#mWa').href = waUrl({ nombre: loc(m.p.nombre), llegada: m.llegada || '', salida: m.salida || '', personas: m.personas });
   }
   function showPhoto(i) {
@@ -254,7 +263,7 @@
       document.documentElement.setAttribute('data-source', d.source || 'local');
       st.dict.es = d.i18n.es; st.dict.en = d.i18n.en;
       st.pisos = d.pisos.filter(function (p) { return p.activo !== false; });
-      st.opiniones = d.opiniones; st.faq = d.faq;
+      st.opiniones = d.opiniones; st.faq = d.faq; st.pricing = d.pricing || null;
       applyStatic(); fillSearchControls(); renderWhy(); renderReviews(); renderFaq();
       window.VirandMap.init({ container: $('#mapbox'), t: t, viewLabel: function () { return t('map.view'); }, onSelect: function (slug) { openModal(slug); }, onHover: function () {}, onUnavailable: function () { $('#layout').classList.add('no-map'); document.body.classList.add('no-map'); } });
       renderList();

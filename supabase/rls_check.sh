@@ -18,7 +18,7 @@ req() { # método ruta [cuerpo] -> escribe /tmp/rls_body y devuelve el código H
   fi
 }
 echo "== 1. Tablas privadas: anon NO debe poder leer =="
-for t in admins flats flat_photos rates faq reviews site_texts bookings ical_sources ical_blocks; do
+for t in admins flats flat_photos seasons day_prices faq reviews site_texts bookings ical_sources ical_blocks; do
   c=$(req GET "/rest/v1/$t?select=*&limit=1")
   if [ "$c" = "401" ] || [ "$c" = "403" ] || grep -qi "permission denied" /tmp/rls_body; then ok "GET $t -> $c"; else bad "GET $t -> $c (¡legible!)"; fi
 done
@@ -56,6 +56,16 @@ try: d=json.load(open('/tmp/rls_body'))
 except Exception: d={}
 ok = c=='200' and isinstance(d.get('pisos'),dict) and len(d['pisos'])>=16 and all(isinstance(v.get('ocupado'),list) and 'obsoleto' in v for v in d['pisos'].values()) and 'guest' not in json.dumps(d)
 print('  ok   public_availability -> %d pisos'%len(d['pisos']) if ok else '  FALLA public_availability -> http %s %s'%(c,json.dumps(d)[:160])); sys.exit(0 if ok else 1)
+PY
+[ $? -eq 0 ] && PASS=$((PASS+1)) || FAIL=$((FAIL+1))
+c=$(req POST "/rest/v1/rpc/public_pricing" '{}')
+python3 - "$c" <<'PY'
+import sys,json
+c=sys.argv[1]
+try: d=json.load(open('/tmp/rls_body'))
+except Exception: d={}
+ok = c=='200' and isinstance(d.get('seasons'),list) and isinstance(d.get('pisos'),dict) and all({'low','high','days'} <= set(v) for v in d['pisos'].values())
+print('  ok   public_pricing -> %d pisos'%len(d['pisos']) if ok else '  FALLA public_pricing -> http %s %s'%(c,json.dumps(d)[:160])); sys.exit(0 if ok else 1)
 PY
 [ $? -eq 0 ] && PASS=$((PASS+1)) || FAIL=$((FAIL+1))
 c=$(req POST "/rest/v1/rpc/is_admin" '{}'); if [ "$c" = "200" ] && [ "$(tr -d ' \n' </tmp/rls_body)" = "false" ]; then ok "is_admin() anon -> false"; else bad "is_admin() anon -> $c $(cat /tmp/rls_body)"; fi

@@ -113,5 +113,7 @@
  "svc.vistas-mar": "Sea views",
  "svc.vistas": "Views",
  "map.load": "Load map",
- "map.hint": "See where our stays are on the map."
+ "map.hint": "See where our stays are on the map.",
+ "detail.estimate": "Estimated price: €{total} ({n} nights)",
+ "detail.estimateNote": "Indicative; we confirm the final price on WhatsApp."
 }

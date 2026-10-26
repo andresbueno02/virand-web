@@ -300,7 +300,77 @@
       eq(D.overlayI18n(null, null), { es: {}, en: {} });
     });
     test('fromRows con listas vacías no falla', function () {
-      eq(D.fromRows({}, 'u'), { pisos: [], faq: [], opiniones: [], i18n: { es: {}, en: {} } });
+      eq(D.fromRows({}, 'u'), { pisos: [], faq: [], opiniones: [], i18n: { es: {}, en: {} }, pricing: null });
+      var pr = { seasons: [{ from: '2026-07-01', to: '2026-08-31', yearly: false, label: 'V' }], pisos: { a: { low: 100, high: 150, days: {} } } };
+      eq(D.fromRows({ pricing: pr }, 'u').pricing, pr);
+    });
+  }
+
+  /* ---- precios por temporada y día ---- */
+  var PR = G.VirandPricing;
+  if (PR) {
+    var SEAS = [{ from: '2026-07-01', to: '2026-08-31', yearly: false, label: 'Verano 2026' },
+                { from: '2026-12-20', to: '2027-01-06', yearly: true, label: 'Navidad' },
+                { from: '2026-04-01', to: '2026-04-10', yearly: true, label: 'Semana Santa (fija)' }];
+    test('parsePrice: coma, punto, vacío, negativos y texto', function () {
+      eq(PR.parsePrice('95'), 95); eq(PR.parsePrice('95,5'), 95.5); eq(PR.parsePrice(' 95.50 '), 95.5); eq(PR.parsePrice('0,99'), 0.99);
+      eq(PR.parsePrice(''), null); eq(PR.parsePrice('   '), null); eq(PR.parsePrice(null), null); eq(PR.parsePrice(undefined), null);
+      ['-5', '0', '0,00', 'abc', '12abc', '1,234', '1 000', '9.', '.5', '1,2,3', 'NaN', '€95'].forEach(function (x) { ok(isNaN(PR.parsePrice(x)) && PR.parsePrice(x) !== null, 'debía ser NaN: ' + x); });
+      eq(PR.parsePrice(120), 120);
+    });
+    test('isHigh: rango exacto (inclusivo) y sin temporadas', function () {
+      ok(PR.isHigh('2026-07-01', SEAS) && PR.isHigh('2026-08-31', SEAS) && PR.isHigh('2026-07-15', SEAS), 'dentro');
+      ok(!PR.isHigh('2026-06-30', SEAS) && !PR.isHigh('2026-09-01', SEAS), 'fuera');
+      ok(!PR.isHigh('2027-07-15', SEAS), 'un rango no yearly no se repite al año siguiente');
+      ok(!PR.isHigh('2026-07-15', []) && !PR.isHigh('2026-07-15', null) && !PR.isHigh('2026-07-15', undefined));
+    });
+    test('isHigh yearly: se repite cada año y respeta los bordes', function () {
+      ok(PR.isHigh('2030-04-01', SEAS) && PR.isHigh('2030-04-10', SEAS) && PR.isHigh('2030-04-05', SEAS), 'fija todos los años');
+      ok(!PR.isHigh('2030-03-31', SEAS) && !PR.isHigh('2030-04-11', SEAS));
+    });
+    test('isHigh yearly cruzando fin de año (20 dic - 6 ene)', function () {
+      ['2026-12-19', '2027-01-07', '2028-06-01'].forEach(function (d) { ok(!PR.isHigh(d, SEAS), 'fuera ' + d); });
+      ['2026-12-20', '2026-12-31', '2027-01-01', '2027-01-06', '2031-12-25', '2032-01-03'].forEach(function (d) { ok(PR.isHigh(d, SEAS), 'dentro ' + d); });
+    });
+    test('priceFor: día especial > alta > baja > alta si no hay baja > null', function () {
+      var p = { low: 100, high: 150, days: { '2026-07-10': 80, '2026-11-02': 130 } };
+      eq(PR.priceFor('2026-07-10', p, SEAS), 80);          // día especial en temporada alta
+      eq(PR.priceFor('2026-11-02', p, SEAS), 130);         // día especial en temporada baja
+      eq(PR.priceFor('2026-07-11', p, SEAS), 150);         // alta
+      eq(PR.priceFor('2026-10-11', p, SEAS), 100);         // baja
+      eq(PR.priceFor('2026-10-11', { low: null, high: 150 }, SEAS), 150);   // sin baja -> alta
+      eq(PR.priceFor('2026-07-11', { low: 100, high: null }, SEAS), 100);   // sin alta -> baja también en temporada alta
+      eq(PR.priceFor('2026-07-11', { low: null, high: null }, SEAS), null);
+      eq(PR.priceFor('2026-07-11', null, SEAS), null); eq(PR.priceFor('2026-07-11', {}, SEAS), null);
+      eq(PR.priceFor('2026-07-11', { low: '100', high: '150' }, SEAS), 150);   // acepta números como texto
+    });
+    test('stayTotal: mezcla baja/alta/día especial (la noche de salida no cuenta)', function () {
+      var p = { low: 100, high: 150, days: { '2026-08-31': 99.5 } };
+      var r = PR.stayTotal('2026-08-30', '2026-09-02', p, SEAS);   // 30 ago alta 150 + 31 ago especial 99,5 + 1 sep baja 100
+      eq(r.nights, 3); eq(r.complete, true); eq(r.total, 349.5);
+      eq(r.perNight.map(function (x) { return x.price; }), [150, 99.5, 100]);
+      eq(r.perNight.map(function (x) { return x.day; }), ['2026-08-30', '2026-08-31', '2026-09-01']);
+    });
+    test('stayTotal: una noche, cruce de año y redondeo a 2 decimales', function () {
+      eq(PR.stayTotal('2026-10-05', '2026-10-06', { low: 80 }, SEAS).total, 80);
+      var y = PR.stayTotal('2026-12-30', '2027-01-02', { low: 100, high: 200 }, SEAS);   // 30 dic, 31 dic, 1 ene -> todo alta
+      eq(y.nights, 3); eq(y.total, 600);
+      eq(PR.stayTotal('2026-10-01', '2026-10-04', { low: 33.33 }, []).total, 99.99);
+      eq(PR.stayTotal('2026-10-01', '2026-10-04', { low: 0.1 }, []).total, 0.3);
+    });
+    test('stayTotal: noche sin precio => total null y complete false', function () {
+      var r = PR.stayTotal('2026-10-05', '2026-10-08', { low: null, high: null, days: { '2026-10-06': 90 } }, SEAS);
+      eq(r.nights, 3); eq(r.total, null); eq(r.complete, false);
+      eq(r.perNight.map(function (x) { return x.price; }), [null, 90, null]);
+      eq(PR.stayTotal('2026-10-05', '2026-10-08', null, SEAS).complete, false);
+    });
+    test('stayTotal: salida <= llegada o datos ausentes', function () {
+      ['2026-10-05', '2026-10-04'].forEach(function (sal) {
+        var r = PR.stayTotal('2026-10-05', sal, { low: 100 }, SEAS);
+        eq(r, { nights: 0, total: null, complete: false, perNight: [] });
+      });
+      eq(PR.stayTotal('', '2026-10-05', { low: 100 }, SEAS).nights, 0); eq(PR.stayTotal('2026-10-05', null, { low: 100 }, SEAS).total, null);
+      eq(PR.stayTotal('2026-01-01', '2028-01-01', { low: 100 }, SEAS).complete, false);   // estancia absurda
     });
   }
 

@@ -42,6 +42,9 @@ create table if not exists public.flats (
   updated_at timestamptz not null default now()
 );
 
+-- Precios: base_price = precio de TEMPORADA BAJA; price_high = TEMPORADA ALTA (opcional).
+alter table public.flats add column if not exists price_high numeric(8,2) check (price_high > 0);
+
 create table if not exists public.flat_photos (
   id uuid primary key default gen_random_uuid(),
   flat_id uuid not null references public.flats(id) on delete cascade,
@@ -52,16 +55,23 @@ create table if not exists public.flat_photos (
 );
 create index if not exists flat_photos_flat_idx on public.flat_photos(flat_id, sort);
 
-create table if not exists public.rates (
+create table if not exists public.seasons (        -- periodos de TEMPORADA ALTA, globales para todos los pisos
   id uuid primary key default gen_random_uuid(),
-  flat_id uuid not null references public.flats(id) on delete cascade,
+  label text,
   from_date date not null,
   to_date date not null,
-  price_night numeric(8,2) not null check (price_night > 0),
-  label text,
+  yearly boolean not null default false,            -- true: se repite cada año (cuentan solo mes y día; puede cruzar fin de año, p. ej. 20 dic - 6 ene)
   check (to_date >= from_date)
 );
-create index if not exists rates_flat_idx on public.rates(flat_id, to_date);
+create index if not exists seasons_from_idx on public.seasons(from_date);
+
+create table if not exists public.day_prices (      -- precio especial de un día concreto de un piso: manda sobre la temporada
+  flat_id uuid not null references public.flats(id) on delete cascade,
+  day date not null,
+  price numeric(8,2) not null check (price > 0),
+  primary key (flat_id, day)
+);
+create index if not exists day_prices_day_idx on public.day_prices(day);
 
 create table if not exists public.faq (
   id uuid primary key default gen_random_uuid(),
@@ -138,7 +148,7 @@ create trigger flats_touch before update on public.flats for each row execute fu
 do $$
 declare t text;
 begin
-  foreach t in array array['admins','flats','flat_photos','rates','faq','reviews','site_texts','bookings','ical_sources','ical_blocks']
+  foreach t in array array['admins','flats','flat_photos','seasons','day_prices','faq','reviews','site_texts','bookings','ical_sources','ical_blocks']
   loop
     execute format('alter table public.%I enable row level security', t);
     execute format('drop policy if exists "admin all" on public.%I', t);
@@ -156,16 +166,20 @@ alter default privileges in schema public revoke all on functions from anon;
 grant execute on function public.is_admin() to anon, authenticated;
 
 -- ============ 3. vistas públicas (sin columnas ni filas privadas) ============
-create or replace view public.public_flats as
+-- Se recrea (drop + create) porque cambia el tipo de 'precio_desde' respecto a versiones anteriores;
+-- los permisos se vuelven a conceder justo debajo. Nada depende de esta vista.
+drop view if exists public.public_flats;
+create view public.public_flats as
   select f.slug, f.name_es, f.name_en, f.zona, f.barrio, f.lat, f.lng,
          f.viajeros, f.dormitorios, f.camas, f.banos, f.servicios,
          f.desc_es, f.desc_en, f.nota, f.sort,
-         coalesce(
-           (select min(r.price_night) from public.rates r where r.flat_id = f.id and r.to_date >= current_date),
-           f.base_price
-         ) as precio_desde
+         least(f.base_price, f.price_high) as precio_desde,   -- LEAST ignora los nulos
+         f.base_price as precio_baja, f.price_high as precio_alta
   from public.flats f
   where f.active;
+
+-- La tabla 'rates' (tarifas por tramos) queda sustituida por seasons + day_prices.
+drop table if exists public.rates;
 
 create or replace view public.public_photos as
   select f.slug, p.path, p.alt_es, p.alt_en, p.sort
@@ -183,6 +197,27 @@ create or replace view public.public_texts as
 
 grant select on public.public_flats, public.public_photos, public.public_faq,
                 public.public_reviews, public.public_texts to anon, authenticated;
+
+-- ============ 3b. precios públicos: temporadas altas, precio bajo/alto y precios por día ============
+-- Solo pisos activos y solo días futuros. No hay datos privados: son precios que la web ya muestra.
+create or replace function public.public_pricing()
+returns jsonb language sql stable security definer set search_path = '' as $$
+  select jsonb_build_object(
+    'seasons', coalesce((
+      select jsonb_agg(jsonb_build_object(
+               'from', to_char(s.from_date, 'YYYY-MM-DD'), 'to', to_char(s.to_date, 'YYYY-MM-DD'),
+               'yearly', s.yearly, 'label', s.label) order by s.from_date)
+        from public.seasons s), '[]'::jsonb),
+    'pisos', coalesce((
+      select jsonb_object_agg(f.slug, jsonb_build_object(
+               'low', f.base_price, 'high', f.price_high,
+               'days', coalesce((select jsonb_object_agg(to_char(d.day, 'YYYY-MM-DD'), d.price)
+                                   from public.day_prices d where d.flat_id = f.id and d.day >= current_date), '{}'::jsonb)))
+        from public.flats f where f.active), '{}'::jsonb)
+  );
+$$;
+revoke all on function public.public_pricing() from public;
+grant execute on function public.public_pricing() to anon, authenticated;
 
 -- ============ 4. disponibilidad pública (contrato de assets/js/availability.js) ============
 -- Une reservas directas + bloqueos iCal, fusiona rangos solapados y contiguos, y NUNCA devuelve

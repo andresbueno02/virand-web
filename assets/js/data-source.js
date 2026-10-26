@@ -44,7 +44,7 @@
     });
     var i18n = { es: {}, en: {} };
     (raw.texts || []).forEach(function (t) { if (i18n[t.lang]) i18n[t.lang][t.key] = t.value; });
-    return { pisos: pisos, faq: faq, opiniones: opiniones, i18n: i18n };
+    return { pisos: pisos, faq: faq, opiniones: opiniones, i18n: i18n, pricing: raw.pricing || null };
   }
 
   // los textos de la base mandan; los que falten en la base se completan con los locales
@@ -66,9 +66,12 @@
   function live(cfg) {
     var h = { headers: { apikey: cfg.supabaseAnonKey, Authorization: 'Bearer ' + cfg.supabaseAnonKey } };
     function v(name) { return getJson(cfg.supabaseUrl + '/rest/v1/' + name + '?select=*', h); }
-    return Promise.all([v('public_flats'), v('public_photos'), v('public_faq'), v('public_reviews'), v('public_texts')]).then(function (r) {
+    // los precios por temporada/día son opcionales: si fallan, la web sigue con 'desde X €' sin estimado
+    var pricing = getJson(cfg.supabaseUrl + '/rest/v1/rpc/public_pricing', { method: 'POST', headers: Object.assign({ 'Content-Type': 'application/json' }, h.headers), body: '{}' })
+      .then(function (d) { return d && d.pisos ? d : null; }, function () { return null; });
+    return Promise.all([v('public_flats'), v('public_photos'), v('public_faq'), v('public_reviews'), v('public_texts'), pricing]).then(function (r) {
       if (!r[0].length) throw new Error('sin pisos');   // una base vacía no debe vaciar la web
-      return { flats: r[0], photos: r[1], faq: r[2], reviews: r[3], texts: r[4] };
+      return { flats: r[0], photos: r[1], faq: r[2], reviews: r[3], texts: r[4], pricing: r[5] };
     });
   }
 
