@@ -39,7 +39,8 @@ v,mn,c=sys.argv[1],int(sys.argv[2]),sys.argv[3]
 try: d=json.load(open('/tmp/rls_body'))
 except Exception: d=None
 txt=open('/tmp/rls_body').read()
-priv=[w for w in ('export_token','guest_name','phone','ical','"id"') if w in txt]
+keys=set(k for r in (d if isinstance(d,list) else []) for k in r)
+priv=sorted(keys & {'export_token','guest_name','phone','notes','url','id','flat_id','created_by','total_price','base_price','last_status'})
 if c=='200' and isinstance(d,list) and len(d)>=mn and not priv: print('  ok   %s -> %d filas'%(v,len(d)))
 else: print('  FALLA %s -> http %s, filas %s, privados %s'%(v,c,len(d) if isinstance(d,list) else '?',priv)); sys.exit(1)
 PY
