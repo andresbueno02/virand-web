@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pruebas VirAnd</title>
+<style>
+body{font:15px/1.5 system-ui,sans-serif;margin:0;padding:24px 16px;background:#faf6ef;color:#2a3140}
+h1{font-size:20px;margin:0 0 4px}
+#sum{margin:0 0 16px;font-weight:600}
+ul{list-style:none;padding:0;margin:0;max-width:900px}
+li{padding:6px 10px;border-left:4px solid;margin-bottom:4px;background:#fff}
+li.ok{border-color:#2e7d32}li.fail{border-color:#c62828;background:#fdecea}
+li small{display:block;color:#c62828}
+</style></head><body>
+<h1>Pruebas de lógica</h1><p id="sum">Ejecutando…</p><ul id="out"></ul>
+<script src="../assets/js/ranges.js"></script>
+<script src="../assets/js/ical.js"></script>
+<script src="../assets/js/search.js"></script>
+<script src="../assets/js/whatsapp.js"></script>
+<script src="cases.js"></script>
+<script>
+(function () {
+  var r = window.__tests.results, out = document.getElementById('out'), bad = 0;
+  r.forEach(function (x) {
+    var li = document.createElement('li');
+    li.className = x.ok ? 'ok' : 'fail';
+    li.textContent = (x.ok ? '✓ ' : '✗ ') + x.name;
+    if (!x.ok) { bad++; var s = document.createElement('small'); s.textContent = x.err; li.appendChild(s); }
+    out.appendChild(li);
+  });
+  var sum = document.getElementById('sum');
+  sum.textContent = (r.length - bad) + '/' + r.length + ' correctas' + (bad ? ' · ' + bad + ' fallan' : ' · todo en verde');
+  sum.style.color = bad ? '#c62828' : '#2e7d32';
+})();
+</script></body></html>
