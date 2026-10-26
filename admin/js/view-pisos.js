@@ -34,7 +34,7 @@
     var common = ' id="f_' + id + '" name="' + id + '"' + (opt.ro ? ' readonly' : '') + (opt.ph ? ' placeholder="' + esc(opt.ph) + '"' : '') + (opt.list ? ' list="' + opt.list + '"' : '');
     var input = opt.area
       ? '<textarea' + common + ' rows="' + opt.area + '">' + esc(val) + '</textarea>'
-      : '<input type="' + (opt.type || 'text') + '"' + common + (opt.step ? ' step="' + opt.step + '"' : '') + (opt.min != null ? ' min="' + opt.min + '"' : '') + ' value="' + esc(val) + '">';
+      : '<input type="' + (opt.dec ? 'text" inputmode="decimal' : (opt.type || 'text')) + '"' + common + (opt.step ? ' step="' + opt.step + '"' : '') + (opt.min != null ? ' min="' + opt.min + '"' : '') + ' value="' + esc(val) + '">';
     return '<label class="fld' + (opt.cls ? ' ' + opt.cls : '') + '"><span>' + esc(label) + '</span>' + input + (opt.hint ? '<small>' + esc(opt.hint) + '</small>' : '') + '</label>';
   }
 
@@ -71,8 +71,8 @@
         '</div></fieldset>' +
         '<fieldset><legend>Descripción</legend>' + field('desc_es', 'Español', form0.desc_es, { area: 6 }) + field('desc_en', 'Inglés', form0.desc_en, { area: 6, hint: 'Más adelante el panel propondrá la traducción automáticamente.' }) + '</fieldset>' +
         '<fieldset><legend>Precio y valoración</legend><div class="grid2">' +
-        field('base_price', 'Precio «desde» (€ por noche)', form0.base_price, { type: 'number', step: '0.01', min: 0, hint: 'Es el que sale como «desde X €» en la web. Las temporadas se configuran en el siguiente paso.' }) +
-        field('nota', 'Nota media (0-5, opcional)', form0.nota, { type: 'number', step: '0.1', min: 0 }) + '</div></fieldset>' +
+        field('base_price', 'Precio «desde» (€ por noche)', form0.base_price, { dec: true, ph: '95', hint: 'Es el que sale como «desde X €» en la web. Las temporadas se configuran en el siguiente paso.' }) +
+        field('nota', 'Nota media (0-5, opcional)', form0.nota, { dec: true, ph: '4,8' }) + '</div></fieldset>' +
         '<fieldset><legend>Ubicación en el mapa</legend><div class="grid2">' +
         field('lat', 'Latitud', form0.lat, { ph: '36.7213', hint: 'Pon una posición aproximada de la zona, no el portal exacto.' }) + field('lng', 'Longitud', form0.lng, { ph: '-4.4214' }) + '</div></fieldset>' +
         '<fieldset><legend>Fotos</legend>' + (isNew ? '<p class="muted">Guarda el piso primero. La gestión de fotos llega en el siguiente paso.</p>' :
