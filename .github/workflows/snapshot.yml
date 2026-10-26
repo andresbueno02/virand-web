@@ -1,4 +1,4 @@
-name: Copia nocturna de la web
+name: Copia nocturna de la web (datos públicos de Supabase)
 on:
   schedule:
     - cron: '17 3 * * *'     # cada noche (UTC); la petición también evita que Supabase se pause
