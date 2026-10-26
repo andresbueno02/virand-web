@@ -204,6 +204,65 @@
     eq(decode(u), 'Hola, me interesa «' + n + '». ¿Está disponible y cuál es el precio?');
   });
 
+  /* ---- panel: lógica pura ---- */
+  var A = G.AdminLogic;
+  if (A) {
+    test('slugify quita tildes, ñ y símbolos', function () {
+      eq(A.slugify('Ático frente a la playa (¡con jacuzzi!)'), 'atico-frente-a-la-playa-con-jacuzzi');
+      eq(A.slugify('  Sol & Centro Málaga. '), 'sol-centro-malaga');
+      eq(A.slugify('Niño ñandú'), 'nino-nandu'); eq(A.slugify(''), ''); eq(A.slugify(null), '');
+    });
+    test('uniqueSlug evita colisiones', function () {
+      eq(A.uniqueSlug('Loft Ipanema', ['loft-ipanema']), 'loft-ipanema-2');
+      eq(A.uniqueSlug('Loft Ipanema', ['loft-ipanema', 'loft-ipanema-2']), 'loft-ipanema-3');
+      eq(A.uniqueSlug('!!!', []), 'piso');
+    });
+    test('formToRow convierte tipos y vacíos a null', function () {
+      var r = A.formToRow({ id: 'x1', slug: 'a-b', active: true, name_es: ' Piso ', name_en: '', zona: 'Málaga', barrio: '',
+        viajeros: '4', dormitorios: '2', camas: '', banos: '1', servicios: ['wifi', 'inventado', 'piscina'],
+        desc_es: 'Hola', desc_en: '', nota: '4,9', base_price: '120.50', lat: '', lng: '' });
+      eq(r.name_es, 'Piso'); eq(r.name_en, null); eq(r.barrio, null); eq(r.viajeros, 4); eq(r.camas, null);
+      eq(r.servicios, ['wifi', 'piscina']); eq(r.nota, 4.9); eq(r.base_price, 120.5); eq(r.lat, null); eq(r.id, 'x1');
+    });
+    test('flatToForm y formToRow son inversas para un piso real', function () {
+      var row = { id: 'i', slug: 'loft', active: false, name_es: 'Loft', name_en: 'Loft', zona: 'Málaga', barrio: 'Centro', viajeros: 2,
+        dormitorios: 1, camas: null, banos: 1, servicios: ['wifi'], desc_es: 'd', desc_en: 'e', nota: 4.9, base_price: 65, lat: 36.7255, lng: -4.434 };
+      eq(A.formToRow(A.flatToForm(row)), row);
+    });
+    test('validateFlat acepta un piso correcto', function () {
+      eq(A.validateFlat(A.formToRow({ slug: 'loft', name_es: 'Loft', zona: 'Málaga', viajeros: '2', servicios: [] })), []);
+    });
+    test('validateFlat detecta errores', function () {
+      var e = A.validateFlat(A.formToRow({ slug: 'Mal Slug', name_es: '', zona: '', viajeros: '0', dormitorios: '-1', banos: '1.5',
+        nota: '7', base_price: '0', lat: '36.7', lng: '' }));
+      ok(e.length >= 8, 'esperaba al menos 8 errores y hay ' + e.length + ': ' + e.join(' | '));
+      eq(A.validateFlat(A.formToRow({ slug: 'a', name_es: 'A', zona: 'Z', viajeros: 'abc' })).length, 1);
+      eq(A.validateFlat(A.formToRow({ slug: 'a', name_es: 'A', zona: 'Z', viajeros: '2', lat: '91', lng: '0' })).length, 1);
+    });
+    test('moveItem intercambia y reindexa sin mutar', function () {
+      var l = [{ id: 'a', sort: 0 }, { id: 'b', sort: 1 }, { id: 'c', sort: 2 }];
+      var m = A.moveItem(l, 2, -1);
+      eq(m.map(function (x) { return x.id; }), ['a', 'c', 'b']); eq(m.map(function (x) { return x.sort; }), [0, 1, 2]);
+      eq(l.map(function (x) { return x.id; }), ['a', 'b', 'c']);
+      eq(A.moveItem(l, 0, -1).map(function (x) { return x.id; }), ['a', 'b', 'c']);
+      eq(A.moveItem(l, 2, 1).map(function (x) { return x.id; }), ['a', 'b', 'c']);
+    });
+    test('nextSort y changedSorts', function () {
+      eq(A.nextSort([]), 0); eq(A.nextSort([{ sort: 0 }, { sort: 4 }]), 5);
+      var before = [{ id: 'a', sort: 0 }, { id: 'b', sort: 1 }, { id: 'c', sort: 2 }];
+      eq(A.changedSorts(before, A.moveItem(before, 2, -1)).map(function (x) { return x.id; }), ['c', 'b']);
+      eq(A.changedSorts(before, before), []);
+    });
+    test('groupTexts agrupa y deja el resto en Avanzado', function () {
+      var g = A.groupTexts([{ key: 'hero.title', lang: 'es', value: 'T' }, { key: 'hero.title', lang: 'en', value: 'Title' },
+        { key: 'footer', lang: 'es', value: 'f' }, { key: 'svc.wifi', lang: 'es', value: 'Wifi' }, { key: 'contact.title', lang: 'es', value: 'c' }]);
+      eq(g.map(function (x) { return x.title; }), ['Portada', 'Contacto y pie', 'Avanzado']);
+      eq(g[0].keys, [{ key: 'hero.title', es: 'T', en: 'Title' }]);
+      eq(g[1].keys.map(function (k) { return k.key; }), ['contact.title', 'footer']);
+      eq(g[2].keys[0].key, 'svc.wifi');
+    });
+  }
+
   /* ---- resumen ---- */
   var failed = results.filter(function (r) { return !r.ok; });
   G.__testSummary = { total: results.length, failed: failed.length };
