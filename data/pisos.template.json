@@ -1,0 +1,33 @@
+{
+ "slug": "nuevo-piso",
+ "activo": false,
+ "nombre": {
+  "es": "Nombre del piso",
+  "en": "Flat name"
+ },
+ "zona": "Málaga centro",
+ "lat": 36.5955,
+ "lng": -4.5695,
+ "viajeros": 4,
+ "dormitorios": 2,
+ "camas": 2,
+ "banos": 1,
+ "servicios": [
+  "playa",
+  "jacuzzi",
+  "barbacoa"
+ ],
+ "descripcion": {
+  "es": "Descripción",
+  "en": "Description"
+ },
+ "fotos": [
+  {
+   "src": "assets/img/pisos/nuevo-piso/1",
+   "alt": {
+    "es": "Salón",
+    "en": "Living room"
+   }
+  }
+ ]
+}

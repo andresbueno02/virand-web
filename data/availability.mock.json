@@ -1,0 +1,54 @@
+{
+ "actualizado": "2026-10-26T10:00:00Z",
+ "pisos": {
+  "atico-benalmadena": {
+   "ocupado": [
+    [
+     "2026-11-02",
+     "2026-11-09"
+    ],
+    [
+     "2026-12-20",
+     "2027-01-03"
+    ]
+   ],
+   "precio_desde": 120,
+   "obsoleto": false
+  },
+  "cosy-flat-malaga": {
+   "ocupado": [
+    [
+     "2026-11-05",
+     "2026-11-08"
+    ]
+   ],
+   "precio_desde": 85,
+   "obsoleto": false
+  },
+  "apartamento-playa-malaga": {
+   "ocupado": [],
+   "precio_desde": 110,
+   "obsoleto": false
+  },
+  "boho-chic-torremolinos": {
+   "ocupado": [
+    [
+     "2026-11-01",
+     "2026-11-30"
+    ]
+   ],
+   "precio_desde": 95,
+   "obsoleto": false
+  },
+  "loft-ipanema-malaga": {
+   "ocupado": [
+    [
+     "2026-11-10",
+     "2026-11-14"
+    ]
+   ],
+   "precio_desde": 65,
+   "obsoleto": false
+  }
+ }
+}

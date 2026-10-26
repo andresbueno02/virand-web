@@ -1,0 +1,92 @@
+{
+ "faq": [
+  {
+   "pregunta": {
+    "es": "¿Cómo reservo?",
+    "en": "How do I book?"
+   },
+   "respuesta": {
+    "es": "Elige tu alojamiento y tus fechas y pulsa «Consultar por WhatsApp». Te confirmamos la disponibilidad y el precio directamente, sin intermediarios.",
+    "en": "Choose your stay and dates and tap “Enquire on WhatsApp”. We confirm availability and price directly, with no middlemen."
+   },
+   "revisar": false
+  },
+  {
+   "pregunta": {
+    "es": "¿El precio que veo es definitivo?",
+    "en": "Is the price I see final?"
+   },
+   "respuesta": {
+    "es": "El precio «desde» es orientativo: el importe final depende de las fechas, la temporada y el número de personas. Te lo confirmamos por WhatsApp antes de reservar.",
+    "en": "The “from” price is indicative: the final amount depends on dates, season and number of guests. We confirm it on WhatsApp before you book."
+   },
+   "revisar": false
+  },
+  {
+   "pregunta": {
+    "es": "¿El calendario está actualizado en tiempo real?",
+    "en": "Is the calendar updated in real time?"
+   },
+   "respuesta": {
+    "es": "Se actualiza periódicamente a partir de los calendarios de nuestras plataformas, por lo que puede haber un pequeño retraso. Siempre confirmamos la disponibilidad contigo antes de cerrar la reserva.",
+    "en": "It refreshes periodically from our platforms' calendars, so there can be a short delay. We always confirm availability with you before finalising a booking."
+   },
+   "revisar": false
+  },
+  {
+   "pregunta": {
+    "es": "¿Dónde están los alojamientos?",
+    "en": "Where are the stays?"
+   },
+   "respuesta": {
+    "es": "En Málaga, Torremolinos y Benalmádena, en la Costa del Sol. Te facilitamos la dirección exacta una vez confirmada la reserva.",
+    "en": "In Málaga, Torremolinos and Benalmádena on the Costa del Sol. We share the exact address once your booking is confirmed."
+   },
+   "revisar": false
+  },
+  {
+   "pregunta": {
+    "es": "¿Cómo es la llegada?",
+    "en": "What is arrival like?"
+   },
+   "respuesta": {
+    "es": "Algunos alojamientos, como Loft Ipanema, tienen llegada autónoma. Para el resto te explicamos todo el proceso al confirmar la reserva.",
+    "en": "Some stays, such as Loft Ipanema, offer self check-in. For the rest we explain the whole process when you confirm your booking."
+   },
+   "revisar": false
+  },
+  {
+   "pregunta": {
+    "es": "¿Qué atención recibo durante la estancia?",
+    "en": "What support do I get during my stay?"
+   },
+   "respuesta": {
+    "es": "Atención personalizada durante toda tu estancia: cualquier duda o incidencia, escríbenos por WhatsApp.",
+    "en": "Personal attention throughout your stay: for any question or issue, message us on WhatsApp."
+   },
+   "revisar": false
+  },
+  {
+   "pregunta": {
+    "es": "¿Cuáles son las condiciones de cancelación y la fianza?",
+    "en": "What are the cancellation terms and deposit?"
+   },
+   "respuesta": {
+    "es": "Las condiciones de cancelación y fianza dependen del alojamiento y de las fechas. Te las indicamos por escrito al consultar disponibilidad.",
+    "en": "Cancellation terms and deposit depend on the stay and dates. We send them in writing when you enquire."
+   },
+   "revisar": true
+  },
+  {
+   "pregunta": {
+    "es": "¿Se admiten mascotas?",
+    "en": "Are pets allowed?"
+   },
+   "respuesta": {
+    "es": "Depende del alojamiento. Pregúntanos por WhatsApp y te confirmamos si el que te interesa las admite.",
+    "en": "It depends on the stay. Ask us on WhatsApp and we'll confirm whether the one you like allows them."
+   },
+   "revisar": true
+  }
+ ]
+}

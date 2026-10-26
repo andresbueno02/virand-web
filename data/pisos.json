@@ -1,0 +1,323 @@
+{
+ "pisos": [
+  {
+   "slug": "atico-benalmadena",
+   "activo": true,
+   "nombre": {
+    "es": "Ático frente a la playa con jacuzzi climatizado",
+    "en": "Beachfront penthouse with heated jacuzzi"
+   },
+   "zona": "Benalmádena",
+   "lat": 36.5955,
+   "lng": -4.5695,
+   "viajeros": 4,
+   "dormitorios": 2,
+   "camas": 2,
+   "banos": 1,
+   "servicios": [
+    "playa",
+    "jacuzzi",
+    "barbacoa"
+   ],
+   "descripcion": {
+    "es": "Apartamento entero en Benalmádena, frente a la playa, con jacuzzi climatizado y barbacoa en su terraza. Alojamiento para 4 viajeros con 2 dormitorios.",
+    "en": "Entire apartment in Benalmádena, right on the beach, with a heated jacuzzi and barbecue on the terrace. Sleeps 4 guests in 2 bedrooms."
+   },
+   "fotos": [
+    {
+     "src": "assets/img/pisos/atico-benalmadena/1",
+     "alt": {
+      "es": "Ático frente a la playa con jacuzzi climatizado: foto 1",
+      "en": "Ático frente a la playa con jacuzzi climatizado: photo 1"
+     }
+    },
+    {
+     "src": "assets/img/pisos/atico-benalmadena/2",
+     "alt": {
+      "es": "Ático frente a la playa con jacuzzi climatizado: foto 2",
+      "en": "Ático frente a la playa con jacuzzi climatizado: photo 2"
+     }
+    },
+    {
+     "src": "assets/img/pisos/atico-benalmadena/3",
+     "alt": {
+      "es": "Ático frente a la playa con jacuzzi climatizado: foto 3",
+      "en": "Ático frente a la playa con jacuzzi climatizado: photo 3"
+     }
+    },
+    {
+     "src": "assets/img/pisos/atico-benalmadena/4",
+     "alt": {
+      "es": "Ático frente a la playa con jacuzzi climatizado: foto 4",
+      "en": "Ático frente a la playa con jacuzzi climatizado: photo 4"
+     }
+    },
+    {
+     "src": "assets/img/pisos/atico-benalmadena/5",
+     "alt": {
+      "es": "Ático frente a la playa con jacuzzi climatizado: foto 5",
+      "en": "Ático frente a la playa con jacuzzi climatizado: photo 5"
+     }
+    },
+    {
+     "src": "assets/img/pisos/atico-benalmadena/6",
+     "alt": {
+      "es": "Ático frente a la playa con jacuzzi climatizado: foto 6",
+      "en": "Ático frente a la playa con jacuzzi climatizado: photo 6"
+     }
+    },
+    {
+     "src": "assets/img/pisos/atico-benalmadena/7",
+     "alt": {
+      "es": "Ático frente a la playa con jacuzzi climatizado: foto 7",
+      "en": "Ático frente a la playa con jacuzzi climatizado: photo 7"
+     }
+    }
+   ]
+  },
+  {
+   "slug": "cosy-flat-malaga",
+   "activo": true,
+   "nombre": {
+    "es": "Cosy Flat en el corazón de Málaga",
+    "en": "Cosy Flat in the heart of Málaga"
+   },
+   "zona": "Málaga centro",
+   "lat": 36.7213,
+   "lng": -4.4214,
+   "viajeros": 4,
+   "dormitorios": 2,
+   "camas": 2,
+   "banos": 2,
+   "servicios": [
+    "centro",
+    "parking",
+    "acogedor"
+   ],
+   "descripcion": {
+    "es": "Apartamento entero acogedor en el centro de Málaga, con parking. Alojamiento para 4 viajeros con 2 dormitorios y 2 baños.",
+    "en": "Cosy entire apartment in central Málaga, with parking. Sleeps 4 guests in 2 bedrooms with 2 bathrooms."
+   },
+   "fotos": [
+    {
+     "src": "assets/img/pisos/cosy-flat-malaga/1",
+     "alt": {
+      "es": "Cosy Flat en el corazón de Málaga: foto 1",
+      "en": "Cosy Flat en el corazón de Málaga: photo 1"
+     }
+    },
+    {
+     "src": "assets/img/pisos/cosy-flat-malaga/2",
+     "alt": {
+      "es": "Cosy Flat en el corazón de Málaga: foto 2",
+      "en": "Cosy Flat en el corazón de Málaga: photo 2"
+     }
+    },
+    {
+     "src": "assets/img/pisos/cosy-flat-malaga/3",
+     "alt": {
+      "es": "Cosy Flat en el corazón de Málaga: foto 3",
+      "en": "Cosy Flat en el corazón de Málaga: photo 3"
+     }
+    },
+    {
+     "src": "assets/img/pisos/cosy-flat-malaga/4",
+     "alt": {
+      "es": "Cosy Flat en el corazón de Málaga: foto 4",
+      "en": "Cosy Flat en el corazón de Málaga: photo 4"
+     }
+    },
+    {
+     "src": "assets/img/pisos/cosy-flat-malaga/5",
+     "alt": {
+      "es": "Cosy Flat en el corazón de Málaga: foto 5",
+      "en": "Cosy Flat en el corazón de Málaga: photo 5"
+     }
+    }
+   ]
+  },
+  {
+   "slug": "apartamento-playa-malaga",
+   "activo": true,
+   "nombre": {
+    "es": "Encantador apartamento en la playa",
+    "en": "Charming beach apartment"
+   },
+   "zona": "Málaga playa",
+   "lat": 36.719,
+   "lng": -4.386,
+   "viajeros": 6,
+   "dormitorios": 3,
+   "camas": 5,
+   "banos": 2,
+   "servicios": [
+    "playa",
+    "piscina",
+    "parking"
+   ],
+   "descripcion": {
+    "es": "Apartamento entero en Málaga junto a la playa, con piscina y parking. Alojamiento para 6 viajeros con 3 dormitorios y 2 baños.",
+    "en": "Entire apartment in Málaga by the beach, with a pool and parking. Sleeps 6 guests in 3 bedrooms with 2 bathrooms."
+   },
+   "fotos": [
+    {
+     "src": "assets/img/pisos/apartamento-playa-malaga/1",
+     "alt": {
+      "es": "Encantador apartamento en la playa: foto 1",
+      "en": "Encantador apartamento en la playa: photo 1"
+     }
+    },
+    {
+     "src": "assets/img/pisos/apartamento-playa-malaga/2",
+     "alt": {
+      "es": "Encantador apartamento en la playa: foto 2",
+      "en": "Encantador apartamento en la playa: photo 2"
+     }
+    },
+    {
+     "src": "assets/img/pisos/apartamento-playa-malaga/3",
+     "alt": {
+      "es": "Encantador apartamento en la playa: foto 3",
+      "en": "Encantador apartamento en la playa: photo 3"
+     }
+    },
+    {
+     "src": "assets/img/pisos/apartamento-playa-malaga/4",
+     "alt": {
+      "es": "Encantador apartamento en la playa: foto 4",
+      "en": "Encantador apartamento en la playa: photo 4"
+     }
+    }
+   ]
+  },
+  {
+   "slug": "boho-chic-torremolinos",
+   "activo": true,
+   "nombre": {
+    "es": "Boho Chic frente a la playa",
+    "en": "Boho Chic on the beachfront"
+   },
+   "zona": "Torremolinos",
+   "lat": 36.62,
+   "lng": -4.499,
+   "viajeros": 7,
+   "dormitorios": 2,
+   "camas": 5,
+   "banos": 1,
+   "servicios": [
+    "playa",
+    "piscina",
+    "bicicletas"
+   ],
+   "descripcion": {
+    "es": "Apartamento entero en Torremolinos frente a la playa, con piscina y bicicletas. Alojamiento para 7 viajeros con 2 dormitorios.",
+    "en": "Entire apartment in Torremolinos on the beachfront, with a pool and bicycles. Sleeps 7 guests in 2 bedrooms."
+   },
+   "fotos": [
+    {
+     "src": "assets/img/pisos/boho-chic-torremolinos/1",
+     "alt": {
+      "es": "Boho Chic frente a la playa: foto 1",
+      "en": "Boho Chic frente a la playa: photo 1"
+     }
+    },
+    {
+     "src": "assets/img/pisos/boho-chic-torremolinos/2",
+     "alt": {
+      "es": "Boho Chic frente a la playa: foto 2",
+      "en": "Boho Chic frente a la playa: photo 2"
+     }
+    },
+    {
+     "src": "assets/img/pisos/boho-chic-torremolinos/3",
+     "alt": {
+      "es": "Boho Chic frente a la playa: foto 3",
+      "en": "Boho Chic frente a la playa: photo 3"
+     }
+    },
+    {
+     "src": "assets/img/pisos/boho-chic-torremolinos/4",
+     "alt": {
+      "es": "Boho Chic frente a la playa: foto 4",
+      "en": "Boho Chic frente a la playa: photo 4"
+     }
+    },
+    {
+     "src": "assets/img/pisos/boho-chic-torremolinos/5",
+     "alt": {
+      "es": "Boho Chic frente a la playa: foto 5",
+      "en": "Boho Chic frente a la playa: photo 5"
+     }
+    }
+   ]
+  },
+  {
+   "slug": "loft-ipanema-malaga",
+   "activo": true,
+   "nombre": {
+    "es": "Loft Ipanema, Málaga Centro",
+    "en": "Loft Ipanema, Málaga Centre"
+   },
+   "zona": "Málaga centro",
+   "lat": 36.7255,
+   "lng": -4.434,
+   "viajeros": 2,
+   "dormitorios": 1,
+   "camas": 1,
+   "banos": 1,
+   "servicios": [
+    "llegada-autonoma",
+    "wifi"
+   ],
+   "descripcion": {
+    "es": "Acogedor loft completamente reformado situado en una de las zonas más auténticas de Málaga. A tan solo 15 minutos caminando del centro histórico y rodeado de supermercados, restaurantes, farmacia y todos los servicios necesarios para una estancia cómoda.",
+    "en": "Cosy, fully renovated loft in one of Málaga's most authentic neighbourhoods. Just a 15-minute walk from the historic centre, surrounded by supermarkets, restaurants, a pharmacy and everything you need for a comfortable stay."
+   },
+   "fotos": [
+    {
+     "src": "assets/img/pisos/loft-ipanema-malaga/1",
+     "alt": {
+      "es": "Loft Ipanema, Málaga Centro: foto 1",
+      "en": "Loft Ipanema, Málaga Centro: photo 1"
+     }
+    },
+    {
+     "src": "assets/img/pisos/loft-ipanema-malaga/2",
+     "alt": {
+      "es": "Loft Ipanema, Málaga Centro: foto 2",
+      "en": "Loft Ipanema, Málaga Centro: photo 2"
+     }
+    },
+    {
+     "src": "assets/img/pisos/loft-ipanema-malaga/3",
+     "alt": {
+      "es": "Loft Ipanema, Málaga Centro: foto 3",
+      "en": "Loft Ipanema, Málaga Centro: photo 3"
+     }
+    },
+    {
+     "src": "assets/img/pisos/loft-ipanema-malaga/4",
+     "alt": {
+      "es": "Loft Ipanema, Málaga Centro: foto 4",
+      "en": "Loft Ipanema, Málaga Centro: photo 4"
+     }
+    },
+    {
+     "src": "assets/img/pisos/loft-ipanema-malaga/5",
+     "alt": {
+      "es": "Loft Ipanema, Málaga Centro: foto 5",
+      "en": "Loft Ipanema, Málaga Centro: photo 5"
+     }
+    },
+    {
+     "src": "assets/img/pisos/loft-ipanema-malaga/6",
+     "alt": {
+      "es": "Loft Ipanema, Málaga Centro: foto 6",
+      "en": "Loft Ipanema, Málaga Centro: photo 6"
+     }
+    }
+   ],
+   "nota": 4.9
+  }
+ ]
+}

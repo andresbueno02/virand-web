@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VirAnd Luxury Rental · Alquiler vacacional en Málaga y la Costa del Sol</title>
+<meta name="description" content="Alquiler vacacional exclusivo en Málaga, Torremolinos y Benalmádena. Alojamientos verificados, atención personalizada y consulta directa por WhatsApp.">
+<meta name="theme-color" content="#1f3a5f">
+<meta property="og:type" content="website">
+<meta property="og:title" content="VirAnd Luxury Rental">
+<meta property="og:description" content="Alquiler vacacional exclusivo en Málaga y la Costa del Sol.">
+<meta property="og:image" content="assets/img/hero-2000.webp">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/img/hero-900.webp" imagesrcset="assets/img/hero-900.webp 900w, assets/img/hero-2000.webp 2000w" imagesizes="100vw">
+<link rel="stylesheet" href="assets/css/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LodgingBusiness","name":"VirAnd Luxury Rental","description":"Alquiler vacacional exclusivo en Málaga y la Costa del Sol.","areaServed":["Málaga","Torremolinos","Benalmádena"],"telephone":"+34654584843","sameAs":["https://www.instagram.com/alojamientos_luxy24/"],"url":"https://virandluxuryrental.com/"}
+</script>
+</head>
+<body>
+<header class="site-header" id="top">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="VirAnd Luxury Rental">VirAnd<small>Luxury Rental</small></a>
+    <nav class="nav" id="nav">
+      <a href="#alojamientos" data-i18n="nav.stays">Alojamientos</a>
+      <a href="#por-que" data-i18n="nav.why">Por qué VirAnd</a>
+      <a href="#opiniones" data-i18n="nav.reviews">Opiniones</a>
+      <a href="#faq" data-i18n="nav.faq">Preguntas</a>
+      <a href="#contacto" data-i18n="nav.contact">Contacto</a>
+      <div class="lang" role="group" aria-label="Idioma / Language">
+        <button type="button" data-lang="es" aria-pressed="true"><span>ES</span></button>
+        <button type="button" data-lang="en" aria-pressed="false"><span>EN</span></button>
+      </div>
+    </nav>
+    <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="nav" data-i18n-aria="nav.menu" aria-label="Abrir menú"></button>
+  </div>
+</header>
+
+<main>
+<section class="hero" aria-labelledby="h1">
+  <picture>
+    <source srcset="assets/img/hero-900.webp 900w, assets/img/hero-2000.webp 2000w" sizes="100vw" type="image/webp">
+    <img class="bg" src="assets/img/hero-900.webp" alt="" fetchpriority="high">
+  </picture>
+  <div class="wrap">
+    <p class="eyebrow" data-i18n="hero.eyebrow">Estancias exclusivas</p>
+    <h1 id="h1" data-i18n="hero.title">Tu hogar frente al Mediterráneo</h1>
+    <p class="lead" data-i18n="hero.lead">Alquiler vacacional exclusivo en Málaga y la Costa del Sol.</p>
+  </div>
+</section>
+
+<div class="wrap search-wrap">
+  <form class="search" id="searchForm" autocomplete="off">
+    <label><span data-i18n="search.zone">Destino</span><select id="fZone"></select></label>
+    <label><span data-i18n="search.in">Llegada</span><input type="date" id="fIn"></label>
+    <label><span data-i18n="search.out">Salida</span><input type="date" id="fOut"></label>
+    <label><span data-i18n="search.pax">Personas</span><select id="fPax"></select></label>
+    <button class="btn btn-primary" type="submit" data-i18n="search.go">Buscar</button>
+  </form>
+</div>
+
+<section class="section" id="alojamientos">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow" data-i18n="stays.eyebrow">Alojamientos</p>
+      <h2 data-i18n="stays.title">Elige tu próximo destino</h2>
+      <p data-i18n="stays.lead">Pisos verificados y equipados en las mejores zonas de la costa.</p>
+    </div>
+    <div class="filters">
+      <label><span data-i18n="filters.sort">Ordenar por</span>
+        <select id="fSort">
+          <option value="recomendado" data-i18n="sort.rec">Recomendados</option>
+          <option value="precio-asc" data-i18n="sort.asc">Precio: de menor a mayor</option>
+          <option value="precio-desc" data-i18n="sort.desc">Precio: de mayor a menor</option>
+        </select></label>
+      <button type="button" class="btn btn-ghost" id="clearDates" hidden data-i18n="filters.clear">Quitar fechas</button>
+      <div class="view-toggle" role="group" id="viewToggle">
+        <button type="button" data-view="list" aria-pressed="true" data-i18n="view.list">Lista</button>
+        <button type="button" data-view="map" aria-pressed="false" data-i18n="view.map">Mapa</button>
+      </div>
+      <span class="count" id="count" aria-live="polite"></span>
+    </div>
+    <div class="layout" id="layout" data-view="list">
+      <div class="cards" id="cards"></div>
+      <div id="mapbox" aria-label="Mapa"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section why" id="por-que">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow" data-i18n="why.eyebrow">Por qué VirAnd</p>
+      <h2 data-i18n="why.title">Experiencias que se convierten en recuerdos</h2>
+      <p data-i18n="why.lead">Nos encargamos de cada detalle.</p>
+    </div>
+    <div class="why-grid" id="whyGrid"></div>
+  </div>
+</section>
+
+<section class="section" id="opiniones">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow" data-i18n="reviews.eyebrow">Opiniones</p>
+      <h2 data-i18n="reviews.title">Lo que dicen nuestros huéspedes</h2>
+      <p data-i18n="reviews.lead">Experiencias reales.</p>
+    </div>
+    <div class="reviews" id="reviews"></div>
+  </div>
+</section>
+
+<section class="section why" id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow" data-i18n="faq.eyebrow">Preguntas frecuentes</p>
+      <h2 data-i18n="faq.title">Todo lo que conviene saber</h2>
+    </div>
+    <div class="faq" id="faqList"></div>
+  </div>
+</section>
+
+<section class="section contact" id="contacto">
+  <div class="wrap">
+    <h2 data-i18n="contact.title">¿Hablamos de tu próxima escapada?</h2>
+    <p data-i18n="contact.lead">Escríbenos por WhatsApp.</p>
+    <div class="actions">
+      <a class="btn btn-wa" id="waMain" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="btn btn-ghost" id="igLink" target="_blank" rel="noopener" data-i18n="contact.ig">Instagram</a>
+      <a class="btn btn-ghost" id="fbLink" target="_blank" rel="noopener" data-i18n="contact.fb">Facebook</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap" data-i18n="footer">© 2026 VirAnd. Todos los derechos reservados.</div></footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle" hidden>
+  <div class="sheet" id="sheet"></div>
+</div>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/ranges.js"></script>
+<script src="assets/js/ical.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="assets/js/whatsapp.js"></script>
+<script src="assets/js/icons.js"></script>
+<script src="assets/js/availability.js"></script>
+<script src="assets/js/calendar.js"></script>
+<script src="assets/js/map.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

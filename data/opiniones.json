@@ -1,0 +1,37 @@
+{
+ "opiniones": [
+  {
+   "texto": {
+    "es": "Una estancia increíble con vistas espectaculares al mar y una ubicación perfecta cerca de todo. El alojamiento cumplió totalmente las expectativas y la atención de Virginia fue excepcional. Sin duda, una experiencia muy recomendable y para repetir.",
+    "en": "An incredible stay with spectacular sea views and a perfect location close to everything. The accommodation fully met our expectations and Virginia's attention was exceptional. Highly recommended, and we'd happily come back."
+   },
+   "autor": {
+    "es": "Huésped de VirAnd",
+    "en": "VirAnd guest"
+   },
+   "nota": 5
+  },
+  {
+   "texto": {
+    "es": "Disfrutamos muchísimo de nuestra estancia. La atención de Virginia fue excelente y el apartamento contaba con todo lo necesario para una experiencia cómoda y relajante. La ubicación, junto a la playa y restaurantes, hizo que todo fuera aún más perfecto.",
+    "en": "We really enjoyed our stay. Virginia's attention was excellent and the apartment had everything needed for a comfortable, relaxing experience. The location, next to the beach and restaurants, made everything even better."
+   },
+   "autor": {
+    "es": "Huésped de VirAnd",
+    "en": "VirAnd guest"
+   },
+   "nota": 5
+  },
+  {
+   "texto": {
+    "es": "Una experiencia impecable, en una ubicación perfecta y con una atención excepcional por parte de Virginia.",
+    "en": "A flawless experience, in a perfect location with exceptional attention from Virginia."
+   },
+   "autor": {
+    "es": "Huésped de VirAnd",
+    "en": "VirAnd guest"
+   },
+   "nota": 5
+  }
+ ]
+}
