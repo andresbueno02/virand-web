@@ -37,6 +37,16 @@
     addPhoto: function (row) { return client.from('flat_photos').insert(row).select().single().then(must); },
     updatePhoto: function (id, patch) { return client.from('flat_photos').update(patch).eq('id', id).then(must); },
     removePhoto: function (id) { return client.from('flat_photos').delete().eq('id', id).then(must); },
+    // Propone traducciones ES->EN con Gemini (función translate). items: [{key, es}] -> [{key, en, warn?}]
+    translate: function (items) {
+      return client.functions.invoke('translate', { body: { items: items } }).then(function (r) {
+        if (!r.error) return r.data.items;
+        var m = r.error.message || 'No se ha podido traducir.';
+        var ctx = r.error.context;
+        if (ctx && ctx.json) return ctx.json().then(function (j) { throw new Error(j && j.error ? j.error : m); }, function () { throw new Error(m); });
+        throw new Error(m);
+      });
+    },
     updateFlatPrices: function (id, low, high) { return client.from('flats').update({ base_price: low, price_high: high }).eq('id', id).then(must); },
     listSeasons: function () { return client.from('seasons').select('*').order('from_date').then(must); },
     saveSeason: function (row) {

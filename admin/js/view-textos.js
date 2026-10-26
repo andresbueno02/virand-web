@@ -17,11 +17,18 @@
             g.keys.map(function (k) {
               return '<div class="trow" data-key="' + esc(k.key) + '"><code>' + esc(k.key) + '</code>' +
                 '<label class="fld"><span>Español</span><textarea rows="' + (k.es.length > 90 ? 3 : 1) + '" data-lang="es">' + esc(k.es) + '</textarea></label>' +
-                '<label class="fld"><span>Inglés</span><textarea rows="' + (k.en.length > 90 ? 3 : 1) + '" data-lang="en">' + esc(k.en) + '</textarea></label></div>';
+                '<label class="fld"><span>Inglés</span><textarea rows="' + (k.en.length > 90 ? 3 : 1) + '" data-lang="en">' + esc(k.en) + '</textarea><button type="button" class="btn btn-ghost sm trs" data-tr="1">✨ Traducir</button></label></div>';
             }).join('') + '<div class="actions"><button type="button" class="btn btn-primary" data-save="' + gi + '">Guardar esta sección</button></div></details>';
         }).join('');
 
       el.onclick = function (e) {
+        var tb = e.target.closest('[data-tr]');
+        if (tb) {
+          var row = tb.closest('.trow'), es = row.querySelector('[data-lang=es]'), en = row.querySelector('[data-lang=en]');
+          if (en.value.trim() && !window.confirm('Ya hay texto en inglés. ¿Sustituirlo por la traducción automática?')) return;
+          U.translate([{ key: row.getAttribute('data-key'), es: es.value }], tb).then(function (m) { if (m && m[row.getAttribute('data-key')]) { en.value = m[row.getAttribute('data-key')]; U.toast('Propuesta lista: revísala y pulsa «Guardar esta sección».'); } });
+          return;
+        }
         var b = e.target.closest('[data-save]'); if (!b) return;
         var det = b.closest('.group'), changed = [];
         det.querySelectorAll('.trow').forEach(function (r) {

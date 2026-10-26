@@ -22,5 +22,15 @@
     if (on) { btn.dataset.label = btn.textContent; btn.disabled = true; btn.textContent = label || 'Guardando…'; }
     else { btn.disabled = false; if (btn.dataset.label) btn.textContent = btn.dataset.label; }
   }
-  root.UI = { esc: esc, toast: toast, errMsg: errMsg, busy: busy };
+  // Traduce una lista [{key, es}] y devuelve un mapa key -> en; avisa si algún marcador se perdió.
+  function translate(items, btn) {
+    items = items.filter(function (i) { return i.es && i.es.trim(); });
+    if (!items.length) { toast('Escribe primero el texto en español.', 'err'); return Promise.resolve(null); }
+    busy(btn, true, 'Traduciendo…');
+    return root.Api.translate(items).then(function (out) {
+      var map = {}, warn = null; out.forEach(function (o) { map[o.key] = o.en; if (o.warn) warn = o.warn; });
+      toast(warn || 'Traducción propuesta: revísala antes de guardar.', warn ? 'err' : 'ok'); return map;
+    }).catch(function (e) { toast(errMsg(e), 'err'); return null; }).then(function (r) { busy(btn, false); return r; });
+  }
+  root.UI = { esc: esc, toast: toast, errMsg: errMsg, busy: busy, translate: translate };
 })(window);

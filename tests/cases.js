@@ -426,6 +426,41 @@
     });
   }
 
+  /* ---- traducción (función translate) ---- */
+  var TC = G.TranslateCore;
+  if (TC) {
+    test('validateRequest limpia, ignora vacíos y rechaza lo inválido', function () {
+      var v = TC.validateRequest({ items: [{ key: ' a ', es: ' Hola ' }, { key: 'b', es: '   ' }, { key: 'c', es: 'Adiós' }] });
+      eq(v, { ok: true, items: [{ key: 'a', es: 'Hola' }, { key: 'c', es: 'Adiós' }] });
+      ok(!TC.validateRequest(null).ok); ok(!TC.validateRequest({ items: [] }).ok); ok(!TC.validateRequest({ items: [{ key: 'a', es: '' }] }).ok);
+      ok(!TC.validateRequest({ items: [{ key: '', es: 'x' }] }).ok); ok(!TC.validateRequest({ items: [{ key: 'a', es: 'x' }, { key: 'a', es: 'y' }] }).ok);
+      ok(!TC.validateRequest({ items: [{ key: 'a', es: new Array(4002).join('x') }] }).ok);
+      var many = []; for (var i = 0; i < 41; i++) many.push({ key: 'k' + i, es: 'x' }); ok(!TC.validateRequest({ items: many }).ok);
+      var big = []; for (var j = 0; j < 5; j++) big.push({ key: 'k' + j, es: new Array(3900).join('x') }); ok(!TC.validateRequest({ items: big }).ok, 'total excedido');
+    });
+    test('buildRequest pide JSON estructurado e incluye los textos', function () {
+      var r = TC.buildRequest([{ key: 'a', es: 'Hola' }]);
+      eq(r.generationConfig.responseMimeType, 'application/json'); eq(r.generationConfig.responseSchema.type, 'ARRAY');
+      eq(JSON.parse(r.contents[0].parts[0].text), [{ key: 'a', es: 'Hola' }]); ok(/\{n\}/.test(r.systemInstruction.parts[0].text));
+    });
+    function gem(txt) { return { candidates: [{ content: { parts: [{ text: txt }] } }] }; }
+    test('parseResponse devuelve las traducciones en el orden pedido', function () {
+      var items = [{ key: 'a', es: 'Hola' }, { key: 'b', es: 'Adiós' }];
+      eq(TC.parseResponse(gem('[{"key":"b","en":"Bye"},{"key":"a","en":" Hello "}]'), items), [{ key: 'a', en: 'Hello' }, { key: 'b', en: 'Bye' }]);
+      eq(TC.parseResponse(gem('```json\n[{"key":"a","en":"Hello"}]\n```'), [{ key: 'a', es: 'Hola' }]), [{ key: 'a', en: 'Hello' }]);
+    });
+    test('parseResponse avisa si se pierden marcadores {n}', function () {
+      var r = TC.parseResponse(gem('[{"key":"a","en":"guests"}]'), [{ key: 'a', es: '{n} viajeros' }]);
+      ok(r[0].warn, 'debía avisar'); eq(TC.parseResponse(gem('[{"key":"a","en":"{n} guests"}]'), [{ key: 'a', es: '{n} viajeros' }])[0].warn, undefined);
+    });
+    test('parseResponse falla con mensajes claros', function () {
+      function msg(g, items) { try { TC.parseResponse(g, items || [{ key: 'a', es: 'x' }]); return null; } catch (e) { return e.message; } }
+      ok(/ninguna traducción/.test(msg({}))); ok(/no ha querido/.test(msg({ promptFeedback: { blockReason: 'SAFETY' } })));
+      ok(/No se ha podido leer/.test(msg(gem('esto no es json')))); ok(/formato esperado/.test(msg(gem('{"a":1}'))));
+      ok(/Falta la traducción de «a»/.test(msg(gem('[{"key":"z","en":"x"}]')))); ok(/Falta la traducción/.test(msg(gem('[{"key":"a","en":"  "}]'))));
+    });
+  }
+
   /* ---- resumen ---- */
   var failed = results.filter(function (r) { return !r.ok; });
   G.__testSummary = { total: results.length, failed: failed.length };

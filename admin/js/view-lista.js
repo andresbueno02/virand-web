@@ -9,7 +9,7 @@
       label: function (r) { return r.q_es || 'Nueva pregunta'; },
       fields: [['q_es', 'Pregunta (español)', 'text'], ['q_en', 'Pregunta (inglés)', 'text'], ['a_es', 'Respuesta (español)', 'area'], ['a_en', 'Respuesta (inglés)', 'area']],
       flags: [['active', 'Visible en la web'], ['needs_review', 'Pendiente de revisar (solo aviso interno)']],
-      required: ['q_es', 'a_es'], blank: { active: true, needs_review: false }
+      tr: [['q_es', 'q_en'], ['a_es', 'a_en']], required: ['q_es', 'a_es'], blank: { active: true, needs_review: false }
     },
     reviews: {
       table: 'reviews', title: 'Opiniones', add: '＋ Añadir opinión',
@@ -17,7 +17,7 @@
       label: function (r) { return (r.author_es ? r.author_es + ': ' : '') + (r.text_es || 'Nueva opinión').slice(0, 70); },
       fields: [['text_es', 'Opinión (español)', 'area'], ['text_en', 'Opinión (inglés)', 'area'], ['author_es', 'Autor (español)', 'text'], ['author_en', 'Autor (inglés)', 'text'], ['rating', 'Estrellas (1-5)', 'number']],
       flags: [['active', 'Visible en la web']],
-      required: ['text_es'], blank: { active: true, rating: 5 }
+      tr: [['text_es', 'text_en'], ['author_es', 'author_en']], required: ['text_es'], blank: { active: true, rating: 5 }
     }
   };
 
@@ -33,7 +33,7 @@
           '<input type="' + (f[2] === 'number' ? 'number" min="1" max="5' : 'text') + '" name="' + f[0] + '" value="' + esc(v) + '">') + '</label>';
       }).join('') +
       cfg.flags.map(function (f) { return '<label class="chk"><input type="checkbox" name="' + f[0] + '"' + (r[f[0]] ? ' checked' : '') + '><span>' + esc(f[1]) + '</span></label>'; }).join('') +
-      '<div class="actions"><button type="button" class="btn btn-primary" data-act="save">Guardar</button>' +
+      '<div class="actions"><button type="button" class="btn btn-primary" data-act="save">Guardar</button><button type="button" class="btn btn-ghost" data-act="tr">✨ Traducir al inglés (IA)</button>' +
       (r.id ? '<button type="button" class="btn btn-danger" data-act="del">Borrar</button>' : '<button type="button" class="btn btn-ghost" data-act="cancel">Cancelar</button>') +
       '</div></div></details>';
   }
@@ -62,6 +62,14 @@
       var b = e.target.closest('[data-act]'); if (!b) return;
       var act = b.getAttribute('data-act'), item = b.closest('.item'), id = item && item.getAttribute('data-id');
       if (act === 'add') { var d = document.getElementById('draft'); d.innerHTML = itemHtml(cfg, cfg.blank, true); d.querySelector('input,textarea').focus(); return; }
+      if (act === 'tr') {
+        var pairs = cfg.tr, has = pairs.some(function (pr) { return item.querySelector('[name="' + pr[1] + '"]').value.trim(); });
+        if (has && !window.confirm('Ya hay texto en inglés. ¿Sustituirlo por la traducción automática?')) return;
+        U.translate(pairs.map(function (pr) { return { key: pr[0], es: item.querySelector('[name="' + pr[0] + '"]').value }; }), b).then(function (m) {
+          if (m) pairs.forEach(function (pr) { if (m[pr[0]]) item.querySelector('[name="' + pr[1] + '"]').value = m[pr[0]]; });
+        });
+        return;
+      }
       if (act === 'cancel') { document.getElementById('draft').innerHTML = ''; return; }
       if (act === 'up' || act === 'down') {
         e.preventDefault(); e.stopPropagation();

@@ -69,7 +69,8 @@
         '<fieldset><legend>Servicios destacados</legend><p class="muted">Los tres primeros aparecen en la tarjeta del piso; todos en su ficha.</p><div class="checks">' +
         L.SERVICIOS.map(function (s) { return '<label class="chk"><input type="checkbox" name="servicios" value="' + s[0] + '"' + (form0.servicios.indexOf(s[0]) !== -1 ? ' checked' : '') + '><span>' + esc(s[1]) + '</span></label>'; }).join('') +
         '</div></fieldset>' +
-        '<fieldset><legend>Descripción</legend>' + field('desc_es', 'Español', form0.desc_es, { area: 6 }) + field('desc_en', 'Inglés', form0.desc_en, { area: 6, hint: 'Más adelante el panel propondrá la traducción automáticamente.' }) + '</fieldset>' +
+        '<fieldset><legend>Descripción</legend>' + field('desc_es', 'Español', form0.desc_es, { area: 6 }) + field('desc_en', 'Inglés', form0.desc_en, { area: 6 }) +
+        '<button type="button" class="btn btn-ghost" id="trBtn">✨ Traducir nombre y descripción al inglés (IA)</button><p class="muted">Es una propuesta automática: revísala antes de guardar.</p></fieldset>' +
         '<fieldset><legend>Precio y valoración</legend><div class="grid2">' +
         field('base_price', 'Precio temporada baja (€ por noche)', form0.base_price, { dec: true, ph: '95', hint: 'Los periodos de temporada alta y los precios por día se configuran en «Precios».' }) +
         field('price_high', 'Precio temporada alta (€ por noche)', form0.price_high, { dec: true, ph: '140' }) +
@@ -85,6 +86,13 @@
 
       if (!isNew) photoManager(row, photos);
       var form = document.getElementById('flatForm'), slugTouched = !isNew;
+      document.getElementById('trBtn').addEventListener('click', function () {
+        var btn = this, hasEn = form.elements.name_en.value.trim() || form.elements.desc_en.value.trim();
+        if (hasEn && !window.confirm('Ya hay texto en inglés. ¿Sustituirlo por la traducción automática?')) return;
+        U.translate([{ key: 'name', es: form.elements.name_es.value }, { key: 'desc', es: form.elements.desc_es.value }], btn).then(function (m) {
+          if (!m) return; if (m.name) form.elements.name_en.value = m.name; if (m.desc) form.elements.desc_en.value = m.desc;
+        });
+      });
       if (isNew) {
         form.elements.slug.addEventListener('input', function () { slugTouched = true; });
         form.elements.name_es.addEventListener('input', function () { if (!slugTouched) form.elements.slug.value = L.uniqueSlug(form.elements.name_es.value, all.map(function (f) { return f.slug; })); });

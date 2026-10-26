@@ -6,6 +6,6 @@ JSC=/System/Library/Frameworks/JavaScriptCore.framework/Versions/Current/Helpers
 [ -x "$JSC" ] || JSC=/System/Library/Frameworks/JavaScriptCore.framework/Helpers/jsc
 TMP="$(mktemp -t virand-tests).js"
 trap 'rm -f "$TMP"' EXIT
-cat assets/js/ranges.js assets/js/ical.js assets/js/search.js assets/js/whatsapp.js admin/js/logic.js assets/js/data-source.js assets/js/pricing.js assets/js/photo.js tests/cases.js > "$TMP"
+cat assets/js/ranges.js assets/js/ical.js assets/js/search.js assets/js/whatsapp.js admin/js/logic.js assets/js/data-source.js assets/js/pricing.js assets/js/photo.js supabase/functions/translate/core.js tests/cases.js > "$TMP"
 echo 'if (__testExit) throw new Error("hay pruebas que fallan");' >> "$TMP"
 "$JSC" "$TMP"
