@@ -80,31 +80,6 @@
  ],
  "flats": [
   {
-   "banos": 1,
-   "barrio": "Playa",
-   "camas": 2,
-   "desc_en": "Entire apartment in Benalmádena, right on the beach, with a heated jacuzzi and barbecue on the terrace. Sleeps 4 guests in 2 bedrooms.",
-   "desc_es": "Apartamento entero en Benalmádena, frente a la playa, con jacuzzi climatizado y barbacoa en su terraza. Alojamiento para 4 viajeros con 2 dormitorios.",
-   "dormitorios": 2,
-   "lat": 36.5955,
-   "lng": -4.5695,
-   "name_en": "Beachfront penthouse with heated jacuzzi",
-   "name_es": "Ático frente a la playa con jacuzzi climatizado",
-   "nota": null,
-   "precio_alta": null,
-   "precio_baja": null,
-   "precio_desde": null,
-   "servicios": [
-    "playa",
-    "jacuzzi",
-    "barbacoa"
-   ],
-   "slug": "atico-benalmadena",
-   "sort": 0,
-   "viajeros": 4,
-   "zona": "Benalmádena"
-  },
-  {
    "banos": 2,
    "barrio": "Playa",
    "camas": 5,
@@ -339,6 +314,31 @@
   },
   {
    "banos": 1,
+   "barrio": "Playa",
+   "camas": 2,
+   "desc_en": "Entire apartment in Benalmádena, right on the beach, with a heated jacuzzi and barbecue on the terrace. Sleeps 4 guests in 2 bedrooms.",
+   "desc_es": "Apartamento entero en Benalmádena, frente a la playa, con jacuzzi climatizado y barbacoa en su terraza. Alojamiento para 4 viajeros con 2 dormitorios.",
+   "dormitorios": 2,
+   "lat": 36.5955,
+   "lng": -4.5695,
+   "name_en": "Beachfront penthouse with heated jacuzzi",
+   "name_es": "Ático frente a la playa con jacuzzi climatizado",
+   "nota": null,
+   "precio_alta": 190.0,
+   "precio_baja": 105.0,
+   "precio_desde": 105.0,
+   "servicios": [
+    "playa",
+    "jacuzzi",
+    "barbacoa"
+   ],
+   "slug": "atico-benalmadena",
+   "sort": 0,
+   "viajeros": 4,
+   "zona": "Benalmádena"
+  },
+  {
+   "banos": 1,
    "barrio": null,
    "camas": null,
    "desc_en": "Family apartment with three spacious bedrooms and a bathroom with shower, 20 minutes from the historic centre of Málaga and a 13-minute walk from the train station. Kitchen with fridge and microwave, washing machine and a TV with Netflix, Prime, Disney and Max. Free parking space 400 metres away, for a 5-seater car only.",
@@ -493,55 +493,6 @@
   }
  ],
  "photos": [
-  {
-   "alt_en": "Ático frente a la playa con jacuzzi climatizado: photo 1",
-   "alt_es": "Ático frente a la playa con jacuzzi climatizado: foto 1",
-   "path": "assets/img/pisos/atico-benalmadena/1",
-   "slug": "atico-benalmadena",
-   "sort": 0
-  },
-  {
-   "alt_en": "Ático frente a la playa con jacuzzi climatizado: photo 2",
-   "alt_es": "Ático frente a la playa con jacuzzi climatizado: foto 2",
-   "path": "assets/img/pisos/atico-benalmadena/2",
-   "slug": "atico-benalmadena",
-   "sort": 1
-  },
-  {
-   "alt_en": "Ático frente a la playa con jacuzzi climatizado: photo 3",
-   "alt_es": "Ático frente a la playa con jacuzzi climatizado: foto 3",
-   "path": "assets/img/pisos/atico-benalmadena/3",
-   "slug": "atico-benalmadena",
-   "sort": 2
-  },
-  {
-   "alt_en": "Ático frente a la playa con jacuzzi climatizado: photo 4",
-   "alt_es": "Ático frente a la playa con jacuzzi climatizado: foto 4",
-   "path": "assets/img/pisos/atico-benalmadena/4",
-   "slug": "atico-benalmadena",
-   "sort": 3
-  },
-  {
-   "alt_en": "Ático frente a la playa con jacuzzi climatizado: photo 5",
-   "alt_es": "Ático frente a la playa con jacuzzi climatizado: foto 5",
-   "path": "assets/img/pisos/atico-benalmadena/5",
-   "slug": "atico-benalmadena",
-   "sort": 4
-  },
-  {
-   "alt_en": "Ático frente a la playa con jacuzzi climatizado: photo 6",
-   "alt_es": "Ático frente a la playa con jacuzzi climatizado: foto 6",
-   "path": "assets/img/pisos/atico-benalmadena/6",
-   "slug": "atico-benalmadena",
-   "sort": 5
-  },
-  {
-   "alt_en": "Ático frente a la playa con jacuzzi climatizado: photo 7",
-   "alt_es": "Ático frente a la playa con jacuzzi climatizado: foto 7",
-   "path": "assets/img/pisos/atico-benalmadena/7",
-   "slug": "atico-benalmadena",
-   "sort": 6
-  },
   {
    "alt_en": "Cosy Flat in the heart of Málaga: photo 1",
    "alt_es": "Cosy Flat en el corazón de Málaga: foto 1",
@@ -800,6 +751,20 @@
    "path": "assets/img/pisos/sol-centro-malaga/9",
    "slug": "sol-centro-malaga",
    "sort": 8
+  },
+  {
+   "alt_en": "Ático frente a la playa con jacuzzi climatizado: photo 3",
+   "alt_es": "Ático frente a la playa con jacuzzi climatizado: foto 3",
+   "path": "assets/img/pisos/atico-benalmadena/3",
+   "slug": "atico-benalmadena",
+   "sort": 0
+  },
+  {
+   "alt_en": "Ático frente a la playa con jacuzzi climatizado: photo 5",
+   "alt_es": "Ático frente a la playa con jacuzzi climatizado: foto 5",
+   "path": "assets/img/pisos/atico-benalmadena/5",
+   "slug": "atico-benalmadena",
+   "sort": 2
   },
   {
    "alt_en": "Benalmarina Apartment: photo 14",
@@ -1780,6 +1745,27 @@
    "path": "assets/img/pisos/city-apartment-carranque/14",
    "slug": "city-apartment-carranque",
    "sort": 13
+  },
+  {
+   "alt_en": "Ático frente a la playa con jacuzzi climatizado: photo 4",
+   "alt_es": "Ático frente a la playa con jacuzzi climatizado: foto 4",
+   "path": "assets/img/pisos/atico-benalmadena/4",
+   "slug": "atico-benalmadena",
+   "sort": 1
+  },
+  {
+   "alt_en": "Ático frente a la playa con jacuzzi climatizado: photo 6",
+   "alt_es": "Ático frente a la playa con jacuzzi climatizado: foto 6",
+   "path": "assets/img/pisos/atico-benalmadena/6",
+   "slug": "atico-benalmadena",
+   "sort": 3
+  },
+  {
+   "alt_en": "Ático frente a la playa con jacuzzi climatizado: photo 7",
+   "alt_es": "Ático frente a la playa con jacuzzi climatizado: foto 7",
+   "path": "assets/img/pisos/atico-benalmadena/7",
+   "slug": "atico-benalmadena",
+   "sort": 4
   }
  ],
  "pricing": {
@@ -1791,8 +1777,8 @@
    },
    "atico-benalmadena": {
     "days": {},
-    "high": null,
-    "low": null
+    "high": 190.0,
+    "low": 105.0
    },
    "benalmarina-apartment": {
     "days": {},
@@ -1865,7 +1851,14 @@
     "low": 319.0
    }
   },
-  "seasons": []
+  "seasons": [
+   {
+    "from": "2026-06-01",
+    "label": null,
+    "to": "2026-09-15",
+    "yearly": true
+   }
+  ]
  },
  "reviews": [
   {
