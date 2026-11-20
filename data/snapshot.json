@@ -757,14 +757,14 @@
    "alt_es": "Ático frente a la playa con jacuzzi climatizado: foto 3",
    "path": "assets/img/pisos/atico-benalmadena/3",
    "slug": "atico-benalmadena",
-   "sort": 0
+   "sort": 1
   },
   {
    "alt_en": "Ático frente a la playa con jacuzzi climatizado: photo 5",
    "alt_es": "Ático frente a la playa con jacuzzi climatizado: foto 5",
    "path": "assets/img/pisos/atico-benalmadena/5",
    "slug": "atico-benalmadena",
-   "sort": 2
+   "sort": 0
   },
   {
    "alt_en": "Benalmarina Apartment: photo 14",
@@ -1747,13 +1747,6 @@
    "sort": 13
   },
   {
-   "alt_en": "Ático frente a la playa con jacuzzi climatizado: photo 4",
-   "alt_es": "Ático frente a la playa con jacuzzi climatizado: foto 4",
-   "path": "assets/img/pisos/atico-benalmadena/4",
-   "slug": "atico-benalmadena",
-   "sort": 1
-  },
-  {
    "alt_en": "Ático frente a la playa con jacuzzi climatizado: photo 6",
    "alt_es": "Ático frente a la playa con jacuzzi climatizado: foto 6",
    "path": "assets/img/pisos/atico-benalmadena/6",
@@ -1766,6 +1759,13 @@
    "path": "assets/img/pisos/atico-benalmadena/7",
    "slug": "atico-benalmadena",
    "sort": 4
+  },
+  {
+   "alt_en": "Ático frente a la playa con jacuzzi climatizado: photo 4",
+   "alt_es": "Ático frente a la playa con jacuzzi climatizado: foto 4",
+   "path": "assets/img/pisos/atico-benalmadena/4",
+   "slug": "atico-benalmadena",
+   "sort": 2
   }
  ],
  "pricing": {
