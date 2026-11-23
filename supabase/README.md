@@ -46,3 +46,20 @@ Por defecto usa el alias `gemini-flash-lite-latest` (siempre el último Flash-Li
 
 ### Comprobar
 En el panel: Pisos → editar uno → «Traducir nombre y descripción al inglés». Si sale un mensaje en rojo, dice qué falta (clave, límite, modelo).
+
+## Sincronización de calendarios iCal (Airbnb / Booking)
+El panel tiene la pestaña **Calendario**, donde se gestionan reservas directas, bloqueos manuales y los enlaces iCal de cada piso. La Edge Function `sync-ical` descarga esos iCal y rellena `ical_blocks` para que la web muestre la ocupación real.
+
+### Desplegar la función
+- **Con CLI:**
+  ```
+  supabase functions deploy sync-ical
+  ```
+- **Sin CLI (panel de Supabase):**
+  1. `python3 supabase/make_function.py sync-ical` y `pbcopy < supabase/dist/sync-ical.ts`.
+  2. Supabase → **Edge Functions → Deploy a new function → Via Editor**, nombre `sync-ical`, pega y **Deploy**.
+
+### Refresco automático cada 30 minutos (opcional)
+1. Inventa una clave larga aleatoria (p. ej. `openssl rand -hex 24`).
+2. Guárdala en Supabase (**Edge Functions → Secrets**) como `SYNC_ICAL_SECRET`.
+3. Guárdala también en GitHub (**Settings → Secrets and variables → Actions**) como `SYNC_ICAL_SECRET`. El workflow `.github/workflows/sync-ical.yml` sincronizará todos los pisos cada 30 minutos automáticamente.

@@ -112,11 +112,6 @@
     var list = S.sortPisos(S.filterPisos(st.pisos, st.f, st.avail), st.f.orden, st.avail);
     $('#cards').innerHTML = list.length ? list.map(cardHtml).join('') : '<p class="empty">' + esc(t('empty')) + '</p>';
     $('#count').textContent = list.length === 1 ? t('count.1') : t('count.n', { n: list.length });
-    var items = list.map(function (p) {
-      var pr = priceOf(p);
-      return { slug: p.slug, lat: p.lat, lng: p.lng, label: pr ? pr + ' €' : '·', name: loc(p.nombre), priceText: pr ? t('card.from') + ' ' + pr + ' € ' + t('card.night') : t('card.consult'), thumb: sizes(p, 0).s };
-    });
-    window.VirandMap.update(items);
   }
 
   /* ---------- secciones estáticas ---------- */
@@ -242,7 +237,6 @@
     document.body.classList.add('modal-open');
     sheet.querySelector('.close').focus();
     if (push !== false && location.hash !== '#piso=' + slug) history.pushState({ modal: slug }, '', '#piso=' + slug);
-    window.VirandMap.highlight(slug);
   }
 
   function updateBooking() {
@@ -282,7 +276,6 @@
     document.body.style.overflow = '';
     document.body.classList.remove('modal-open');
     if (!fromPop) history.replaceState(null, '', location.pathname + location.search);
-    window.VirandMap.highlight(null);
     if (lastFocus && lastFocus.focus) lastFocus.focus();
   }
   window.addEventListener('popstate', function () {
@@ -324,7 +317,6 @@
     var a = e.target.closest('.card'); if (!a) return;
     e.preventDefault(); openModal(a.getAttribute('data-slug'));
   });
-  $('#cards').addEventListener('mouseover', function (e) { var a = e.target.closest('.card'); window.VirandMap.highlight(a ? a.getAttribute('data-slug') : null); });
   var svcBox = $('#svcFilters');
   if (svcBox) svcBox.addEventListener('click', function (e) {
     var b = e.target.closest('[data-svc]'); if (!b) return;
@@ -337,11 +329,6 @@
   $('#searchForm').addEventListener('submit', function (e) { e.preventDefault(); readSearch(); $('#alojamientos').scrollIntoView(); });
   $('#fSort').addEventListener('change', function () { st.f.orden = this.value; renderList(); });
   $('#clearDates').addEventListener('click', function () { $('#fIn').value = ''; $('#fOut').value = ''; readSearch(); });
-  $('#viewToggle').addEventListener('click', function (e) {
-    var b = e.target.closest('[data-view]'); if (!b) return;
-    $('#layout').setAttribute('data-view', b.getAttribute('data-view'));
-    document.querySelectorAll('#viewToggle button').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
-  });
   document.querySelectorAll('[data-lang]').forEach(function (b) {
     b.addEventListener('click', function () { setLang(b.getAttribute('data-lang')); });
   });
@@ -371,7 +358,6 @@
       st.pisos = d.pisos.filter(function (p) { return p.activo !== false; });
       st.opiniones = d.opiniones; st.faq = d.faq; st.pricing = d.pricing || null;
       applyStatic(); fillSearchControls(); renderServiceFilters(); renderWhy(); renderReviews(); renderFaq();
-      window.VirandMap.init({ container: $('#mapbox'), t: t, viewLabel: function () { return t('map.view'); }, onSelect: function (slug) { openModal(slug); }, onHover: function () {}, onUnavailable: function () { $('#layout').classList.add('no-map'); document.body.classList.add('no-map'); } });
       renderList();
       var m = /#piso=([\w-]+)/.exec(location.hash); if (m) openModal(m[1], false);
       return window.VirandAvailability.load();

@@ -62,7 +62,33 @@
     clearDayPrices: function (flatId, days) { return client.from('day_prices').delete().eq('flat_id', flatId).in('day', days).then(must); },
 
     listTexts: function () { return client.from('site_texts').select('*').then(must); },
-    saveTexts: function (rows) { return client.from('site_texts').upsert(rows, { onConflict: 'key,lang' }).then(must); }
+    saveTexts: function (rows) { return client.from('site_texts').upsert(rows, { onConflict: 'key,lang' }).then(must); },
+
+    listBookings: function (flatId) { return client.from('bookings').select('*').eq('flat_id', flatId).order('check_in').then(must); },
+    saveBooking: function (row) {
+      var id = row.id; if (id) { delete row.id; }
+      return (id ? client.from('bookings').update(row).eq('id', id) : client.from('bookings').insert(row)).select().single().then(must);
+    },
+    removeBooking: function (id) { return client.from('bookings').delete().eq('id', id).then(must); },
+    listIcalSources: function (flatId) {
+      var q = client.from('ical_sources').select('*').order('label');
+      return (flatId ? q.eq('flat_id', flatId) : q).then(must);
+    },
+    saveIcalSource: function (row) {
+      var id = row.id; if (id) { delete row.id; }
+      return (id ? client.from('ical_sources').update(row).eq('id', id) : client.from('ical_sources').insert(row)).select().single().then(must);
+    },
+    removeIcalSource: function (id) { return client.from('ical_sources').delete().eq('id', id).then(must); },
+    listIcalBlocks: function (flatId) { return client.from('ical_blocks').select('*').eq('flat_id', flatId).order('start_date').then(must); },
+    syncIcal: function (flatId) {
+      return client.functions.invoke('sync-ical', { body: flatId ? { flat_id: flatId } : {} }).then(function (r) {
+        if (!r.error) return r.data;
+        var m = r.error.message || 'No se pudo sincronizar el calendario.';
+        var ctx = r.error.context;
+        if (ctx && ctx.json) return ctx.json().then(function (j) { throw new Error(j && j.error ? j.error : m); }, function () { throw new Error(m); });
+        throw new Error(m);
+      });
+    }
   };
   root.Api = Api;
 })(window);

@@ -105,8 +105,7 @@
         '<button type="button" data-jump="photosBox">Fotos' + (photos.length ? ' (' + photos.length + ')' : '') + '</button>' +
         '<button type="button" data-jump="sec-precios">Precios</button>' +
         '<button type="button" data-jump="sec-cap">Capacidad</button>' +
-        '<button type="button" data-jump="sec-desc">Descripción</button>' +
-        '<button type="button" data-jump="sec-mapa">Mapa</button></div>' +
+        '<button type="button" data-jump="sec-desc">Descripción</button></div>' +
         '<form id="flatForm" novalidate>' +
         '<fieldset id="sec-basico"><legend>Datos básicos</legend><div class="grid2">' +
         field('name_es', 'Nombre (español)', form0.name_es) + field('name_en', 'Nombre (inglés)', form0.name_en) +
@@ -131,10 +130,9 @@
         L.SERVICIOS.map(function (s) { return '<label class="chk"><input type="checkbox" name="servicios" value="' + s[0] + '"' + (form0.servicios.indexOf(s[0]) !== -1 ? ' checked' : '') + '><span>' + esc(s[1]) + '</span></label>'; }).join('') +
         '</div></fieldset>' +
         '<fieldset id="sec-desc"><legend>Descripción</legend>' + field('desc_es', 'Español', form0.desc_es, { area: 5 }) + field('desc_en', 'Inglés', form0.desc_en, { area: 5 }) +
-        '<button type="button" class="btn btn-ghost" id="trBtn">✨ Traducir nombre y descripción al inglés (IA)</button><p class="muted" style="margin-top:6px">Es una propuesta automática: revísala antes de guardar.</p></fieldset>' +
-        '<fieldset id="sec-mapa"><legend>Ubicación en el mapa</legend><div class="grid2">' +
-        field('lat', 'Latitud', form0.lat, { ph: '36.7213', hint: 'Posición aproximada de la zona, no el portal exacto.' }) + field('lng', 'Longitud', form0.lng, { ph: '-4.4214' }) + '</div>' +
-        (hasCoords ? '<a class="btn btn-ghost sm" id="mapPreview" href="https://www.google.com/maps?q=' + encodeURIComponent(form0.lat + ',' + form0.lng) + '" target="_blank" rel="noopener">' + U.ico('ext') + '<span>Comprobar en Google Maps</span></a>' : '') + '</fieldset>' +
+        '<button type="button" class="btn btn-ghost" id="trBtn">✨ Traducir nombre y descripción al inglés (IA)</button><p class="muted" style="margin-top:6px">Es una propuesta automática: revísala antes de guardar.</p>' +
+        '<details class="adv"><summary>Coordenadas (opcional)</summary><div class="grid2">' +
+        field('lat', 'Latitud', form0.lat, { ph: '36.7213' }) + field('lng', 'Longitud', form0.lng, { ph: '-4.4214' }) + '</div></details></fieldset>' +
         '<div id="errs" class="errs" hidden></div>' +
         '<div class="savebar" id="savebar"><span class="sb-msg" id="sbMsg">Sin cambios pendientes</span><div class="sb-act"><a class="btn btn-ghost" href="#/pisos">Cancelar</a><button type="submit" class="btn btn-primary">Guardar cambios</button></div></div></form>';
 

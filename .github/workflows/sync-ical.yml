@@ -1,0 +1,16 @@
+name: Sincronizar calendarios iCal (Airbnb / Booking)
+on:
+  schedule:
+    - cron: '*/30 * * * *'   # cada 30 minutos
+  workflow_dispatch: {}
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Llamar a la Edge Function sync-ical
+        if: ${{ secrets.SYNC_ICAL_SECRET != '' }}
+        run: |
+          curl -fsS -X POST "https://mtjfvphlcwzkemtocyff.supabase.co/functions/v1/sync-ical" \
+            -H "Content-Type: application/json" \
+            -H "x-sync-secret: ${{ secrets.SYNC_ICAL_SECRET }}" \
+            -d '{}'
