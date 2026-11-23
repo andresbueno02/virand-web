@@ -86,8 +86,13 @@
       </div>
       <span class="count" id="count" aria-live="polite"></span>
     </div>
+    <div class="svc-filters" id="svcFilters" role="group" data-i18n-aria="filters.services" aria-label="Filtrar por servicio" hidden></div>
     <div class="layout" id="layout" data-view="list">
-      <div class="cards" id="cards"></div>
+      <div class="cards" id="cards">
+        <div class="card skel" aria-hidden="true"><div class="im"></div><div class="body"><span class="sk-s"></span><span class="sk-t"></span><span class="sk-m"></span></div></div>
+        <div class="card skel" aria-hidden="true"><div class="im"></div><div class="body"><span class="sk-s"></span><span class="sk-t"></span><span class="sk-m"></span></div></div>
+        <div class="card skel" aria-hidden="true"><div class="im"></div><div class="body"><span class="sk-s"></span><span class="sk-t"></span><span class="sk-m"></span></div></div>
+      </div>
       <div id="mapbox" aria-label="Mapa"></div>
     </div>
   </div>
@@ -140,8 +145,18 @@
 
 <footer><div class="wrap" data-i18n="footer">© 2026 VirAnd. Todos los derechos reservados.</div></footer>
 
+<a class="wa-float" id="waFloat" target="_blank" rel="noopener" data-i18n-aria="wa.float" aria-label="Escríbenos por WhatsApp"></a>
+
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle" hidden>
   <div class="sheet" id="sheet"></div>
+</div>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Galería" hidden>
+  <button type="button" class="lb-close" id="lbClose" data-i18n-aria="modal.close" aria-label="Cerrar">×</button>
+  <button type="button" class="lb-btn prev" id="lbPrev" data-i18n-aria="modal.prev" aria-label="Foto anterior">‹</button>
+  <img id="lbImg" alt="">
+  <button type="button" class="lb-btn next" id="lbNext" data-i18n-aria="modal.next" aria-label="Foto siguiente">›</button>
+  <span class="lb-count" id="lbCount"></span>
 </div>
 
 <script src="assets/js/config.js"></script>

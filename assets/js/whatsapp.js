@@ -11,9 +11,22 @@
   }
 
   function buildMessage(o) {
+    o = o || {};
     var lang = o.lang === 'en' ? 'en' : 'es';
     var n = +o.personas || 0;
     var fechas = o.llegada && o.salida;
+    if (!o.nombre) {
+      if (lang === 'en') {
+        var g = 'Hi, I\'d like to ask about availability and prices for a stay';
+        if (fechas) g += ' from ' + fmt(o.llegada, 'en') + ' to ' + fmt(o.salida, 'en');
+        if (n) g += ' for ' + n + (n === 1 ? ' guest' : ' guests');
+        return g + '.';
+      }
+      var ge = 'Hola, me gustaría consultar disponibilidad y precios para un alojamiento';
+      if (fechas) ge += ' del ' + fmt(o.llegada, 'es') + ' al ' + fmt(o.salida, 'es');
+      if (n) ge += ' para ' + n + (n === 1 ? ' persona' : ' personas');
+      return ge + '.';
+    }
     if (lang === 'en') {
       var s = 'Hi, I\'m interested in "' + o.nombre + '"';
       if (fechas) s += ' from ' + fmt(o.llegada, 'en') + ' to ' + fmt(o.salida, 'en');

@@ -151,6 +151,16 @@
   test('filterPisos: sin avail no excluye por fechas', function () {
     eq(slugs(S.filterPisos(pisos, { llegada: '2026-11-03', salida: '2026-11-06' }, null)), ['a', 'b', 'c', 'e']);
   });
+  test('filterPisos: servicios (AND)', function () {
+    var conSvc = [
+      { slug: 'p1', zona: 'Málaga', viajeros: 4, servicios: ['playa', 'piscina', 'wifi'] },
+      { slug: 'p2', zona: 'Málaga', viajeros: 4, servicios: ['playa', 'wifi'] },
+      { slug: 'p3', zona: 'Málaga', viajeros: 4, servicios: [] }
+    ];
+    eq(slugs(S.filterPisos(conSvc, { servicios: ['playa'] }, null)), ['p1', 'p2']);
+    eq(slugs(S.filterPisos(conSvc, { servicios: ['playa', 'piscina'] }, null)), ['p1']);
+    eq(slugs(S.filterPisos(conSvc, { servicios: [] }, null)), ['p1', 'p2', 'p3']);
+  });
   test('precioDesde: avail manda sobre el piso', function () {
     eq(S.precioDesde(pisos[0], avail), 90);
     eq(S.precioDesde(pisos[2], avail), 80);
@@ -202,6 +212,14 @@
     ok(u.indexOf('&') < 0 || u.split('?text=')[1].indexOf('&') < 0, '& debe ir codificado');
     ok(u.split('?text=')[1].indexOf('%26') > -1);
     eq(decode(u), 'Hola, me interesa «' + n + '». ¿Está disponible y cuál es el precio?');
+  });
+  test('WhatsApp consulta general sin nombre de piso (ES/EN)', function () {
+    var es = decode(W.buildLink({ numero: '34654584843', lang: 'es' }));
+    var en = decode(W.buildLink({ numero: '34654584843', lang: 'en' }));
+    ok(es.indexOf('undefined') < 0, es);
+    ok(en.indexOf('undefined') < 0, en);
+    eq(es, 'Hola, me gustaría consultar disponibilidad y precios para un alojamiento.');
+    eq(en, 'Hi, I\'d like to ask about availability and prices for a stay.');
   });
 
   /* ---- panel: lógica pura ---- */

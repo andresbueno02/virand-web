@@ -6,9 +6,11 @@
 
   var st = {
     pricing: null, lang: 'es', dict: { es: {}, en: {} }, pisos: [], opiniones: [], faq: [], avail: null, availLoaded: false,
-    f: { zona: '', personas: 1, llegada: '', salida: '', orden: 'recomendado' },
-    modal: null
+    f: { zona: '', personas: 1, llegada: '', salida: '', orden: 'recomendado', servicios: [] },
+    modal: null, lb: false
   };
+  var QUICK_SVCS = ['playa', 'piscina', 'parking', 'vistas-mar', 'jacuzzi', 'mascotas', 'llegada-autonoma'];
+  var toastTimer = null;
 
   /* ---------- utilidades ---------- */
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
@@ -28,8 +30,17 @@
     return W.buildLink(Object.assign({ numero: CFG.whatsapp, lang: st.lang }, extra || {}));
   }
   function sizes(p, i) {
-    var base = p.fotos[i].src;
-    return { s: window.VirandPhoto.url(base, 640), l: window.VirandPhoto.url(base, 1280) };
+    var f = p.fotos && (p.fotos[i] || p.fotos[0]);
+    if (!f || !f.src) return { s: 'assets/img/hero-900.webp', l: 'assets/img/hero-2000.webp' };
+    return { s: window.VirandPhoto.url(f.src, 640), l: window.VirandPhoto.url(f.src, 1280) };
+  }
+  function placeOf(p) { return p.zona + (p.barrio ? ' · ' + p.barrio : ''); }
+  function showToast(msg) {
+    var el = $('.toast');
+    if (!el) { el = document.createElement('div'); el.className = 'toast'; el.setAttribute('role', 'status'); document.body.appendChild(el); }
+    el.textContent = msg; el.hidden = false;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { el.hidden = true; }, 2400);
   }
 
   /* ---------- i18n estático ---------- */
@@ -42,6 +53,7 @@
     document.querySelectorAll('[data-lang]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-lang') === st.lang)); });
     $('#menuBtn').innerHTML = I.svg('menu');
     $('#waMain').href = waUrl(); $('#waMain').textContent = t('nav.whatsapp');
+    var wf = $('#waFloat'); if (wf) { wf.href = waUrl(); wf.innerHTML = I.svg('whatsapp') + '<span>' + esc(t('nav.whatsapp')) + '</span>'; }
     $('#igLink').href = CFG.instagram; $('#fbLink').href = CFG.facebook;
   }
 
@@ -71,14 +83,25 @@
   function amenHtml(list, limit) {
     return (list || []).slice(0, limit || 99).map(function (k) { return '<span>' + I.svg(k) + esc(t('svc.' + k)) + '</span>'; }).join('');
   }
+  function renderServiceFilters() {
+    var box = $('#svcFilters'); if (!box) return;
+    var avail = QUICK_SVCS.filter(function (k) { return st.pisos.some(function (p) { return (p.servicios || []).indexOf(k) !== -1; }); });
+    if (!avail.length) { box.hidden = true; return; }
+    box.hidden = false;
+    box.innerHTML = avail.map(function (k) {
+      var on = st.f.servicios.indexOf(k) !== -1;
+      return '<button type="button" class="svc-chip" data-svc="' + esc(k) + '" aria-pressed="' + String(on) + '">' + I.svg(k) + esc(t('svc.' + k)) + '</button>';
+    }).join('');
+  }
   function cardHtml(p) {
     var pr = priceOf(p), im = sizes(p, 0), name = loc(p.nombre);
+    var alt = p.fotos && p.fotos[0] ? loc(p.fotos[0].alt) : name;
     var dates = st.f.llegada && st.f.salida;
     var free = dates && S.estadoDisponibilidad(st.avail, p.slug, st.f.llegada, st.f.salida) === 'libre';
     return '<a class="card" href="#piso=' + esc(p.slug) + '" data-slug="' + esc(p.slug) + '">' +
-      '<div class="im"><img src="' + esc(im.s) + '" srcset="' + esc(im.s) + ' 640w, ' + esc(im.l) + ' 1280w" sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 30vw" width="640" height="480" loading="lazy" alt="' + esc(loc(p.fotos[0].alt)) + '">' +
+      '<div class="im"><img src="' + esc(im.s) + '" srcset="' + esc(im.s) + ' 640w, ' + esc(im.l) + ' 1280w" sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 30vw" width="640" height="480" loading="lazy" alt="' + esc(alt) + '">' +
       (free ? '<span class="badge">' + esc(t('card.free')) + '</span>' : '') + '</div>' +
-      '<div class="body"><span class="zone">' + esc(p.zona) + '</span><h3>' + esc(name) + '</h3>' +
+      '<div class="body"><span class="zone">' + esc(placeOf(p)) + '</span><h3>' + esc(name) + '</h3>' +
       '<p class="meta">' + esc(plural('guest', p.viajeros)) + ' · ' + esc(plural('bedroom', p.dormitorios)) + ' · ' + esc(plural('bath', p.banos)) + '</p>' +
       '<div class="chips">' + amenHtml(p.servicios, 3) + '</div>' +
       '<div class="foot"><span class="price">' + (pr ? '<small>' + esc(t('card.from')) + '</small> <b>' + pr + ' €</b> <small>' + esc(t('card.night')) + '</small>' : '<small>' + esc(t('card.consult')) + '</small>') + '</span>' +
@@ -117,12 +140,51 @@
     ld.textContent = JSON.stringify({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: st.faq.map(function (q) { return { '@type': 'Question', name: loc(q.pregunta), acceptedAnswer: { '@type': 'Answer', text: loc(q.respuesta) } }; }) });
   }
 
-  /* ---------- modal de detalle ---------- */
+  /* ---------- modal de detalle y lightbox ---------- */
   var lastFocus = null;
+  function shareFlat(name) {
+    var url = location.href;
+    if (navigator.share) {
+      navigator.share({ title: name + ' · VirAnd', url: url }).catch(function () {});
+      return;
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(function () { showToast(t('wa.copy')); }).catch(function () { copyFallback(url); });
+    } else copyFallback(url);
+  }
+  function copyFallback(text) {
+    var ta = document.createElement('textarea'); ta.value = text; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); showToast(t('wa.copy')); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+  function syncLightbox() {
+    if (!st.lb || !st.modal) return;
+    var p = st.modal.p, fotos = p.fotos || [], n = fotos.length;
+    if (!n) { closeLightbox(); return; }
+    var f = fotos[st.modal.g];
+    var img = $('#lbImg'); img.src = window.VirandPhoto.url(f.src, 1280); img.alt = loc(f.alt);
+    $('#lbCount').textContent = (st.modal.g + 1) + ' / ' + n;
+    $('#lbPrev').hidden = n < 2; $('#lbNext').hidden = n < 2;
+  }
+  function openLightbox() {
+    if (!st.modal || !(st.modal.p.fotos && st.modal.p.fotos.length)) return;
+    st.lb = true;
+    var lb = $('#lightbox'); lb.hidden = false;
+    syncLightbox();
+    $('#lbClose').focus();
+  }
+  function closeLightbox() {
+    if (!st.lb) return;
+    st.lb = false;
+    $('#lightbox').hidden = true;
+    var btn = $('#sheet .close'); if (btn) btn.focus();
+  }
+
   function openModal(slug, push) {
     var p = st.pisos.filter(function (x) { return x.slug === slug; })[0];
     if (!p) return;
-    lastFocus = document.activeElement;
+    if (!st.modal) lastFocus = document.activeElement;
     var m = { p: p, g: 0, llegada: st.f.llegada || '', salida: st.f.salida || '', personas: Math.min(st.f.personas, p.viajeros), cal: null };
     st.modal = m;
     var a = st.avail && st.avail.pisos && st.avail.pisos[slug];
@@ -130,17 +192,21 @@
     var obsoleto = a && a.obsoleto;
     var pr = priceOf(p);
     var name = loc(p.nombre);
+    var fotos = p.fotos || [];
     $('#sheet').innerHTML =
       '<button class="close" type="button" aria-label="' + esc(t('modal.close')) + '">×</button>' +
-      '<div class="gallery" id="gal" role="group" aria-label="' + esc(t('modal.photos', { name: name })) + '"><img alt=""><button type="button" class="gal-btn prev" aria-label="' + esc(t('modal.prev')) + '">‹</button><button type="button" class="gal-btn next" aria-label="' + esc(t('modal.next')) + '">›</button><span class="gal-count"></span></div>' +
-      '<div class="thumbs" id="thumbs">' + p.fotos.map(function (f, i) { return '<button type="button" data-i="' + i + '" aria-label="' + (i + 1) + '"><img src="' + esc(window.VirandPhoto.url(f.src, 640)) + '" alt="" loading="lazy"></button>'; }).join('') + '</div>' +
-      '<div class="detail"><div><span class="eyebrow">' + esc(p.zona) + '</span><h2 id="mTitle">' + esc(name) + '</h2>' +
+      '<div class="gallery" id="gal" role="group" aria-label="' + esc(t('modal.photos', { name: name })) + '"><img alt="">' +
+      (fotos.length > 1 ? '<button type="button" class="gal-btn prev" aria-label="' + esc(t('modal.prev')) + '">‹</button><button type="button" class="gal-btn next" aria-label="' + esc(t('modal.next')) + '">›</button>' : '') +
+      (fotos.length ? '<button type="button" class="gal-zoom" id="galZoom" aria-label="' + esc(t('modal.zoom')) + '">' + I.svg('expand') + '</button><span class="gal-count"></span>' : '') + '</div>' +
+      (fotos.length > 1 ? '<div class="thumbs" id="thumbs">' + fotos.map(function (f, i) { return '<button type="button" data-i="' + i + '" aria-label="' + (i + 1) + '"><img src="' + esc(window.VirandPhoto.url(f.src, 640)) + '" alt="" loading="lazy"></button>'; }).join('') + '</div>' : '') +
+      '<div class="detail"><div><div class="detail-top"><span class="eyebrow">' + esc(placeOf(p)) + '</span><button type="button" class="share-btn" id="shareFlat">' + I.svg('share') + '<span>' + esc(t('modal.share')) + '</span></button></div><h2 id="mTitle">' + esc(name) + '</h2>' +
       '<div class="facts"><span>' + esc([plural('guest', p.viajeros), plural('bedroom', p.dormitorios), p.camas ? plural('bed', p.camas) : '', plural('bath', p.banos)].filter(Boolean).join(' · ')) + '</span>' + (p.nota ? '<span class="rating">★ ' + String(p.nota).replace('.', st.lang === 'es' ? ',' : '.') + '</span>' : '') + '</div>' +
       '<p class="desc">' + esc(loc(p.descripcion)) + '</p><h3>' + esc(t('detail.amen')) + '</h3><div class="amen">' + amenHtml(p.servicios) + '</div>' +
       '<p class="hint" style="margin-top:18px">' + esc(t('detail.dir')) + '</p></div>' +
       '<aside class="booking"><div class="price">' + (pr ? '<small>' + esc(t('card.from')) + '</small> <b>' + pr + ' €</b> <small>' + esc(t('card.night')) + '</small>' : '<small>' + esc(t('card.consult')) + '</small>') + '</div>' +
       (!known ? '<p class="warn">' + esc(t('detail.nodata')) + '</p>' : (obsoleto ? '<p class="warn">' + esc(t('detail.old')) + '</p>' : '')) +
       '<div id="calBox"></div>' +
+      '<button type="button" class="cal-clear" id="mClearDates" hidden>' + esc(t('filters.clear')) + '</button>' +
       '<div id="estimate" class="estimate" hidden></div>' +
       '<div class="sel"><div><small>' + esc(t('detail.in')) + '</small><span id="selIn"></span></div><div><small>' + esc(t('detail.out')) + '</small><span id="selOut"></span></div></div>' +
       '<div class="pax"><label for="mPax">' + esc(t('detail.pax')) + '</label><select id="mPax"></select></div>' +
@@ -158,18 +224,24 @@
     updateBooking(); showPhoto(0);
 
     var sheet = $('#sheet');
-    sheet.querySelector('.close').onclick = closeModal;
-    sheet.querySelector('.prev').onclick = function () { showPhoto(m.g - 1); };
-    sheet.querySelector('.next').onclick = function () { showPhoto(m.g + 1); };
-    $('#thumbs').onclick = function (e) { var b = e.target.closest('[data-i]'); if (b) showPhoto(+b.getAttribute('data-i')); };
+    sheet.querySelector('.close').onclick = function () { closeModal(false); };
+    $('#shareFlat').onclick = function () { shareFlat(name); };
+    $('#mClearDates').onclick = function () { m.llegada = ''; m.salida = ''; m.cal.set(null, null); updateBooking(); };
+    var prevBtn = sheet.querySelector('.prev'), nextBtn = sheet.querySelector('.next'), thumbs = $('#thumbs'), zoomBtn = $('#galZoom');
+    if (prevBtn) prevBtn.onclick = function () { showPhoto(m.g - 1); };
+    if (nextBtn) nextBtn.onclick = function () { showPhoto(m.g + 1); };
+    if (thumbs) thumbs.onclick = function (e) { var b = e.target.closest('[data-i]'); if (b) showPhoto(+b.getAttribute('data-i')); };
+    if (zoomBtn) zoomBtn.onclick = openLightbox;
     var x0 = null, gal = $('#gal');
+    gal.querySelector('img').onclick = openLightbox;
     gal.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
     gal.addEventListener('touchend', function (e) { if (x0 == null) return; var dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) showPhoto(m.g + (dx < 0 ? 1 : -1)); x0 = null; });
 
     var modal = $('#modal'); modal.hidden = false; modal.classList.add('open'); modal.scrollTop = 0;
     document.body.style.overflow = 'hidden';
+    document.body.classList.add('modal-open');
     sheet.querySelector('.close').focus();
-    if (push !== false) history.replaceState(null, '', '#piso=' + slug);
+    if (push !== false && location.hash !== '#piso=' + slug) history.pushState({ modal: slug }, '', '#piso=' + slug);
     window.VirandMap.highlight(slug);
   }
 
@@ -178,6 +250,7 @@
     $('#selIn').textContent = m.llegada ? fmtDate(m.llegada) : t('detail.addDate');
     var nn = m.llegada && m.salida ? R.nights(m.llegada, m.salida) : 0;
     $('#selOut').textContent = m.salida ? fmtDate(m.salida) + ' · ' + (nn === 1 ? t('detail.night1') : t('detail.nights', { n: nn })) : t('detail.addDate');
+    var clr = $('#mClearDates'); if (clr) clr.hidden = !(m.llegada || m.salida);
     var est = $('#estimate'), pz = st.pricing && st.pricing.pisos && st.pricing.pisos[m.p.slug], tot = pz && m.llegada && m.salida ? window.VirandPricing.stayTotal(m.llegada, m.salida, pz, st.pricing.seasons) : null;
     if (est) {
       est.hidden = !(tot && tot.complete);
@@ -189,26 +262,44 @@
     $('#mWa').href = waUrl({ nombre: loc(m.p.nombre), llegada: m.llegada || '', salida: m.salida || '', personas: m.personas });
   }
   function showPhoto(i) {
-    var m = st.modal, p = m.p, n = p.fotos.length;
+    var m = st.modal, p = m.p, fotos = p.fotos || [], n = fotos.length;
+    var img = $('#gal img');
+    if (!n) { img.src = 'assets/img/hero-900.webp'; img.alt = loc(p.nombre); return; }
     m.g = (i + n) % n;
-    var img = $('#gal img'), f = p.fotos[m.g];
+    var f = fotos[m.g];
     img.src = window.VirandPhoto.url(f.src, 1280); img.srcset = window.VirandPhoto.url(f.src, 640) + ' 640w, ' + window.VirandPhoto.url(f.src, 1280) + ' 1280w'; img.sizes = '(min-width:900px) 1000px, 100vw';
     img.alt = loc(f.alt);
-    $('#gal .gal-count').textContent = (m.g + 1) + ' / ' + n;
+    var cnt = $('#gal .gal-count'); if (cnt) cnt.textContent = (m.g + 1) + ' / ' + n;
     document.querySelectorAll('#thumbs [data-i]').forEach(function (b) { b.setAttribute('aria-current', String(+b.getAttribute('data-i') === m.g)); });
     var cur = document.querySelector('#thumbs [aria-current="true"]'); if (cur && cur.scrollIntoView) cur.scrollIntoView({ block: 'nearest', inline: 'center' });
+    syncLightbox();
   }
-  function closeModal() {
+  function closeModal(fromPop) {
+    closeLightbox();
     var modal = $('#modal'); if (!st.modal) return;
+    if (!fromPop && history.state && history.state.modal) { history.back(); return; }
     modal.classList.remove('open'); modal.hidden = true; st.modal = null;
     document.body.style.overflow = '';
-    history.replaceState(null, '', location.pathname + location.search);
+    document.body.classList.remove('modal-open');
+    if (!fromPop) history.replaceState(null, '', location.pathname + location.search);
     window.VirandMap.highlight(null);
     if (lastFocus && lastFocus.focus) lastFocus.focus();
   }
+  window.addEventListener('popstate', function () {
+    if (st.lb) closeLightbox();
+    var m = /#piso=([\w-]+)/.exec(location.hash);
+    if (m) { if (!st.modal || st.modal.p.slug !== m[1]) openModal(m[1], false); }
+    else if (st.modal) closeModal(true);
+  });
   document.addEventListener('keydown', function (e) {
+    if (st.lb) {
+      if (e.key === 'Escape') { closeLightbox(); return; }
+      if (e.key === 'ArrowLeft' && st.modal) showPhoto(st.modal.g - 1);
+      if (e.key === 'ArrowRight' && st.modal) showPhoto(st.modal.g + 1);
+      return;
+    }
     if (!st.modal) return;
-    if (e.key === 'Escape') { closeModal(); return; }
+    if (e.key === 'Escape') { closeModal(false); return; }
     if (e.key === 'ArrowLeft') showPhoto(st.modal.g - 1);
     if (e.key === 'ArrowRight') showPhoto(st.modal.g + 1);
     if (e.key === 'Tab') {
@@ -219,7 +310,14 @@
       else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     }
   });
-  $('#modal').addEventListener('click', function (e) { if (e.target === this) closeModal(); });
+  $('#modal').addEventListener('click', function (e) { if (e.target === this) closeModal(false); });
+  $('#lbClose').addEventListener('click', closeLightbox);
+  $('#lbPrev').addEventListener('click', function () { if (st.modal) showPhoto(st.modal.g - 1); });
+  $('#lbNext').addEventListener('click', function () { if (st.modal) showPhoto(st.modal.g + 1); });
+  $('#lightbox').addEventListener('click', function (e) { if (e.target === this) closeLightbox(); });
+  var lbX0 = null;
+  $('#lightbox').addEventListener('touchstart', function (e) { lbX0 = e.touches[0].clientX; }, { passive: true });
+  $('#lightbox').addEventListener('touchend', function (e) { if (lbX0 == null || !st.modal) return; var dx = e.changedTouches[0].clientX - lbX0; if (Math.abs(dx) > 40) showPhoto(st.modal.g + (dx < 0 ? 1 : -1)); lbX0 = null; });
 
   /* ---------- eventos ---------- */
   $('#cards').addEventListener('click', function (e) {
@@ -227,6 +325,14 @@
     e.preventDefault(); openModal(a.getAttribute('data-slug'));
   });
   $('#cards').addEventListener('mouseover', function (e) { var a = e.target.closest('.card'); window.VirandMap.highlight(a ? a.getAttribute('data-slug') : null); });
+  var svcBox = $('#svcFilters');
+  if (svcBox) svcBox.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-svc]'); if (!b) return;
+    var k = b.getAttribute('data-svc'), idx = st.f.servicios.indexOf(k);
+    if (idx === -1) st.f.servicios.push(k); else st.f.servicios.splice(idx, 1);
+    b.setAttribute('aria-pressed', String(idx === -1));
+    renderList();
+  });
   ['#fZone', '#fIn', '#fOut', '#fPax'].forEach(function (s) { $(s).addEventListener('change', readSearch); });
   $('#searchForm').addEventListener('submit', function (e) { e.preventDefault(); readSearch(); $('#alojamientos').scrollIntoView(); });
   $('#fSort').addEventListener('change', function () { st.f.orden = this.value; renderList(); });
@@ -250,7 +356,7 @@
 
   function setLang(l) {
     st.lang = l; ls('virand-lang', l);
-    applyStatic(); fillSearchControls(); renderWhy(); renderReviews(); renderFaq(); renderList();
+    applyStatic(); fillSearchControls(); renderServiceFilters(); renderWhy(); renderReviews(); renderFaq(); renderList();
     if (st.modal) { var s = st.modal.p.slug; var keep = { l: st.modal.llegada, s: st.modal.salida }; st.f.llegada = keep.l || st.f.llegada; st.f.salida = keep.s || st.f.salida; openModal(s, false); }
   }
 
@@ -264,7 +370,7 @@
       st.dict.es = d.i18n.es; st.dict.en = d.i18n.en;
       st.pisos = d.pisos.filter(function (p) { return p.activo !== false; });
       st.opiniones = d.opiniones; st.faq = d.faq; st.pricing = d.pricing || null;
-      applyStatic(); fillSearchControls(); renderWhy(); renderReviews(); renderFaq();
+      applyStatic(); fillSearchControls(); renderServiceFilters(); renderWhy(); renderReviews(); renderFaq();
       window.VirandMap.init({ container: $('#mapbox'), t: t, viewLabel: function () { return t('map.view'); }, onSelect: function (slug) { openModal(slug); }, onHover: function () {}, onUnavailable: function () { $('#layout').classList.add('no-map'); document.body.classList.add('no-map'); } });
       renderList();
       var m = /#piso=([\w-]+)/.exec(location.hash); if (m) openModal(m[1], false);

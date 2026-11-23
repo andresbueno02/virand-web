@@ -235,3 +235,50 @@ body.no-map .view-toggle{display:none!important}
 .estimate{margin:12px 0 4px;padding:12px 14px;background:#f4eee2;border-radius:var(--radius);font-size:15px}
 .estimate strong{display:block;color:var(--blue)}
 .estimate small{display:block;margin-top:2px;font-size:12px;color:var(--muted);line-height:1.4}
+
+/* filtros rápidos por servicios */
+.svc-filters{display:flex;flex-wrap:wrap;gap:8px;margin:-8px 0 22px}
+.svc-chip{display:inline-flex;align-items:center;gap:6px;padding:7px 13px;border-radius:99px;border:1px solid var(--line);background:var(--paper);font-size:13px;color:var(--ink);transition:background .18s,color .18s,border-color .18s}
+.svc-chip svg{width:15px;height:15px;stroke:var(--sand);transition:stroke .18s}
+.svc-chip:hover{border-color:var(--sand)}
+.svc-chip[aria-pressed="true"]{background:var(--blue);color:#fff;border-color:var(--blue)}
+.svc-chip[aria-pressed="true"] svg{stroke:#f1dfb9}
+
+/* estado de carga (skeleton) */
+.card.skel{pointer-events:none}
+.card.skel .im,.card.skel .body span{background:linear-gradient(90deg,#ece5d8 25%,#f5f0e6 50%,#ece5d8 75%);background-size:200% 100%;animation:sk 1.4s ease-in-out infinite}
+.card.skel .body{gap:10px}
+.card.skel .body span{display:block;height:14px;border-radius:4px}
+.card.skel .sk-s{width:38%}
+.card.skel .sk-t{width:82%;height:22px}
+.card.skel .sk-m{width:64%}
+@keyframes sk{0%{background-position:200% 0}100%{background-position:-200% 0}}
+@media(prefers-reduced-motion:reduce){.card.skel .im,.card.skel .body span{animation:none}}
+
+/* botón flotante WhatsApp */
+.wa-float{position:fixed;right:18px;bottom:18px;z-index:45;display:inline-flex;align-items:center;gap:8px;height:50px;padding:0 18px;border-radius:99px;background:#1f7a4d;color:#fff;text-decoration:none;font-size:14px;font-weight:500;box-shadow:0 8px 24px rgba(18,52,36,.32);transition:background .2s,transform .2s}
+.wa-float:hover{background:#17623d;transform:translateY(-2px)}
+.wa-float svg{width:22px;height:22px;stroke:currentColor}
+body.modal-open .wa-float{display:none}
+@media(max-width:620px){.wa-float{width:54px;height:54px;padding:0;justify-content:center;right:14px;bottom:14px}.wa-float span{display:none}}
+
+/* cabecera ficha + compartir + limpiar fechas */
+.detail-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.share-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:99px;border:1px solid var(--line);background:var(--paper);font-size:13px;color:var(--ink);flex-shrink:0;transition:border-color .2s}
+.share-btn:hover{border-color:var(--sand)}
+.share-btn svg{width:15px;height:15px;stroke:var(--sand)}
+.cal-clear{display:inline-block;margin:4px 0 6px;font-size:12px;color:var(--blue);text-decoration:underline;text-underline-offset:3px}
+.cal-clear:hover{color:var(--sand)}
+
+/* zoom galería + lightbox */
+.gallery img{cursor:zoom-in}
+.gal-zoom{position:absolute;bottom:12px;left:12px;width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,.55);color:#fff;display:inline-flex;align-items:center;justify-content:center}
+.gal-zoom:hover{background:rgba(0,0,0,.78)}
+.gal-zoom svg{width:17px;height:17px;stroke:currentColor}
+.lightbox{position:fixed;inset:0;z-index:150;background:rgba(10,14,22,.94);display:flex;align-items:center;justify-content:center;padding:24px;touch-action:pan-y}
+.lightbox img{max-width:100%;max-height:90vh;width:auto;height:auto;object-fit:contain;border-radius:4px}
+.lb-close{position:fixed;top:14px;right:14px;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.15);color:#fff;font-size:26px;line-height:1}
+.lb-close:hover,.lb-btn:hover{background:rgba(255,255,255,.28)}
+.lb-btn{position:fixed;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.15);color:#fff;font-size:24px}
+.lb-btn.prev{left:14px}.lb-btn.next{right:14px}
+.lb-count{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.55);color:#fff;font-size:13px;padding:4px 12px;border-radius:99px}

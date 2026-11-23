@@ -115,5 +115,9 @@
  "map.load": "Cargar mapa",
  "map.hint": "Mira dónde están nuestros alojamientos en el mapa.",
  "detail.estimate": "Precio estimado: {total} € ({n} noches)",
- "detail.estimateNote": "Orientativo; te confirmamos el precio final por WhatsApp."
+ "detail.estimateNote": "Orientativo; te confirmamos el precio final por WhatsApp.",
+ "modal.share": "Compartir",
+ "modal.zoom": "Ampliar foto",
+ "filters.services": "Filtrar por servicio",
+ "wa.float": "Escríbenos por WhatsApp"
 }

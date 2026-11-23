@@ -20,12 +20,18 @@
     q = q || {};
     var personas = +q.personas || 0;
     var zona = q.zona && q.zona !== 'todas' ? q.zona : '';
+    var svcs = Array.isArray(q.servicios) && q.servicios.length ? q.servicios : null;
     var out = [];
     for (var i = 0; i < (pisos || []).length; i++) {
       var p = pisos[i];
       if (p.activo === false) continue;
       if (personas && !(p.viajeros >= personas)) continue;
       if (zona && p.zona !== zona) continue;
+      if (svcs) {
+        var ps = p.servicios || [], ok = true;
+        for (var j = 0; j < svcs.length; j++) { if (ps.indexOf(svcs[j]) === -1) { ok = false; break; } }
+        if (!ok) continue;
+      }
       if (estadoDisponibilidad(avail, p.slug, q.llegada, q.salida) === 'ocupado') continue;
       out.push(p);
     }
