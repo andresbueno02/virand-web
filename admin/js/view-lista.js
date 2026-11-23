@@ -5,7 +5,7 @@
   var CFG = {
     faq: {
       table: 'faq', title: 'Preguntas frecuentes', add: '＋ Añadir pregunta',
-      intro: 'Aparecen en la web en este orden. Escribe en español; el inglés puedes rellenarlo tú (más adelante se propondrá solo).',
+      intro: 'Aparecen en la web en este orden. Escribe en español y pulsa «Traducir al inglés (IA)» para rellenar el inglés automáticamente.',
       label: function (r) { return r.q_es || 'Nueva pregunta'; },
       fields: [['q_es', 'Pregunta (español)', 'text'], ['q_en', 'Pregunta (inglés)', 'text'], ['a_es', 'Respuesta (español)', 'area'], ['a_en', 'Respuesta (inglés)', 'area']],
       flags: [['active', 'Visible en la web'], ['needs_review', 'Pendiente de revisar (solo aviso interno)']],

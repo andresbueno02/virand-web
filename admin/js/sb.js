@@ -16,6 +16,7 @@
     listFlats: function () { return client.from('flats').select('*').order('sort').then(must); },
     getFlat: function (id) { return client.from('flats').select('*').eq('id', id).single().then(must); },
     photos: function (flatId) { return client.from('flat_photos').select('*').eq('flat_id', flatId).order('sort').then(must); },
+    listAllPhotos: function () { return client.from('flat_photos').select('flat_id,path,sort').order('sort').then(must); },
     saveFlat: function (row) {
       var id = row.id; if (id) { delete row.id; }
       return (id ? client.from('flats').update(row).eq('id', id) : client.from('flats').insert(row)).select().single().then(must);

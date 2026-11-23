@@ -11,7 +11,7 @@
   function longDate(s) { var p = s.split('-'); return +p[2] + ' ' + MESES[+p[1] - 1].slice(0, 3) + ' ' + p[0]; }
 
   function render(el) {
-    var S = { flats: [], seasons: [], flatId: null, over: {}, sel: {}, last: null, y: 0, m: 0 };
+    var S = { flats: [], seasons: [], flatId: null, over: {}, sel: {}, last: null, rangeMode: false, rangeStart: null, y: 0, m: 0 };
     var t = today(); S.y = +t.slice(0, 4); S.m = +t.slice(5, 7) - 1;
 
     function flat() { return S.flats.filter(function (f) { return f.id === S.flatId; })[0]; }
@@ -40,14 +40,15 @@
 
     /* ---------- B. precio por piso ---------- */
     function ratesHtml() {
-      return '<fieldset><legend>2 · Precio por noche de cada piso</legend>' +
+      return '<fieldset id="ratesBox"><legend>2 · Precio por noche de cada piso</legend>' +
         '<p class="muted">«Desde X €» en la web es el más bajo de los dos. Déjalo vacío si aún no quieres publicar ese precio.</p>' +
         '<div class="prow head"><span>Piso</span><span>Temporada baja</span><span>Temporada alta</span></div>' +
         S.flats.map(function (f) {
-          return '<div class="prow' + (f.active ? '' : ' off') + '" data-id="' + esc(f.id) + '"><span class="pn">' + esc(f.name_es) + '</span>' +
-            '<label class="fld"><span class="sr-only">Temporada baja</span><input type="text" inputmode="decimal" name="low" value="' + esc(money(f.base_price)) + '" placeholder="—" data-orig="' + esc(money(f.base_price)) + '"></label>' +
-            '<label class="fld"><span class="sr-only">Temporada alta</span><input type="text" inputmode="decimal" name="high" value="' + esc(money(f.price_high)) + '" placeholder="—" data-orig="' + esc(money(f.price_high)) + '"></label></div>';
-        }).join('') + '<div class="actions"><button type="button" class="btn btn-primary" data-act="r-save">Guardar precios</button></div></fieldset>';
+          var noP = f.base_price == null && f.price_high == null;
+          return '<div class="prow' + (f.active ? '' : ' off') + '" data-id="' + esc(f.id) + '"><span class="pn">' + esc(f.name_es) + (noP ? ' <em class="tag warn">Sin precio</em>' : '') + '</span>' +
+            '<label class="fld"><span class="mob-lbl">Baja (€)</span><input type="text" inputmode="decimal" name="low" value="' + esc(money(f.base_price)) + '" placeholder="—" data-orig="' + esc(money(f.base_price)) + '"></label>' +
+            '<label class="fld"><span class="mob-lbl">Alta (€)</span><input type="text" inputmode="decimal" name="high" value="' + esc(money(f.price_high)) + '" placeholder="—" data-orig="' + esc(money(f.price_high)) + '"></label></div>';
+        }).join('') + '<div class="actions rates-act"><button type="button" class="btn btn-primary" data-act="r-save">Guardar precios</button><span class="muted" id="rDirty"></span></div></fieldset>';
     }
 
     /* ---------- C. precios por días ---------- */
@@ -66,17 +67,18 @@
     function daysHtml() {
       var f = flat(), n = selDays().length, nm = nextMonth(S.y, S.m);
       return '<fieldset><legend>3 · Precios por días concretos</legend>' +
-        '<p class="muted">Elige un piso, marca uno o varios días (con <strong>Mayús</strong> pulsada seleccionas todo un tramo) y pon el precio especial por noche. Ese precio manda sobre la temporada. Los días con precio especial salen en azul; la temporada alta, en arena.</p>' +
+        '<p class="muted">Elige un piso, toca los días y pon su precio especial por noche. En móvil, activa <strong>«Marcar tramo»</strong> para tocar inicio y fin y seleccionar todos los días entre medias.</p>' +
         '<label class="fld"><span>Piso</span><select id="dflat">' + S.flats.map(function (x) { return '<option value="' + esc(x.id) + '"' + (x.id === S.flatId ? ' selected' : '') + '>' + esc(x.name_es) + '</option>'; }).join('') + '</select></label>' +
         (f && f.base_price == null && f.price_high == null ? '<p class="warn">Este piso aún no tiene precio base. Ponlo arriba (paso 2) para ver los precios en el calendario.</p>' : '') +
         '<div class="cnav"><button type="button" class="ico" data-act="prev" aria-label="Mes anterior">‹</button><div class="quick">' +
-        '<button type="button" class="btn btn-ghost" data-act="q-weekend">Fines de semana del mes</button><button type="button" class="btn btn-ghost" data-act="q-month">Todo el mes</button></div>' +
+        '<button type="button" class="btn sm ' + (S.rangeMode ? 'btn-primary' : 'btn-ghost') + '" data-act="q-range" aria-pressed="' + String(S.rangeMode) + '">' + (S.rangeMode ? (S.rangeStart ? 'Toca el día final…' : 'Toca el día inicial…') : 'Marcar tramo') + '</button>' +
+        '<button type="button" class="btn btn-ghost sm" data-act="q-weekend">Fines de semana</button><button type="button" class="btn btn-ghost sm" data-act="q-month">Todo el mes</button></div>' +
         '<button type="button" class="ico" data-act="next" aria-label="Mes siguiente">›</button></div>' +
         '<div class="pcal">' + monthHtml(S.y, S.m) + monthHtml(nm[0], nm[1]) + '</div>' +
         '<div class="legend"><span><i class="lg hi"></i>Temporada alta</span><span><i class="lg sp"></i>Precio especial</span><span><i class="lg on"></i>Seleccionado</span></div>' +
         '<div class="selbar' + (n ? ' show' : '') + '" role="region" aria-label="Días seleccionados"><strong id="seln">' + n + ' día' + (n === 1 ? '' : 's') + ' seleccionado' + (n === 1 ? '' : 's') + '</strong>' +
         '<label class="fld inl"><span class="sr-only">Precio por noche</span><input type="text" inputmode="decimal" id="dprice" placeholder="Precio €/noche"></label>' +
-        '<button type="button" class="btn btn-primary" data-act="d-apply">Aplicar precio</button><button type="button" class="btn btn-danger" data-act="d-clear">Quitar precio especial</button>' +
+        '<button type="button" class="btn btn-primary" data-act="d-apply">Aplicar precio</button><button type="button" class="btn btn-danger" data-act="d-clear">Quitar especial</button>' +
         '<button type="button" class="btn btn-ghost" data-act="d-none">Deseleccionar</button></div></fieldset>';
     }
 
@@ -94,14 +96,27 @@
     }
 
     el.innerHTML = '<p class="muted">Cargando precios…</p>';
+    el.oninput = function (e) {
+      var r = e.target.closest('.prow[data-id]'); if (!r) return;
+      var lowI = r.querySelector('[name=low]'), highI = r.querySelector('[name=high]');
+      var ch = lowI.value.trim() !== lowI.getAttribute('data-orig') || highI.value.trim() !== highI.getAttribute('data-orig');
+      r.classList.toggle('dirty', ch);
+      var cnt = el.querySelectorAll('.prow.dirty').length;
+      U.setDirty(cnt > 0);
+      var lbl = document.getElementById('rDirty');
+      if (lbl) lbl.textContent = cnt ? cnt + ' piso' + (cnt === 1 ? '' : 's') + ' con cambios sin guardar' : '';
+    };
     el.onchange = function (e) {
-      if (e.target.id === 'dflat') { S.flatId = e.target.value; S.sel = {}; S.last = null; loadOver().then(repaintDays).catch(function (x) { U.toast(U.errMsg(x), 'err'); }); }
+      if (e.target.id === 'dflat') { S.flatId = e.target.value; S.sel = {}; S.last = null; S.rangeStart = null; loadOver().then(repaintDays).catch(function (x) { U.toast(U.errMsg(x), 'err'); }); }
     };
     el.onclick = function (e) {
       var d = e.target.closest('[data-day]');
       if (d && !d.disabled) {
         var day = d.getAttribute('data-day');
-        if (e.shiftKey && S.last) L.dayRange(S.last, day).forEach(function (x) { if (x >= today()) S.sel[x] = true; });
+        if (S.rangeMode) {
+          if (!S.rangeStart) { S.rangeStart = day; S.sel[day] = true; }
+          else { L.dayRange(S.rangeStart, day).forEach(function (x) { if (x >= today()) S.sel[x] = true; }); S.rangeStart = null; S.rangeMode = false; }
+        } else if (e.shiftKey && S.last) L.dayRange(S.last, day).forEach(function (x) { if (x >= today()) S.sel[x] = true; });
         else { if (S.sel[day]) delete S.sel[day]; else S.sel[day] = true; }
         S.last = day; repaintDays(); return;
       }
@@ -109,9 +124,10 @@
       var act = b.getAttribute('data-act'), box = b.closest('.srow');
 
       if (act === 'prev' || act === 'next') { S.m += act === 'next' ? 1 : -1; if (S.m > 11) { S.m = 0; S.y++; } if (S.m < 0) { S.m = 11; S.y--; } repaintDays(); return; }
+      if (act === 'q-range') { S.rangeMode = !S.rangeMode; S.rangeStart = null; repaintDays(); return; }
       if (act === 'q-weekend') { L.weekendDays(S.y, S.m).forEach(function (x) { if (x >= today()) S.sel[x] = true; }); repaintDays(); return; }
       if (act === 'q-month') { L.monthDays(S.y, S.m).forEach(function (x) { if (x >= today()) S.sel[x] = true; }); repaintDays(); return; }
-      if (act === 'd-none') { S.sel = {}; S.last = null; repaintDays(); return; }
+      if (act === 'd-none') { S.sel = {}; S.last = null; S.rangeMode = false; S.rangeStart = null; repaintDays(); return; }
       if (act === 'd-apply' || act === 'd-clear') {
         var days = selDays(); if (!days.length) return;
         var run;
@@ -154,7 +170,7 @@
         if (bad) { U.toast('Precio no válido en «' + bad + '». Usa solo números, por ejemplo 95 o 99,5.', 'err'); return; }
         if (!jobs.length) { U.toast('No hay cambios que guardar'); return; }
         U.busy(b, true);
-        Promise.all(jobs.map(function (j) { return root.Api.updateFlatPrices(j.id, j.low, j.high); })).then(function () { U.toast(jobs.length + ' piso(s) actualizado(s)'); return root.Api.listFlats(); })
+        Promise.all(jobs.map(function (j) { return root.Api.updateFlatPrices(j.id, j.low, j.high); })).then(function () { U.setDirty(false); U.toast(jobs.length + ' piso(s) actualizado(s)'); return root.Api.listFlats(); })
           .then(function (rows) { S.flats = rows; paint(); }).catch(function (x) { U.toast(U.errMsg(x), 'err'); U.busy(b, false); });
       }
     };

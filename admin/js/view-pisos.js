@@ -6,22 +6,64 @@
 
   function list(el) {
     el.innerHTML = '<p class="muted">Cargando pisos…</p>';
-    return root.Api.listFlats().then(function (flats) {
+    return Promise.all([root.Api.listFlats(), root.Api.listAllPhotos().catch(function () { return []; })]).then(function (res) {
+      var flats = res[0], photos = res[1], coverBy = {};
+      photos.forEach(function (p) { if (!coverBy[p.flat_id]) coverBy[p.flat_id] = p.path; });
+      var zonas = [], vis = 0, noPrice = 0;
+      flats.forEach(function (f) {
+        if (f.zona && zonas.indexOf(f.zona) === -1) zonas.push(f.zona);
+        if (f.active) vis++;
+        if (f.base_price == null && f.price_high == null) noPrice++;
+      });
+      var q = '', curZone = '';
       el.innerHTML =
         '<div class="head"><h1>Pisos</h1><a class="btn btn-primary" href="#/pisos/nuevo">＋ Añadir piso</a></div>' +
-        '<p class="muted">Desactiva un piso para ocultarlo de la web sin borrarlo. Pulsa «Editar» para cambiar sus datos.</p>' +
-        '<div class="rows">' + flats.map(function (f) {
+        '<div class="stats">' +
+        '<span class="stat"><strong>' + flats.length + '</strong> pisos</span>' +
+        '<span class="stat ok"><strong>' + vis + '</strong> visibles</span>' +
+        (flats.length - vis ? '<span class="stat"><strong>' + (flats.length - vis) + '</strong> ocultos</span>' : '') +
+        (noPrice ? '<a class="stat warn" href="#/precios"><strong>' + noPrice + '</strong> sin precio →</a>' : '') + '</div>' +
+        '<div class="toolbar"><input type="search" id="fsearch" placeholder="Buscar piso por nombre o barrio…" aria-label="Buscar piso">' +
+        '<div class="zchips" id="zchips"><button type="button" class="zchip on" data-z="">Todas</button>' +
+        zonas.map(function (z) { return '<button type="button" class="zchip" data-z="' + esc(z) + '">' + esc(z) + '</button>'; }).join('') + '</div></div>' +
+        '<div class="rows" id="flatRows"></div>';
+
+      function paintRows() {
+        var box = document.getElementById('flatRows');
+        var list = flats.filter(function (f) {
+          if (curZone && f.zona !== curZone) return false;
+          if (!q) return true;
+          var txt = [f.name_es, f.name_en, f.zona, f.barrio].join(' ').toLowerCase();
+          return txt.indexOf(q) !== -1;
+        });
+        box.innerHTML = list.length ? list.map(function (f) {
+          var cov = coverBy[f.id], hasPrice = f.base_price != null || f.price_high != null;
           return '<div class="row' + (f.active ? '' : ' off') + '" data-id="' + esc(f.id) + '">' +
-            '<div class="grow"><strong>' + esc(f.name_es) + '</strong><span class="muted">' + esc(f.zona) + (f.barrio ? ' · ' + esc(f.barrio) : '') +
-            ' · ' + esc(f.viajeros) + ' viajeros · baja ' + money(f.base_price) + ' · alta ' + money(f.price_high) + '</span></div>' +
-            '<label class="switch" title="Visible en la web"><input type="checkbox" data-act="toggle"' + (f.active ? ' checked' : '') + '><span></span><em>' + (f.active ? 'Visible' : 'Oculto') + '</em></label>' +
-            '<a class="btn btn-ghost" href="#/pisos/' + esc(f.id) + '">Editar</a></div>';
-        }).join('') + '</div>';
+            '<a class="fthumb" href="#/pisos/' + esc(f.id) + '" aria-label="Editar ' + esc(f.name_es) + '">' +
+            (cov ? '<img src="' + esc(photoUrl(cov, 640)) + '" alt="" loading="lazy">' : '<span class="nofoto">Sin foto</span>') + '</a>' +
+            '<div class="grow"><a class="fname" href="#/pisos/' + esc(f.id) + '">' + esc(f.name_es) + '</a>' +
+            '<span class="muted">' + esc(f.zona) + (f.barrio ? ' · ' + esc(f.barrio) : '') + ' · ' + esc(f.viajeros) + ' viajeros</span>' +
+            '<span class="fmeta">' + (hasPrice ? 'Baja <strong>' + money(f.base_price) + '</strong> · Alta <strong>' + money(f.price_high) + '</strong>' : '<em class="tag warn">Sin precio</em>') + '</span></div>' +
+            '<div class="ract"><label class="switch" title="Visible en la web"><input type="checkbox" data-act="toggle"' + (f.active ? ' checked' : '') + '><span></span><em>' + (f.active ? 'Visible' : 'Oculto') + '</em></label>' +
+            '<a class="btn btn-ghost sm" href="../#piso=' + esc(f.slug) + '" target="_blank" rel="noopener" title="Ver en la web">' + U.ico('ext') + '</a>' +
+            '<a class="btn btn-primary sm" href="#/pisos/' + esc(f.id) + '">Editar</a></div></div>';
+        }).join('') : '<p class="empty">No hay pisos que coincidan con la búsqueda.</p>';
+      }
+      paintRows();
+
+      document.getElementById('fsearch').addEventListener('input', function () { q = this.value.trim().toLowerCase(); paintRows(); });
+      document.getElementById('zchips').addEventListener('click', function (e) {
+        var b = e.target.closest('[data-z]'); if (!b) return;
+        curZone = b.getAttribute('data-z');
+        this.querySelectorAll('.zchip').forEach(function (x) { x.classList.toggle('on', x === b); });
+        paintRows();
+      });
       el.onchange = function (e) {
         var cb = e.target.closest('[data-act="toggle"]'); if (!cb) return;
         var row = cb.closest('.row'), id = row.getAttribute('data-id'), v = cb.checked;
         cb.disabled = true;
         root.Api.setActive(id, v).then(function () {
+          flats.forEach(function (f) { if (f.id === id) f.active = v; });
           row.classList.toggle('off', !v); row.querySelector('em').textContent = v ? 'Visible' : 'Oculto';
           U.toast(v ? 'Piso visible en la web' : 'Piso oculto de la web');
         }).catch(function (err) { cb.checked = !v; U.toast(U.errMsg(err), 'err'); }).then(function () { cb.disabled = false; });
@@ -53,44 +95,71 @@
       var row = res[0], all = res[1], photos = res[2];
       var form0 = L.flatToForm(row || { active: true, viajeros: 2, servicios: [] });
       var zonas = []; all.forEach(function (f) { if (zonas.indexOf(f.zona) === -1) zonas.push(f.zona); });
+      var hasCoords = form0.lat && form0.lng;
       el.innerHTML =
-        '<div class="head"><h1>' + (isNew ? 'Nuevo piso' : esc(form0.name_es)) + '</h1><a class="btn btn-ghost" href="#/pisos">← Volver</a></div>' +
+        '<div class="head"><h1>' + (isNew ? 'Nuevo piso' : esc(form0.name_es)) + '</h1><div class="hact">' +
+        (!isNew ? '<a class="btn btn-ghost sm" href="../#piso=' + esc(form0.slug) + '" target="_blank" rel="noopener">' + U.ico('ext') + '<span>Ver en la web</span></a>' : '') +
+        '<a class="btn btn-ghost sm" href="#/pisos">← Volver</a></div></div>' +
+        '<div class="jumps" id="jumps">' +
+        '<button type="button" data-jump="sec-basico">Básico</button>' +
+        '<button type="button" data-jump="photosBox">Fotos' + (photos.length ? ' (' + photos.length + ')' : '') + '</button>' +
+        '<button type="button" data-jump="sec-precios">Precios</button>' +
+        '<button type="button" data-jump="sec-cap">Capacidad</button>' +
+        '<button type="button" data-jump="sec-desc">Descripción</button>' +
+        '<button type="button" data-jump="sec-mapa">Mapa</button></div>' +
         '<form id="flatForm" novalidate>' +
-        '<fieldset><legend>Datos básicos</legend><div class="grid2">' +
+        '<fieldset id="sec-basico"><legend>Datos básicos</legend><div class="grid2">' +
         field('name_es', 'Nombre (español)', form0.name_es) + field('name_en', 'Nombre (inglés)', form0.name_en) +
         field('zona', 'Municipio / zona', form0.zona, { list: 'zonas', hint: 'Es el filtro de «Destino» de la web: Málaga, Torremolinos, Benalmádena, Fuengirola…' }) +
-        field('barrio', 'Barrio (opcional)', form0.barrio) +
-        field('slug', 'Identificador', form0.slug, { ro: !isNew, hint: isNew ? 'Se rellena solo a partir del nombre. No se podrá cambiar después.' : 'No se puede cambiar: lo usan las fotos y los calendarios.' }) +
-        '</div><datalist id="zonas">' + zonas.map(function (z) { return '<option value="' + esc(z) + '">'; }).join('') + '</datalist></fieldset>' +
-        '<fieldset><legend>Capacidad</legend><div class="grid4">' +
+        field('barrio', 'Barrio (opcional)', form0.barrio) + '</div>' +
+        '<label class="chk"><input type="checkbox" name="active"' + (form0.active ? ' checked' : '') + '><span><strong>Visible en la web</strong> (desmárcalo para ocultarlo sin borrarlo)</span></label>' +
+        (isNew
+          ? field('slug', 'Identificador', form0.slug, { hint: 'Se rellena solo a partir del nombre. No se podrá cambiar después.' })
+          : '<details class="adv"><summary>Ajustes técnicos (identificador)</summary>' + field('slug', 'Identificador', form0.slug, { ro: true, hint: 'No se puede cambiar: lo usan las fotos y los calendarios.' }) + '</details>') +
+        '<datalist id="zonas">' + zonas.map(function (z) { return '<option value="' + esc(z) + '">'; }).join('') + '</datalist></fieldset>' +
+        '<fieldset id="photosBox"><legend>Fotos</legend>' + (isNew ? '<p class="muted">Guarda el piso primero; después podrás subir sus fotos.</p>' :
+          '<p class="muted">La <strong>primera foto</strong> es la portada. Usa las flechas para ordenarlas o «Portada» para llevar una al principio. Los cambios de fotos se guardan al momento.</p>' +
+          '<div id="photoGrid" class="pgrid"></div><div class="upl"><label class="btn btn-primary">＋ Subir fotos<input type="file" id="photoFile" accept="image/jpeg,image/png,image/webp" multiple hidden></label><span id="upstat" class="muted"></span></div>') + '</fieldset>' +
+        '<fieldset id="sec-precios"><legend>Precio y valoración</legend><div class="grid2">' +
+        field('base_price', 'Precio temporada baja (€ por noche)', form0.base_price, { dec: true, ph: '95' }) +
+        field('price_high', 'Precio temporada alta (€ por noche)', form0.price_high, { dec: true, ph: '140' }) +
+        field('nota', 'Nota media (0-5, opcional)', form0.nota, { dec: true, ph: '4,8' }) + '</div><p class="muted">En la web aparece «desde X €» con el más bajo de los dos. Las fechas de temporada alta y días sueltos se editan en <a href="#/precios"><strong>Precios →</strong></a>.</p></fieldset>' +
+        '<fieldset id="sec-cap"><legend>Capacidad y servicios</legend><div class="grid4">' +
         field('viajeros', 'Viajeros', form0.viajeros, { type: 'number', min: 1 }) + field('dormitorios', 'Dormitorios', form0.dormitorios, { type: 'number', min: 0 }) +
         field('camas', 'Camas (opcional)', form0.camas, { type: 'number', min: 0 }) + field('banos', 'Baños', form0.banos, { type: 'number', min: 0 }) +
-        '</div></fieldset>' +
-        '<fieldset><legend>Servicios destacados</legend><p class="muted">Los tres primeros aparecen en la tarjeta del piso; todos en su ficha.</p><div class="checks">' +
+        '</div><p class="muted" style="margin:6px 0 8px">Marca los servicios del piso (los tres primeros salen en la tarjeta):</p><div class="checks">' +
         L.SERVICIOS.map(function (s) { return '<label class="chk"><input type="checkbox" name="servicios" value="' + s[0] + '"' + (form0.servicios.indexOf(s[0]) !== -1 ? ' checked' : '') + '><span>' + esc(s[1]) + '</span></label>'; }).join('') +
         '</div></fieldset>' +
-        '<fieldset><legend>Descripción</legend>' + field('desc_es', 'Español', form0.desc_es, { area: 6 }) + field('desc_en', 'Inglés', form0.desc_en, { area: 6 }) +
-        '<button type="button" class="btn btn-ghost" id="trBtn">✨ Traducir nombre y descripción al inglés (IA)</button><p class="muted">Es una propuesta automática: revísala antes de guardar.</p></fieldset>' +
-        '<fieldset><legend>Precio y valoración</legend><div class="grid2">' +
-        field('base_price', 'Precio temporada baja (€ por noche)', form0.base_price, { dec: true, ph: '95', hint: 'Los periodos de temporada alta y los precios por día se configuran en «Precios».' }) +
-        field('price_high', 'Precio temporada alta (€ por noche)', form0.price_high, { dec: true, ph: '140' }) +
-        field('nota', 'Nota media (0-5, opcional)', form0.nota, { dec: true, ph: '4,8' }) + '</div><p class="muted">En la web aparece «desde X €», con el más bajo de los dos precios.</p></fieldset>' +
-        '<fieldset><legend>Ubicación en el mapa</legend><div class="grid2">' +
-        field('lat', 'Latitud', form0.lat, { ph: '36.7213', hint: 'Pon una posición aproximada de la zona, no el portal exacto.' }) + field('lng', 'Longitud', form0.lng, { ph: '-4.4214' }) + '</div></fieldset>' +
-        '<fieldset id="photosBox"><legend>Fotos</legend>' + (isNew ? '<p class="muted">Guarda el piso primero; después podrás subir sus fotos.</p>' :
-          '<p class="muted">La <strong>primera foto</strong> es la portada que se ve en la lista de pisos. Usa las flechas para ordenarlas o «Portada» para llevar una al principio. Los cambios de fotos se guardan al momento.</p>' +
-          '<div id="photoGrid" class="pgrid"></div><div class="upl"><label class="btn btn-primary">＋ Subir fotos<input type="file" id="photoFile" accept="image/jpeg,image/png,image/webp" multiple hidden></label><span id="upstat" class="muted"></span></div>') + '</fieldset>' +
-        '<fieldset><legend>Estado</legend><label class="chk"><input type="checkbox" name="active"' + (form0.active ? ' checked' : '') + '><span>Visible en la web</span></label></fieldset>' +
+        '<fieldset id="sec-desc"><legend>Descripción</legend>' + field('desc_es', 'Español', form0.desc_es, { area: 5 }) + field('desc_en', 'Inglés', form0.desc_en, { area: 5 }) +
+        '<button type="button" class="btn btn-ghost" id="trBtn">✨ Traducir nombre y descripción al inglés (IA)</button><p class="muted" style="margin-top:6px">Es una propuesta automática: revísala antes de guardar.</p></fieldset>' +
+        '<fieldset id="sec-mapa"><legend>Ubicación en el mapa</legend><div class="grid2">' +
+        field('lat', 'Latitud', form0.lat, { ph: '36.7213', hint: 'Posición aproximada de la zona, no el portal exacto.' }) + field('lng', 'Longitud', form0.lng, { ph: '-4.4214' }) + '</div>' +
+        (hasCoords ? '<a class="btn btn-ghost sm" id="mapPreview" href="https://www.google.com/maps?q=' + encodeURIComponent(form0.lat + ',' + form0.lng) + '" target="_blank" rel="noopener">' + U.ico('ext') + '<span>Comprobar en Google Maps</span></a>' : '') + '</fieldset>' +
         '<div id="errs" class="errs" hidden></div>' +
-        '<div class="actions"><button type="submit" class="btn btn-primary">Guardar</button><a class="btn btn-ghost" href="#/pisos">Cancelar</a></div></form>';
+        '<div class="savebar" id="savebar"><span class="sb-msg" id="sbMsg">Sin cambios pendientes</span><div class="sb-act"><a class="btn btn-ghost" href="#/pisos">Cancelar</a><button type="submit" class="btn btn-primary">Guardar cambios</button></div></div></form>';
 
       if (!isNew) photoManager(row, photos);
-      var form = document.getElementById('flatForm'), slugTouched = !isNew;
+      var form = document.getElementById('flatForm'), slugTouched = !isNew, sb = document.getElementById('savebar'), sbMsg = document.getElementById('sbMsg');
+      function markDirty() {
+        U.setDirty(true);
+        if (sb) sb.classList.add('dirty');
+        if (sbMsg) sbMsg.textContent = 'Tienes cambios sin guardar';
+      }
+      document.getElementById('jumps').addEventListener('click', function (e) {
+        var b = e.target.closest('[data-jump]'); if (!b) return;
+        var tgt = document.getElementById(b.getAttribute('data-jump'));
+        if (tgt) tgt.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+      form.addEventListener('input', function (e) { if (!e.target.closest('#photosBox')) markDirty(); });
+      form.addEventListener('change', function (e) { if (!e.target.closest('#photosBox')) markDirty(); });
       document.getElementById('trBtn').addEventListener('click', function () {
         var btn = this, hasEn = form.elements.name_en.value.trim() || form.elements.desc_en.value.trim();
         if (hasEn && !window.confirm('Ya hay texto en inglés. ¿Sustituirlo por la traducción automática?')) return;
         U.translate([{ key: 'name', es: form.elements.name_es.value }, { key: 'desc', es: form.elements.desc_es.value }], btn).then(function (m) {
-          if (!m) return; if (m.name) form.elements.name_en.value = m.name; if (m.desc) form.elements.desc_en.value = m.desc;
+          if (!m) return;
+          if (m.name) form.elements.name_en.value = m.name;
+          if (m.desc) form.elements.desc_en.value = m.desc;
+          markDirty();
         });
       });
       if (isNew) {
@@ -105,7 +174,7 @@
         box.hidden = true;
         if (isNew) out.sort = L.nextSort(all);
         var btn = form.querySelector('button[type=submit]'); U.busy(btn, true);
-        root.Api.saveFlat(out).then(function () { U.toast('Piso guardado'); location.hash = '#/pisos'; })
+        root.Api.saveFlat(out).then(function () { U.setDirty(false); U.toast('Piso guardado'); location.hash = '#/pisos'; })
           .catch(function (err) { U.toast(U.errMsg(err), 'err'); }).then(function () { U.busy(btn, false); });
       });
     });
