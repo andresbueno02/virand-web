@@ -26,6 +26,11 @@
   function todayStr() { var d = new Date(); return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
   function fmtDate(s) { return new Intl.DateTimeFormat(st.lang, { day: 'numeric', month: 'short', timeZone: 'UTC' }).format(new Date(s + 'T00:00:00Z')); }
   function priceOf(p) { return S.precioDesde(p, st.avail); }
+  function fmtEur(n) { return new Intl.NumberFormat(st.lang === 'es' ? 'es-ES' : 'en-GB', { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 }).format(n); }
+  function estimateFor(slug, llegada, salida) {
+    var pz = st.pricing && st.pricing.pisos && st.pricing.pisos[slug];
+    return pz && llegada && salida ? window.VirandPricing.stayTotal(llegada, salida, pz, st.pricing.seasons) : null;
+  }
   function waUrl(extra) {
     return W.buildLink(Object.assign({ numero: CFG.whatsapp, lang: st.lang }, extra || {}));
   }
@@ -103,6 +108,10 @@
     var nf = p.fotos ? p.fotos.length : 0;
     var dates = st.f.llegada && st.f.salida;
     var free = dates && S.estadoDisponibilidad(st.avail, p.slug, st.f.llegada, st.f.salida) === 'libre';
+    var tot = dates ? estimateFor(p.slug, st.f.llegada, st.f.salida) : null;
+    var priceHtml = tot && tot.complete
+      ? '<b>' + fmtEur(tot.total) + ' €</b> <small>' + esc(tot.nights === 1 ? t('card.total1') : t('card.totalN', { n: tot.nights })) + '</small>'
+      : (pr ? '<small>' + esc(t('card.from')) + '</small> <b>' + pr + ' €</b> <small>' + esc(t('card.night')) + '</small>' : '<small>' + esc(t('card.consult')) + '</small>');
     return '<a class="card" href="#piso=' + esc(p.slug) + '" data-slug="' + esc(p.slug) + '" data-g="0">' +
       '<div class="im"><img src="' + esc(im.s) + '" srcset="' + esc(im.s) + ' 640w, ' + esc(im.l) + ' 1280w" sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 30vw" width="640" height="480" loading="lazy" alt="' + esc(alt) + '">' +
       (free ? '<span class="badge">' + esc(t('card.free')) + '</span>' : '') +
@@ -110,13 +119,16 @@
       '<div class="body"><span class="zone">' + esc(placeOf(p)) + '</span><h3>' + esc(name) + '</h3>' +
       '<p class="meta">' + esc(plural('guest', p.viajeros)) + ' · ' + esc(plural('bedroom', p.dormitorios)) + ' · ' + esc(plural('bath', p.banos)) + '</p>' +
       '<div class="chips">' + amenHtml(p.servicios, 3) + '</div>' +
-      '<div class="foot"><span class="price">' + (pr ? '<small>' + esc(t('card.from')) + '</small> <b>' + pr + ' €</b> <small>' + esc(t('card.night')) + '</small>' : '<small>' + esc(t('card.consult')) + '</small>') + '</span>' +
+      '<div class="foot"><span class="price">' + priceHtml + '</span>' +
       (p.nota ? '<span class="rating">★ ' + String(p.nota).replace('.', st.lang === 'es' ? ',' : '.') + '</span>' : '') + '</div></div></a>';
   }
 
   function renderList() {
     var list = S.sortPisos(S.filterPisos(st.pisos, st.f, st.avail), st.f.orden, st.avail);
-    $('#cards').innerHTML = list.length ? list.map(cardHtml).join('') : '<p class="empty">' + esc(t('empty')) + '</p>';
+    var waEmpty = waUrl({ llegada: st.f.llegada || '', salida: st.f.salida || '', personas: st.f.personas });
+    $('#cards').innerHTML = list.length
+      ? list.map(cardHtml).join('')
+      : '<div class="empty"><p>' + esc(t('empty')) + '</p><div class="empty-act"><button type="button" class="btn btn-ghost" id="resetFilters">' + esc(t('filters.reset')) + '</button><a class="btn btn-wa" href="' + esc(waEmpty) + '" target="_blank" rel="noopener">' + esc(t('detail.wa')) + '</a></div></div>';
     $('#count').textContent = list.length === 1 ? t('count.1') : t('count.n', { n: list.length });
   }
 
@@ -221,7 +233,8 @@
       '<div id="estimate" class="estimate" hidden></div>' +
       '<div class="sel"><div><small>' + esc(t('detail.in')) + '</small><span id="selIn"></span></div><div><small>' + esc(t('detail.out')) + '</small><span id="selOut"></span></div></div>' +
       '<div class="pax"><label for="mPax">' + esc(t('detail.pax')) + '</label><select id="mPax"></select></div>' +
-      '<a class="btn btn-wa" id="mWa" target="_blank" rel="noopener">' + esc(t('detail.wa')) + '</a><p class="hint">' + esc(t('detail.hint')) + '</p></aside></div>';
+      '<a class="btn btn-wa" id="mWa" target="_blank" rel="noopener">' + esc(t('detail.wa')) + '</a><p class="hint">' + esc(t('detail.hint')) + '</p></aside></div>' +
+      '<div class="mbar" id="mbar"><div class="mbar-p" id="mbarPrice"></div><a class="btn btn-wa" id="mbarWa" target="_blank" rel="noopener">' + esc(t('detail.wa')) + '</a></div>';
 
     var pax = $('#mPax'), h = ''; for (var n = 1; n <= p.viajeros; n++) h += '<option value="' + n + '">' + n + '</option>';
     pax.innerHTML = h; pax.value = String(m.personas);
@@ -261,15 +274,23 @@
     var nn = m.llegada && m.salida ? R.nights(m.llegada, m.salida) : 0;
     $('#selOut').textContent = m.salida ? fmtDate(m.salida) + ' · ' + (nn === 1 ? t('detail.night1') : t('detail.nights', { n: nn })) : t('detail.addDate');
     var clr = $('#mClearDates'); if (clr) clr.hidden = !(m.llegada || m.salida);
-    var est = $('#estimate'), pz = st.pricing && st.pricing.pisos && st.pricing.pisos[m.p.slug], tot = pz && m.llegada && m.salida ? window.VirandPricing.stayTotal(m.llegada, m.salida, pz, st.pricing.seasons) : null;
+    var est = $('#estimate'), tot = estimateFor(m.p.slug, m.llegada, m.salida);
     if (est) {
       est.hidden = !(tot && tot.complete);
       if (!est.hidden) {
-        var amount = new Intl.NumberFormat(st.lang === 'es' ? 'es-ES' : 'en-GB', { minimumFractionDigits: tot.total % 1 ? 2 : 0, maximumFractionDigits: 2 }).format(tot.total);
-        est.innerHTML = '<strong>' + esc(t('detail.estimate', { total: amount, n: tot.nights })) + '</strong><small>' + esc(t('detail.estimateNote')) + '</small>';
+        est.innerHTML = '<strong>' + esc(t('detail.estimate', { total: fmtEur(tot.total), n: tot.nights })) + '</strong><small>' + esc(t('detail.estimateNote')) + '</small>';
       }
     }
-    $('#mWa').href = waUrl({ nombre: loc(m.p.nombre), llegada: m.llegada || '', salida: m.salida || '', personas: m.personas });
+    var wa = waUrl({ nombre: loc(m.p.nombre), llegada: m.llegada || '', salida: m.salida || '', personas: m.personas });
+    $('#mWa').href = wa;
+    var mbarWa = $('#mbarWa'), mbarP = $('#mbarPrice');
+    if (mbarWa) mbarWa.href = wa;
+    if (mbarP) {
+      var pr = priceOf(m.p);
+      mbarP.innerHTML = tot && tot.complete
+        ? '<b>' + fmtEur(tot.total) + ' €</b><small>' + esc(tot.nights === 1 ? t('card.total1') : t('card.totalN', { n: tot.nights })) + '</small>'
+        : (pr ? '<b>' + pr + ' €</b><small>' + esc(t('card.from') + ' ' + t('card.night')) + '</small>' : '<small>' + esc(t('card.consult')) + '</small>');
+    }
   }
   function showPhoto(i) {
     var m = st.modal, p = m.p, fotos = p.fotos || [], n = fotos.length;
@@ -330,6 +351,13 @@
 
   /* ---------- eventos ---------- */
   $('#cards').addEventListener('click', function (e) {
+    if (e.target.closest('#resetFilters')) {
+      st.f = { zona: '', personas: 1, llegada: '', salida: '', orden: 'recomendado', servicios: [] };
+      $('#fZone').value = ''; $('#fPax').value = '1'; $('#fIn').value = ''; $('#fOut').value = ''; $('#fSort').value = 'recomendado';
+      $('#clearDates').hidden = true;
+      renderServiceFilters(); renderList();
+      return;
+    }
     var nav = e.target.closest('.card-nav');
     if (nav) {
       e.preventDefault(); e.stopPropagation();
