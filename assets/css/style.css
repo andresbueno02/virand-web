@@ -172,6 +172,41 @@ h2{font-size:clamp(32px,5vw,46px)}
 .faq details[open] summary:after{transform:translateY(-50%) rotate(45deg)}
 .faq details p{padding:0 40px 22px 0;color:var(--muted)}
 
+/* reconocimientos (Airbnb Superhost + VirAnd + Booking 9,6) */
+.awards-sec{padding:46px 0;background:var(--cream)}
+.awards-banner{display:grid;grid-template-columns:1.15fr .85fr 1.15fr;background:var(--paper);border:1px solid rgba(176,138,79,.28);border-radius:12px;overflow:hidden;box-shadow:0 12px 32px rgba(26,44,74,.08)}
+.award-card{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:26px 24px}
+.award-airbnb{background:linear-gradient(135deg,#fffdf9 0%,#faf4e8 100%)}
+.award-brand{display:inline-block;font-size:15px;font-weight:700;letter-spacing:-.01em;margin-bottom:4px}
+.award-brand.airbnb{color:#ff5a5f}
+.award-brand.booking{color:#7cc0ff}
+.award-card h3{font-family:var(--serif);font-size:28px;line-height:1.08;margin-bottom:6px}
+.award-sub{font-size:13px;color:var(--muted);line-height:1.45}
+.award-stars{display:flex;align-items:center;gap:8px;margin-top:10px;flex-wrap:wrap}
+.award-stars span{color:#d99a2b;letter-spacing:2px;font-size:14px}
+.award-stars small{font-size:11px;color:var(--muted)}
+.award-medal{flex:0 0 74px;height:74px}
+.award-medal svg{width:100%;height:100%}
+.award-center{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px 18px;border-left:1px solid var(--line);border-right:1px solid var(--line);background:var(--paper)}
+.award-mono{font-family:var(--serif);font-size:42px;line-height:1;color:var(--blue);letter-spacing:.04em;font-weight:500;margin-bottom:4px}
+.award-center strong{font-size:12px;letter-spacing:.22em;color:var(--ink);font-weight:600}
+.award-center strong small{color:var(--sand);font-weight:500}
+.award-host{margin-top:10px;font-size:13px;font-weight:600;color:var(--blue)}
+.award-role{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:2px}
+.award-booking{background:linear-gradient(135deg,#132c5c 0%,#1f3a5f 100%);color:#fff;border-left:3px solid #d8b26a}
+.award-booking h3{color:#fff;font-size:24px}
+.award-booking .award-sub{color:rgba(255,255,255,.78)}
+.booking-badge{position:relative;flex:0 0 96px;height:82px;display:flex;align-items:center;justify-content:center}
+.booking-badge .laurel{position:absolute;inset:0;width:100%;height:100%}
+.booking-score{position:relative;z-index:1;width:58px;height:58px;border-radius:12px 12px 12px 4px;background:#006ce4;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(0,0,0,.28)}
+.booking-score b{font-family:var(--sans);font-size:22px;line-height:1;font-weight:700}
+.booking-score small{font-size:10px;opacity:.9;margin-top:2px}
+@media(max-width:960px){
+  .awards-banner{grid-template-columns:1fr}
+  .award-center{border-left:0;border-right:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .award-booking{border-left:0;border-top:3px solid #d8b26a}
+}
+
 /* contacto + pie */
 .contact{background:var(--blue);color:#fff;text-align:center}
 .contact h2{margin-bottom:12px}
