@@ -119,5 +119,17 @@
  "modal.share": "Compartir",
  "modal.zoom": "Ampliar foto",
  "filters.services": "Filtrar por servicio",
- "wa.float": "Escríbenos por WhatsApp"
+ "wa.float": "Escríbenos por WhatsApp",
+ "card.photos": "{n} fotos",
+ "trust.1": "{n} alojamientos verificados",
+ "trust.2": "Sin comisiones de intermediarios",
+ "trust.3": "Atención directa durante tu estancia",
+ "trust.4": "Confirmación rápida por WhatsApp",
+ "footer.desc": "Alquiler vacacional seleccionado en Málaga, Torremolinos y Benalmádena. Trato directo y atención personalizada.",
+ "footer.explore": "Explorar",
+ "footer.contact": "Contacto",
+ "legal.notice": "Aviso legal",
+ "legal.privacy": "Privacidad",
+ "legal.noticeBody": "VirAnd Luxury Rental ofrece alojamientos de alquiler vacacional en la Costa del Sol (Málaga, Torremolinos y Benalmádena). Esta web tiene carácter informativo y de consulta directa sin pasarela de pago online. Las condiciones definitivas de cada estancia se confirman directamente con el huésped antes de formalizar la reserva.",
+ "legal.privacyBody": "Esta web no utiliza cookies publicitarias ni rastreadores de terceros. Solo guardamos tu preferencia de idioma en tu navegador (localStorage). Si nos escribes por WhatsApp, tus datos se utilizan únicamente para responder a tu consulta y gestionar tu estancia."
 }

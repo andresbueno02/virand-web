@@ -55,6 +55,10 @@
     $('#waMain').href = waUrl(); $('#waMain').textContent = t('nav.whatsapp');
     var wf = $('#waFloat'); if (wf) { wf.href = waUrl(); wf.innerHTML = I.svg('whatsapp') + '<span>' + esc(t('nav.whatsapp')) + '</span>'; }
     $('#igLink').href = CFG.instagram; $('#fbLink').href = CFG.facebook;
+    var fWa = $('#fWa'), fIg = $('#fIg'), fFb = $('#fFb');
+    if (fWa) { fWa.href = waUrl(); fWa.textContent = t('nav.whatsapp'); }
+    if (fIg) fIg.href = CFG.instagram;
+    if (fFb) fFb.href = CFG.facebook;
   }
 
   /* ---------- buscador ---------- */
@@ -96,11 +100,13 @@
   function cardHtml(p) {
     var pr = priceOf(p), im = sizes(p, 0), name = loc(p.nombre);
     var alt = p.fotos && p.fotos[0] ? loc(p.fotos[0].alt) : name;
+    var nf = p.fotos ? p.fotos.length : 0;
     var dates = st.f.llegada && st.f.salida;
     var free = dates && S.estadoDisponibilidad(st.avail, p.slug, st.f.llegada, st.f.salida) === 'libre';
-    return '<a class="card" href="#piso=' + esc(p.slug) + '" data-slug="' + esc(p.slug) + '">' +
+    return '<a class="card" href="#piso=' + esc(p.slug) + '" data-slug="' + esc(p.slug) + '" data-g="0">' +
       '<div class="im"><img src="' + esc(im.s) + '" srcset="' + esc(im.s) + ' 640w, ' + esc(im.l) + ' 1280w" sizes="(max-width:620px) 92vw, (max-width:1000px) 46vw, 30vw" width="640" height="480" loading="lazy" alt="' + esc(alt) + '">' +
-      (free ? '<span class="badge">' + esc(t('card.free')) + '</span>' : '') + '</div>' +
+      (free ? '<span class="badge">' + esc(t('card.free')) + '</span>' : '') +
+      (nf > 1 ? '<button type="button" class="card-nav prev" data-dir="-1" aria-label="' + esc(t('modal.prev')) + '">‹</button><button type="button" class="card-nav next" data-dir="1" aria-label="' + esc(t('modal.next')) + '">›</button><span class="photo-cnt">' + esc(t('card.photos', { n: nf })) + '</span>' : '') + '</div>' +
       '<div class="body"><span class="zone">' + esc(placeOf(p)) + '</span><h3>' + esc(name) + '</h3>' +
       '<p class="meta">' + esc(plural('guest', p.viajeros)) + ' · ' + esc(plural('bedroom', p.dormitorios)) + ' · ' + esc(plural('bath', p.banos)) + '</p>' +
       '<div class="chips">' + amenHtml(p.servicios, 3) + '</div>' +
@@ -115,10 +121,20 @@
   }
 
   /* ---------- secciones estáticas ---------- */
+  function renderTrust() {
+    var box = $('#trustBar'); if (!box) return;
+    var items = [
+      ['shield', t('trust.1', { n: st.pisos.length })],
+      ['centro', t('trust.2')],
+      ['user', t('trust.3')],
+      ['chat', t('trust.4')]
+    ];
+    box.innerHTML = items.map(function (x) { return '<li>' + I.svg(x[0]) + '<span>' + esc(x[1]) + '</span></li>'; }).join('');
+  }
   function renderWhy() {
     var items = [['user', 1], ['shield', 2], ['centro', 3], ['chat', 4]];
     $('#whyGrid').innerHTML = items.map(function (x) {
-      return '<div class="why-item">' + I.svg(x[0]) + '<h3>' + esc(t('why.' + x[1] + '.t')) + '</h3><p>' + esc(t('why.' + x[1] + '.d')) + '</p></div>';
+      return '<div class="why-item"><span class="why-num">0' + x[1] + '</span><span class="why-ico">' + I.svg(x[0]) + '</span><h3>' + esc(t('why.' + x[1] + '.t')) + '</h3><p>' + esc(t('why.' + x[1] + '.d')) + '</p></div>';
     }).join('');
   }
   function renderReviews() {
@@ -314,8 +330,35 @@
 
   /* ---------- eventos ---------- */
   $('#cards').addEventListener('click', function (e) {
+    var nav = e.target.closest('.card-nav');
+    if (nav) {
+      e.preventDefault(); e.stopPropagation();
+      var card = nav.closest('.card'), slug = card.getAttribute('data-slug');
+      var p = st.pisos.filter(function (x) { return x.slug === slug; })[0];
+      if (!p || !p.fotos || p.fotos.length < 2) return;
+      var n = p.fotos.length, g = ((+card.getAttribute('data-g') || 0) + (+nav.getAttribute('data-dir')) + n) % n;
+      card.setAttribute('data-g', String(g));
+      var im = sizes(p, g), img = card.querySelector('.im img');
+      img.src = im.s; img.srcset = im.s + ' 640w, ' + im.l + ' 1280w';
+      img.alt = loc(p.fotos[g].alt) || loc(p.nombre);
+      var cnt = card.querySelector('.photo-cnt'); if (cnt) cnt.textContent = (g + 1) + ' / ' + n;
+      return;
+    }
     var a = e.target.closest('.card'); if (!a) return;
     e.preventDefault(); openModal(a.getAttribute('data-slug'));
+  });
+  document.querySelectorAll('[data-legal]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var k = this.getAttribute('data-legal');
+      lastFocus = document.activeElement;
+      st.modal = { p: { slug: '' }, g: 0, legal: true };
+      $('#sheet').innerHTML = '<button class="close" type="button" aria-label="' + esc(t('modal.close')) + '">×</button>' +
+        '<div class="legal-box"><span class="eyebrow">VirAnd Luxury Rental</span><h2 id="mTitle">' + esc(t('legal.' + k)) + '</h2><p>' + esc(t('legal.' + k + 'Body')) + '</p></div>';
+      $('#sheet .close').onclick = function () { closeModal(false); };
+      var modal = $('#modal'); modal.hidden = false; modal.classList.add('open'); modal.scrollTop = 0;
+      document.body.style.overflow = 'hidden'; document.body.classList.add('modal-open');
+      $('#sheet .close').focus();
+    });
   });
   var svcBox = $('#svcFilters');
   if (svcBox) svcBox.addEventListener('click', function (e) {
@@ -343,8 +386,8 @@
 
   function setLang(l) {
     st.lang = l; ls('virand-lang', l);
-    applyStatic(); fillSearchControls(); renderServiceFilters(); renderWhy(); renderReviews(); renderFaq(); renderList();
-    if (st.modal) { var s = st.modal.p.slug; var keep = { l: st.modal.llegada, s: st.modal.salida }; st.f.llegada = keep.l || st.f.llegada; st.f.salida = keep.s || st.f.salida; openModal(s, false); }
+    applyStatic(); fillSearchControls(); renderTrust(); renderServiceFilters(); renderWhy(); renderReviews(); renderFaq(); renderList();
+    if (st.modal && !st.modal.legal) { var s = st.modal.p.slug; var keep = { l: st.modal.llegada, s: st.modal.salida }; st.f.llegada = keep.l || st.f.llegada; st.f.salida = keep.s || st.f.salida; openModal(s, false); }
   }
 
   /* ---------- arranque ---------- */
@@ -357,14 +400,14 @@
       st.dict.es = d.i18n.es; st.dict.en = d.i18n.en;
       st.pisos = d.pisos.filter(function (p) { return p.activo !== false; });
       st.opiniones = d.opiniones; st.faq = d.faq; st.pricing = d.pricing || null;
-      applyStatic(); fillSearchControls(); renderServiceFilters(); renderWhy(); renderReviews(); renderFaq();
+      applyStatic(); fillSearchControls(); renderTrust(); renderServiceFilters(); renderWhy(); renderReviews(); renderFaq();
       renderList();
       var m = /#piso=([\w-]+)/.exec(location.hash); if (m) openModal(m[1], false);
       return window.VirandAvailability.load();
     })
     .then(function (a) {
       st.avail = a; st.availLoaded = true; renderList();
-      if (st.modal) { var s = st.modal.p.slug; openModal(s, false); }
+      if (st.modal && !st.modal.legal) { var s = st.modal.p.slug; openModal(s, false); }
     })
     .catch(function (e) { console.error(e); $('#cards').innerHTML = '<p class="empty">No se han podido cargar los alojamientos. Escríbenos por WhatsApp.</p>'; });
 })();

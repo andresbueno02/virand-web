@@ -119,5 +119,17 @@
  "modal.share": "Share",
  "modal.zoom": "Enlarge photo",
  "filters.services": "Filter by amenity",
- "wa.float": "Message us on WhatsApp"
+ "wa.float": "Message us on WhatsApp",
+ "card.photos": "{n} photos",
+ "trust.1": "{n} verified stays",
+ "trust.2": "No booking platform fees",
+ "trust.3": "Personal support during your stay",
+ "trust.4": "Fast confirmation on WhatsApp",
+ "footer.desc": "Curated holiday rentals in Málaga, Torremolinos and Benalmádena. Direct contact and personal attention.",
+ "footer.explore": "Explore",
+ "footer.contact": "Contact",
+ "legal.notice": "Legal notice",
+ "legal.privacy": "Privacy",
+ "legal.noticeBody": "VirAnd Luxury Rental offers holiday rental apartments on the Costa del Sol (Málaga, Torremolinos and Benalmádena). This website is for browsing and direct enquiries with no online payment gateway. Final terms for each stay are confirmed directly with the guest prior to booking.",
+ "legal.privacyBody": "This website uses no advertising cookies or third-party trackers. We only store your language preference locally in your browser (localStorage). If you contact us on WhatsApp, your details are used solely to reply to your enquiry and manage your stay."
 }

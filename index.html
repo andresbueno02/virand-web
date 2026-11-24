@@ -63,6 +63,7 @@
     <label><span data-i18n="search.pax">Personas</span><select id="fPax"></select></label>
     <button class="btn btn-primary" type="submit" data-i18n="search.go">Buscar</button>
   </form>
+  <ul class="trust-bar" id="trustBar" aria-label="Garantías VirAnd"></ul>
 </div>
 
 <section class="section" id="alojamientos">
@@ -138,7 +139,34 @@
 </section>
 </main>
 
-<footer><div class="wrap" data-i18n="footer">© 2026 VirAnd. Todos los derechos reservados.</div></footer>
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <a class="logo" href="#top" aria-label="VirAnd Luxury Rental">VirAnd<small>Luxury Rental</small></a>
+      <p data-i18n="footer.desc">Alquiler vacacional seleccionado en Málaga, Torremolinos y Benalmádena. Trato directo y atención personalizada.</p>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer.explore">Explorar</h4>
+      <a href="#alojamientos" data-i18n="nav.stays">Alojamientos</a>
+      <a href="#por-que" data-i18n="nav.why">Por qué VirAnd</a>
+      <a href="#opiniones" data-i18n="nav.reviews">Opiniones</a>
+      <a href="#faq" data-i18n="nav.faq">Preguntas</a>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer.contact">Contacto</h4>
+      <a id="fWa" target="_blank" rel="noopener">WhatsApp</a>
+      <a id="fIg" target="_blank" rel="noopener" data-i18n="contact.ig">Instagram</a>
+      <a id="fFb" target="_blank" rel="noopener" data-i18n="contact.fb">Facebook</a>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <span data-i18n="footer">© 2026 VirAnd. Todos los derechos reservados.</span>
+    <span class="footer-legal">
+      <button type="button" data-legal="notice" data-i18n="legal.notice">Aviso legal</button>
+      <button type="button" data-legal="privacy" data-i18n="legal.privacy">Privacidad</button>
+    </span>
+  </div>
+</footer>
 
 <a class="wa-float" id="waFloat" target="_blank" rel="noopener" data-i18n-aria="wa.float" aria-label="Escríbenos por WhatsApp"></a>
 
