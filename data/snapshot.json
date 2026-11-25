@@ -50,13 +50,6 @@
    "sort": 6
   },
   {
-   "a_en": "Some stays, such as Loft Ipanema, offer self check-in. For the rest we explain the whole process when you confirm your booking.",
-   "a_es": "Algunos alojamientos, como Loft Ipanema, tienen llegada autónoma. Para el resto te explicamos todo el proceso al confirmar la reserva.",
-   "q_en": "What is arrival like?",
-   "q_es": "¿Cómo es la llegada?",
-   "sort": 7
-  },
-  {
    "a_en": "Mediterranean Garden House allows pets. For the other stays, ask us on WhatsApp and we'll confirm.",
    "a_es": "Jardín del Mediterráneo admite mascotas. En el resto de alojamientos, consúltanos por WhatsApp y te lo confirmamos.",
    "q_en": "Are pets allowed?",
@@ -76,6 +69,13 @@
    "q_en": "What support do I get during my stay?",
    "q_es": "¿Qué atención recibo durante la estancia?",
    "sort": 10
+  },
+  {
+   "a_en": "Some stays, such as Loft Ipanema, offer self check-in. For the rest we explain the whole process when you confirm your booking.",
+   "a_es": "Si todos nuestros alojamientos disponen de entrada autónoma, excepto . Si prefieres una recepción presencial o tienes alguna consulta, solo tienes que comunicárnoslo con antelación. Estaremos encantados de atenderte.",
+   "q_en": "What is arrival like?",
+   "q_es": "¿Cómo es la llegada?",
+   "sort": 7
   }
  ],
  "flats": [
@@ -314,31 +314,6 @@
   },
   {
    "banos": 1,
-   "barrio": "Playa",
-   "camas": 2,
-   "desc_en": "Entire apartment in Benalmádena, right on the beach, with a heated jacuzzi and barbecue on the terrace. Sleeps 4 guests in 2 bedrooms.",
-   "desc_es": "Apartamento entero en Benalmádena, frente a la playa, con jacuzzi climatizado y barbacoa en su terraza. Alojamiento para 4 viajeros con 2 dormitorios.",
-   "dormitorios": 2,
-   "lat": 36.5955,
-   "lng": -4.5695,
-   "name_en": "Beachfront penthouse with heated jacuzzi",
-   "name_es": "Ático frente a la playa con jacuzzi climatizado",
-   "nota": null,
-   "precio_alta": 190.0,
-   "precio_baja": 105.0,
-   "precio_desde": 105.0,
-   "servicios": [
-    "playa",
-    "jacuzzi",
-    "barbacoa"
-   ],
-   "slug": "atico-benalmadena",
-   "sort": 0,
-   "viajeros": 4,
-   "zona": "Benalmádena"
-  },
-  {
-   "banos": 1,
    "barrio": null,
    "camas": null,
    "desc_en": "Family apartment with three spacious bedrooms and a bathroom with shower, 20 minutes from the historic centre of Málaga and a 13-minute walk from the train station. Kitchen with fridge and microwave, washing machine and a TV with Netflix, Prime, Disney and Max. Free parking space 400 metres away, for a 5-seater car only.",
@@ -465,6 +440,41 @@
    "sort": 15,
    "viajeros": 8,
    "zona": "Málaga"
+  },
+  {
+   "banos": 1,
+   "barrio": "Playa",
+   "camas": 2,
+   "desc_en": "Entire apartment in Benalmádena, right on the beach, with a heated jacuzzi and barbecue on the terrace. Sleeps 4 guests in 2 bedrooms.",
+   "desc_es": "Apartamento entero en Benalmádena, frente a la playa, con jacuzzi climatizado y barbacoa en su terraza. Alojamiento para 4 viajeros con 2 dormitorios.",
+   "dormitorios": 2,
+   "lat": 36.5955,
+   "lng": -4.5695,
+   "name_en": "Beachfront penthouse with heated jacuzzi",
+   "name_es": "Ático frente a la playa con jacuzzi climatizado",
+   "nota": null,
+   "precio_alta": 190.0,
+   "precio_baja": 105.0,
+   "precio_desde": 105.0,
+   "servicios": [
+    "playa",
+    "vistas-mar",
+    "vistas",
+    "piscina",
+    "jacuzzi",
+    "barbacoa",
+    "parking",
+    "aire",
+    "wifi",
+    "ascensor",
+    "mascotas",
+    "bicicletas",
+    "acogedor"
+   ],
+   "slug": "atico-benalmadena",
+   "sort": 0,
+   "viajeros": 4,
+   "zona": "Benalmádena"
   },
   {
    "banos": 2,
