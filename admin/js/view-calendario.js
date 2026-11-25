@@ -120,6 +120,7 @@
             (b.guest_name ? '<div class="bk-who">' + esc(b.guest_name) + (b.total_price != null ? ' · <strong>' + fmtEur(b.total_price) + '</strong>' : '') + '</div>' : (b.total_price != null ? '<div class="bk-who"><strong>' + fmtEur(b.total_price) + '</strong></div>' : '')) +
             (b.notes ? '<div class="muted">' + esc(b.notes) + '</div>' : '') + '</div>' +
             '<div class="bk-act">' +
+            (b.kind === 'booking' ? '<a class="btn btn-ghost sm" href="#/facturas/' + esc(b.id) + '">🧾 Facturar</a>' : '') +
             (dig ? '<a class="btn btn-ghost sm" href="https://wa.me/' + esc(dig) + '" target="_blank" rel="noopener">WhatsApp</a>' : '') +
             '<button type="button" class="btn btn-danger sm" data-act="bk-del">Borrar</button></div></div>';
         }).join('') + '</div>' : '<p class="empty">No hay reservas ni bloqueos próximos en este piso.</p>') + '</fieldset>' +

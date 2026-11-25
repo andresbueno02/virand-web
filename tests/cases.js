@@ -491,6 +491,34 @@
     });
   }
 
+  /* ---- facturación (10% IVA turístico RDL 29/2026 + multi-propietario) ---- */
+  if (G.AdminLogic && G.AdminLogic.calcVatFromTotal) {
+    var AL = G.AdminLogic;
+    test('calcVatFromTotal: desglose exacto al céntimo (10%, 0%, negativo)', function () {
+      eq(AL.calcVatFromTotal('110', 10), { base: 100, vat: 10, total: 110, rate: 10 });
+      var c = AL.calcVatFromTotal('450', 10);
+      eq(c, { base: 409.09, vat: 40.91, total: 450, rate: 10 });
+      eq(Math.round((c.base + c.vat) * 100) / 100, c.total);
+      eq(AL.calcVatFromTotal('500', 0), { base: 500, vat: 0, total: 500, rate: 0 });
+      eq(AL.calcVatFromTotal('-110', 10), { base: -100, vat: -10, total: -110, rate: 10 });
+      eq(AL.calcVatFromTotal('abc', 10), null);
+    });
+    test('autoVatRate: <= 30 noches al 10%, > 30 noches exento (0%)', function () {
+      eq(AL.autoVatRate('2026-12-01', '2026-12-08'), 10);
+      eq(AL.autoVatRate('2026-12-01', '2026-12-31'), 10); // 30 noches exactas -> 10%
+      eq(AL.autoVatRate('2026-12-01', '2027-01-01'), 0);  // 31 noches -> exento
+      eq(AL.autoVatRate('', ''), 10);
+    });
+    test('validateIssuer y validateInvoice (límite 400€ simplificada y campos obligatorios)', function () {
+      eq(AL.validateIssuer({ name: 'Virginia', tax_id: '12345678Z', address: 'Málaga', series: 'VBG' }), []);
+      ok(AL.validateIssuer({ name: '', tax_id: '123', address: 'X', series: 'mala serie!' }).length >= 2);
+      eq(AL.validateInvoice({ issuer_id: 'u1', issue_date: '2026-12-02', kind: 'simplified', concept: 'Estancia', total_amount: 350 }), []);
+      ok(AL.validateInvoice({ issuer_id: 'u1', issue_date: '2026-12-02', kind: 'simplified', concept: 'Estancia', total_amount: 450 }).length > 0, '>400 exige completa');
+      ok(AL.validateInvoice({ issuer_id: 'u1', issue_date: '2026-12-02', kind: 'complete', concept: 'Estancia', total_amount: 450 }).length === 3, 'faltan datos cliente');
+      eq(AL.validateInvoice({ issuer_id: 'u1', issue_date: '2026-12-02', kind: 'complete', concept: 'Estancia', total_amount: 450, guest_name: 'Ana', guest_tax_id: '111A', guest_address: 'Calle 1' }), []);
+    });
+  }
+
   /* ---- resumen ---- */
   var failed = results.filter(function (r) { return !r.ok; });
   G.__testSummary = { total: results.length, failed: failed.length };

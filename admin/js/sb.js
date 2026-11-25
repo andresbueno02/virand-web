@@ -88,7 +88,21 @@
         if (ctx && ctx.json) return ctx.json().then(function (j) { throw new Error(j && j.error ? j.error : m); }, function () { throw new Error(m); });
         throw new Error(m);
       });
-    }
+    },
+
+    listIssuers: function () { return client.from('issuers').select('*').order('name').then(must); },
+    saveIssuer: function (row) {
+      var id = row.id; if (id) delete row.id;
+      return (id ? client.from('issuers').update(row).eq('id', id) : client.from('issuers').insert(row)).select().single().then(must);
+    },
+    removeIssuer: function (id) { return client.from('issuers').delete().eq('id', id).then(must); },
+    setFlatIssuer: function (flatId, issuerId) { return client.from('flats').update({ issuer_id: issuerId || null }).eq('id', flatId).then(must); },
+    getBooking: function (id) { return client.from('bookings').select('*').eq('id', id).single().then(must); },
+    listInvoices: function (year) {
+      var q = client.from('invoices').select('*').order('issue_date', { ascending: false }).order('seq', { ascending: false });
+      return (year ? q.eq('year', year) : q).then(must);
+    },
+    issueInvoice: function (payload) { return client.rpc('issue_invoice', { p: payload }).then(must); }
   };
   root.Api = Api;
 })(window);

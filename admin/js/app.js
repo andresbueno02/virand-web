@@ -28,6 +28,7 @@
       '<nav id="nav" aria-label="Secciones">' +
       '<a href="#/pisos" data-r="pisos">' + U.ico('home') + '<span>Pisos</span></a>' +
       '<a href="#/calendario" data-r="calendario">' + U.ico('cal') + '<span>Calendario</span></a>' +
+      '<a href="#/facturas" data-r="facturas">' + U.ico('inv') + '<span>Facturas</span></a>' +
       '<a href="#/precios" data-r="precios">' + U.ico('price') + '<span>Precios</span></a>' +
       '<a href="#/preguntas" data-r="preguntas">' + U.ico('faq') + '<span>Preguntas</span></a>' +
       '<a href="#/opiniones" data-r="opiniones">' + U.ico('star') + '<span>Opiniones</span></a>' +
@@ -59,6 +60,7 @@
     document.querySelectorAll('#nav a').forEach(function (a) { a.classList.toggle('on', a.getAttribute('data-r') === r); });
     if (r === 'pisos') p = h[1] ? root.ViewPisos.edit(view, h[1]) : root.ViewPisos.list(view);
     else if (r === 'calendario') p = root.ViewCalendario.render(view, h[1]);
+    else if (r === 'facturas') p = root.ViewFacturas.render(view, h[1]);
     else if (r === 'precios') p = root.ViewPrecios.render(view);
     else if (r === 'preguntas') p = root.ViewLista.render(view, 'faq');
     else if (r === 'opiniones') p = root.ViewLista.render(view, 'reviews');

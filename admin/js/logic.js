@@ -146,9 +146,57 @@
     return groups.filter(function (g) { return g.keys.length; });
   }
 
+  // Desglosa un importe total (IVA incluido) en { base, vat, total, rate } cuadrando al céntimo.
+  function calcVatFromTotal(total, rate) {
+    var t = numOrNull(total), r = rate == null || rate === '' ? 10 : Number(rate);
+    if (t === null || isNaN(t) || isNaN(r) || r < 0) return null;
+    var tot = Math.round(t * 100) / 100;
+    var base = Math.round((tot / (1 + r / 100)) * 100) / 100;
+    var vat = Math.round((tot - base) * 100) / 100;
+    return { base: base, vat: vat, total: tot, rate: r };
+  }
+
+  // RDL 29/2026: estancias <= 30 noches llevan 10% de IVA; > 30 noches siguen exentas (0%) sin servicios hoteleros.
+  function autoVatRate(checkIn, checkOut) {
+    if (!checkIn || !checkOut || checkOut <= checkIn) return 10;
+    var ms = new Date(checkOut + 'T00:00:00Z').getTime() - new Date(checkIn + 'T00:00:00Z').getTime();
+    var nights = Math.round(ms / 86400000);
+    return nights > 30 ? 0 : 10;
+  }
+
+  function validateIssuer(r) {
+    var e = [];
+    if (!txt(r.name)) e.push('Falta el nombre o razón social del propietario.');
+    if (!txt(r.tax_id)) e.push('Falta el NIF / DNI / CIF.');
+    if (!txt(r.address)) e.push('Falta el domicilio fiscal completo.');
+    if (!r.series || !/^[A-Z0-9]{1,8}$/.test(String(r.series).trim().toUpperCase())) e.push('La serie debe tener entre 1 y 8 letras/números sin espacios (ej. VBG o F1).');
+    return e;
+  }
+
+  function validateInvoice(r) {
+    var e = [];
+    if (!r.issuer_id) e.push('Selecciona el propietario/emisor de la factura.');
+    if (!r.issue_date) e.push('Falta la fecha de expedición.');
+    if (!txt(r.concept)) e.push('Falta el concepto de la factura.');
+    var tot = numOrNull(r.total_amount);
+    if (tot === null || isNaN(tot) || tot === 0) e.push('Escribe un importe total válido.');
+    else if (r.kind === 'rectificative' && tot > 0) e.push('En una factura rectificativa de abono el importe debe ser negativo.');
+    else if (r.kind !== 'rectificative' && tot < 0) e.push('El importe total debe ser mayor que 0.');
+    if (r.kind === 'simplified' && tot !== null && Math.abs(tot) > 400) {
+      e.push('La factura simplificada solo se permite hasta 400 € (IVA incluido). Elige «Factura completa».');
+    }
+    if (r.kind === 'complete') {
+      if (!txt(r.guest_name)) e.push('En factura completa falta el nombre completo del cliente.');
+      if (!txt(r.guest_tax_id)) e.push('En factura completa falta el DNI / Pasaporte / NIF del cliente.');
+      if (!txt(r.guest_address)) e.push('En factura completa falta la dirección del cliente.');
+    }
+    return e;
+  }
+
   return {
     SERVICIOS: SERVICIOS, SERVICIO_KEYS: SERVICIO_KEYS, slugify: slugify, uniqueSlug: uniqueSlug,
     flatToForm: flatToForm, formToRow: formToRow, validateFlat: validateFlat,
-    dayRange: dayRange, monthDays: monthDays, weekendDays: weekendDays, addDay: addDay, validateSeason: validateSeason, moveItem: moveItem, reindex: reindex, nextSort: nextSort, changedSorts: changedSorts, groupTexts: groupTexts
+    dayRange: dayRange, monthDays: monthDays, weekendDays: weekendDays, addDay: addDay, validateSeason: validateSeason, moveItem: moveItem, reindex: reindex, nextSort: nextSort, changedSorts: changedSorts, groupTexts: groupTexts,
+    calcVatFromTotal: calcVatFromTotal, autoVatRate: autoVatRate, validateIssuer: validateIssuer, validateInvoice: validateInvoice
   };
 });

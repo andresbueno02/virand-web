@@ -63,3 +63,8 @@ El panel tiene la pestaña **Calendario**, donde se gestionan reservas directas,
 1. Inventa una clave larga aleatoria (p. ej. `openssl rand -hex 24`).
 2. Guárdala en Supabase (**Edge Functions → Secrets**) como `SYNC_ICAL_SECRET`.
 3. Guárdala también en GitHub (**Settings → Secrets and variables → Actions**) como `SYNC_ICAL_SECRET`. El workflow `.github/workflows/sync-ical.yml` sincronizará todos los pisos cada 30 minutos automáticamente.
+
+## Facturación multi-propietario (10% IVA turístico)
+Para activar la pestaña **Facturas** del panel `/admin/`:
+1. En Supabase → **SQL Editor → New query**, pega todo el contenido de `supabase/invoices_migration.sql` y pulsa **Run**.
+2. Entra en `/admin/#/facturas` → sección **3 · Propietarios / Emisores fiscales**, da de alta a cada propietario con su NIF y su prefijo de serie (p. ej. `VBG`) y asígnalo a sus pisos.
