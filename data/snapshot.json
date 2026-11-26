@@ -22,13 +22,6 @@
    "sort": 2
   },
   {
-   "a_en": "50% of the total is paid when booking and the remainder 7 days before arrival. No security deposit is required.",
-   "a_es": "Se abona el 50 % del importe total al reservar y el resto 7 días antes de la llegada. No se requiere fianza.",
-   "q_en": "How is the booking paid?",
-   "q_es": "¿Cómo se paga la reserva?",
-   "sort": 3
-  },
-  {
    "a_en": "Payments made are non-refundable. If you are unsure about your dates, ask us before booking.",
    "a_es": "Los pagos realizados son no reembolsables. Si tienes dudas sobre tus fechas, consúltanos antes de reservar.",
    "q_en": "Can I cancel my booking?",
@@ -76,6 +69,13 @@
    "q_en": "What is arrival like?",
    "q_es": "¿Cómo es la llegada?",
    "sort": 7
+  },
+  {
+   "a_en": "50% of the total is paid when booking and the remainder 7 days before arrival. No security deposit is required.",
+   "a_es": "Se abona el 50 % del importe total al reservar y el resto 7 días antes de la llegada. Se requiere fianza a la llegada al apartamento que se delvoverá cuando se compruebe que todo esta correcto en la salida.",
+   "q_en": "How is the booking paid?",
+   "q_es": "¿Cómo se paga la reserva?",
+   "sort": 3
   }
  ],
  "flats": [
